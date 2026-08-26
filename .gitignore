@@ -9,6 +9,10 @@ config/token.json
 *.key
 *.p12
 
+# MCP & Editor Configuration Secrets
+.cursor/
+mcp_config.json
+
 # Logs & Execution Runtime Outputs
 *.log
 logs/
