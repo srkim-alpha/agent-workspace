@@ -1,0 +1,19 @@
+# [이력서] AI Lead Engineer & 수석 아키텍처 (2024)
+
+## 기본 정보
+- **성명**: 김성근 (Alpha Leader)
+- **주요 직무**: AI Lead Engineer / 수석 AI 아키텍트 / 멀티에이전트 오케스트레이션
+- **경력 연차**: 8년차
+
+## 핵심 역량 (Core Competencies)
+1. **Agentic System Architecture**: Gemini 3.5 Flash-lite / GPT-4o / Claude 3.5 Sonnet 기반 오케스트레이터 설계
+2. **Standard Library Zero-Dependency Design**: 파이썬 표준 라이브러리 기반 0-의존성 모듈 수석 아키텍팅
+3. **Telegram & Notion Infrastructure**: 1:1 모바일 수석비서 게이트웨이 및 자동 지식 DB 연동 파이프라인
+4. **Resilience & Security**: Playwright 하드 타임아웃, Tier 3 (.env) 민감 정보 물리적 격리 거버넌스
+
+## 주요 프로젝트 경력
+### 1. 지능형 모바일 수석비서 시스템 구축 (2024.01 ~ 현재)
+- **Situation**: 모바일 환경에서 시스템 상황 파악 및 지능형 요약 요구 증대.
+- **Task**: 텔레그램 메신저 및 노션 지식 DB를 통합 결속하는 비동기 에이전트 시스템 구축.
+- **Action**: STT 음성 수신 ➔ Intent 분류 ➔ Smart Digest 3줄 요약 생성 ➔ Notion DB 자동 적재 파이프라인 완성.
+- **Result**: 사용자 응답 지연시간 2초 이내 단축 및 모바일 커맨드 처리 성공률 99.5% 달성.
