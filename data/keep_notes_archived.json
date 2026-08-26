@@ -1,0 +1,1427 @@
+[
+  {
+    "file_name": "2026-02-11T16_20_19.284+09_00.json",
+    "title": "신용정보-credit4u / chan7502 / srkim7410!",
+    "text_content": "신용정보-credit4u / chan7502 / srkim7410!",
+    "checklist": [],
+    "created_date": "2026-02-11",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-14T15_57_08.186+09_00.json",
+    "title": "🔎 1️⃣ 잔여 수수료 관련",
+    "text_content": "🔎 1️⃣ 잔여 수수료 관련\n“제가 2024년 8월~2025년 3월까지 모집한 계약의 13차월 수수료는 해촉 후에도 정상 지급됩니까?”\n\n“해촉 시점 이후 지급 예정 수수료 중 지급 중단 또는 감액되는 항목이 있습니까?”\n\n“현재 기준으로 제게 남아있는 총 예상 지급 잔액은 얼마입니까? (계약별 내역 요청)”\n\n“유지수수료 또는 갱신수수료가 있다면, 해촉 시 귀속은 어떻게 됩니까?”\n\n\n🔎 2️⃣ 환수(클로백) 리스크\n“해촉 이후에도 기존 계약 해지 시 환수 책임이 제게 남습니까? 기간은 언제까지입니까?”\n\n“환수 발생 시 공제 방식은 어떻게 됩니까? 일시청구입니까, 차감정산입니까?”\n\n“현재 환수 위험 계약이 몇 건이며, 예상 금액은 얼마입니까?”\n\n\n🔎 3️⃣ 계약 이전 관련\n“계약자를 팀장님께 이전하면, 해당 계약의 향후 수수료는 전부 이전됩니까?”\n\n“이전 후에도 제가 일정 기간 상담 보조를 하면 일부 수익 분배가 가능한 구조입니까?”\n\n“계약 이전 확인서는 서면으로 받을 수 있습니까?”\n\n\n🔎 4️⃣ 세금 및 행정\n“해촉 시 원천징수·사업소득 정산은 언제 완료됩니까?”\n\n“폐업신고(사업자 정리) 전에 확인해야 할 정산 서류는 무엇입니까?”\n\n“향후 재위촉(재등록)이 가능한 기간 제한이 있습니까?”\n\n📌 반드시 받아야 할 것\n계약별 수수료 지급 예정표 (엑셀 또는 서면)\n환수 조건 명시 문서\n계약 이전 확인서 (날짜 명확히 기재)\n\n💡 핵심 포인트\n✔ “말로” 듣지 말고 “문서로” 받으십시오.\n ✔ “대략 얼마”라는 표현은 인정하지 마십시오. 숫자로 받으십시오.\n ✔ 해촉 날짜 하루 차이로 지급 여부가 달라질 수 있습니다. 날짜를 확정하십시오.",
+    "checklist": [],
+    "created_date": "2026-02-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-14T15_57_45.230+09_00.json",
+    "title": "2024년 8월부터 시작했던 보험설계사일을 이제 정리하려고해.",
+    "text_content": "2024년 8월부터 시작했던 보험설계사일을 이제 정리하려고해.\n2025년 4월부터 급성간염으로 인해 일을 잠시 쉬게 되면서 동기를 잃은 것 같아.\n오늘 담당팀장을 만나 해촉에 관해서 얘기했고, 2월중으로 계약자를 이전하기로 했어.\n이 결정이 잘 한건지? 아닌지 아직도 고민을 하고 있지만, 내 적성에 맞지 않는 길이라고 판단해서 결정하려고해.\n내가 생각하지 못한 기회와 비용에 대해 알고싶어.\n그리고 나를 믿고 보험가입을 해준 지인들에게 이 일을 그만둔다고 하면 신뢰가 깨질까봐 걱정돼",
+    "checklist": [],
+    "created_date": "2026-02-14",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-02-17T19_00_05.093+09_00.json",
+    "title": "프롬프트 데이터 수집",
+    "text_content": "프롬프트 데이터 수집\n자서전, Log기록 Gems만들기\n\n\n\n지금까지 대화에서 너의 Log 파일에 기록되어야할 정보만 정리해서 붙여넣기 할 수 있게 만들어줘. 기록이 완료되면 맥락이 이어지게 하여 새 대화창에서 다시 대화를 이어갈 생각이야.\n\n엑시스에게 - 지금 보여주는 이지스의 역활(지침)을 이해 하고, 너의 역활(지침)과 충돌되거나 문제생기지 않게 협업지침을 만들어줘. 만들어진 지침을 이지스의 어디에 삽입하면 좋을지도 알려줘.\n\n이지스에게 - 지금 보여주는 엑시스의 역활(지침)을 이해(학습)하고, 너의 역활(지침)과 충돌되거나 문제 생기지 않게 협업툴(지침)을 만들어줘. 그리고 만들어진 협업툴(지침)을 엑서스의 지침 어디에 삽입하면 좋을지 알려줘.",
+    "checklist": [],
+    "created_date": "2026-02-16",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "2026-02-17T21_34_58.782+09_00.json",
+    "title": "너무 딱딱하게 정제된 기록도 필요 하지만, 나중에 자서전? 수필? 뭐 그",
+    "text_content": "너무 딱딱하게 정제된 기록도 필요 하지만, 나중에 자서전? 수필? 뭐 그런식으로도 만들고 싶은 마음이 있어.\n👉 \"거의 실패하지 않는 노션 Log 템플릿 구조\"\n(실제 고수들이 쓰는 형태)\n와\n👉 Axis / Aegis와 연결되는\n개인 사고 데이터 아키텍처도 설계해줘",
+    "checklist": [],
+    "created_date": "2026-02-16",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-17T21_34_59.136+09_00.json",
+    "title": "AI 도입과 비즈니스 성공에 대한 비디오는 AI 비즈니스의 현황, 실패율",
+    "text_content": "AI 도입과 비즈니스 성공에 대한 비디오는 AI 비즈니스의 현황, 실패율이 높은 이유, 그리고 성공적인 AI 도입을 위한 전략에 대해 다룹니다 (0:47). 조용민 언바운드랩 VC 대표는 AI 비즈니스 현장에서의 경험을 바탕으로 AI 활용의 성공과 실패 요인을 분석하고, 실제 사례를 통해 기업들이 AI를 어떻게 활용해야 하는지 설명합니다. (1:17)\n\nAI 비즈니스 실패 원인 및 성공 관점:\n높은 실패율 (5:07): 실제 MIT 리포트에 따르면 AI 프로젝트의 95%가 실패하며, 한국에서는 그 비율이 더 높을 수 있습니다. 실패의 주된 원인은 기술적 문제보다는 '문제 정의'의 오류에 있습니다. 즉, AI를 어디에, 어떻게 적용할지에 대한 고해상도 이해가 부족하기 때문입니다 (6:59).\n관료주의적 접근 (7:07): 단순히 AI를 '도입'하는 것에 초점을 맞추고, '안 될 이유'를 먼저 찾는 관료주의적 태도가 실패를 야기합니다 (9:21).\n공급자적 시각 (19:57): 기업들이 자신들의 기술이나 제품을 중심으로 AI를 적용하려 할 때 문제가 발생합니다. 대신 사용자 관점에서 실제 문제를 해결하려는 노력이 필요합니다 (20:05).\n재해석의 중요성 (10:31): AI를 단순한 도구로 활용하는 것을 넘어, 비즈니스 문제를 해결하기 위해 AI를 어떻게 '재해석'할 것인가에 대한 고민이 필요합니다 (10:31). 이 본질적인 질문에 집중할 때 성공할 수 있습니다 (11:39).\n\n성공 기업의 AI 활용 전략:\n문제 재정의 (11:05): 부서별로 AI로 풀 수 있는 단순한 문제를 넘어, 부서 간의 큰 비즈니스 KPI(핵심 성과 지표)를 풀 수 있는 문제를 새롭게 정의하는 씽킹 프로젝트를 수행해야 합니다 (11:05).\n사용자 중심 관점 (20:05): '누구를 위한 서비스인가?'에 대한 사용자 관점에서 문제를 정의하고 해결해야 합니다. 예를 들어, 시니어를 위한 키오스크는 교육이 필요 없는 키오스크를 만드는 것이고, 의사를 위한 AI는 차트 작성의 질을 높이고 퇴근 시간을 단축시키는 것입니다 (19:01).\n이종 산업에서의 아이디어 차용 (15:36): 다른 산업에서 성공한 중독성 있는 요소를 가져와 AI 서비스에 적용하는 등 창의적인 접근을 통해 사용자 행동을 유도할 수 있습니다. 예를 들어 유튜브 '좋아요' 버튼의 중독성 강화는 게임에서 아이디어를 얻었습니다 (14:55).\n위험 요소 우회 및 해결 방안 모색 (8:54): AI 도입의 위험 요소를 회피하는 대신, 그 위험을 어떻게 우회하여 문제를 해결할지에 대해 적극적으로 스터디하고 해결 방안을 모색하는 조직이 성공합니다 (8:54).\n정교한 검증 지표 설정 (21:37): AI 도입 후에는 공급자적 관점이 아닌 사용자 관점에서 KPI를 설정하고 검증해야 합니다. 예를 들어 배달 앱에서는 AI 이미지 리터칭 후 주문 이탈율 감소나 주문 시간 단축 등을 지표로 삼습니다 (21:37).",
+    "checklist": [],
+    "created_date": "2026-02-17",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "2026-02-19T18_28_54.374+09_00.json",
+    "title": "한국신용정보원(크래딧포유)",
+    "text_content": "한국신용정보원(크래딧포유)\n김문희 kmh7910 / mhkim7410!\n김승률 chan7502 / srkim7410!",
+    "checklist": [],
+    "created_date": "2026-02-19",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-22T13_58_59.957+09_00.json",
+    "title": "우리 와이프가 일을 하는데 많이 힘들어 하네. 아내를 위한 워크플러워를 ",
+    "text_content": "우리 와이프가 일을 하는데 많이 힘들어 하네. 아내를 위한 워크플러워를 시스템을 구축하고 싶어",
+    "checklist": [],
+    "created_date": "2026-02-22",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-22T23_36_59.072+09_00.json",
+    "title": "정리하자",
+    "text_content": "정리하자\n개발된 ai툴에 대해 파악, 가장 잘하는것, \n에이전트\nㅌ특기도업서\n정보는 수집하느데 기록과 정리가 안돼\n정신이 너무 산만해\n시간을 효율적으로 관리하고 싶으데 난 게을러\n내가 좋아하는 일을 찾아가는 과정을 ai와 대화해 보자",
+    "checklist": [],
+    "created_date": "2026-01-31",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-02-23T02_06_12.586+09_00.json",
+    "title": "📂 Operational Blueprint: [폐업 & 해촉 및 행정 통",
+    "text_content": "📂 Operational Blueprint: [폐업 & 해촉 및 행정 통합 프로세스]\n1. [Task 1] 폐업 & 해촉 체크리스트 (Builder's Tool)\nA. 보험설계사 해촉 및 인수인계 (가장 중요)\n[ ] 수수료 정산서 확인: 잔여 수수료 총액 및 지급 예정일 확정.\n[ ] 환수금 리스크 점검: 해촉 시 발생하는 환수 규정 및 상계 처리 확인.\n[ ] 계약자 인수인계 리스트: 지인 계약 등 관리가 필요한 명단 정리 (팀장님께 인계하여 신뢰 유지).\n[ ] 해촉 증명서 발급 요청: 20일 폐업 직후 발급 가능하도록 사전 협의. (국취제 필수 서류)\nB. 사업자 폐업 및 서류 확보\n[ ] 홈택스 폐업 신고: 20일(금) 오전 실행.\n[ ] 폐업사실증명원 발급: '행정복지센터 제출용', '국취제 제출용', '새출발기금용' 등 최소 5부 출력.\n\n2. [Task 2] 행정 프로세스 맵 (The Golden Sequence)\n[1단계: 증명 구축] (2/18 ~ 2/19)\n사회보장급여 신청서 접수: '자가' 기준 주거/교육비 지원 신청.\n핵심 질문: \"수급자 결정까지 며칠 걸립니까?\" (보통 30~60일, 이 기간이 새출발기금 대기 기간임)\n[2단계: 신분 전환] (2/20 ~ 2/21)\n폐업 신고 및 국취제 접수: 고용24를 통해 '1유형'으로 신청. (사업자X, 소득X 상태 강조)\n[3단계: 최종 타격] (복지 결정 직후)\n새출발기금 신청: **[수급자 증명서] + [국취제 참여 확인서]**를 첨부하여 '90% 원금 감면' 구간 강제 진입 시도.",
+    "checklist": [],
+    "created_date": "2026-02-17",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "2026-02-24T18_35_13.111+09_00.json",
+    "title": "당시 사업 실패로 빚이 많아 통장이 압류될까 봐 너무 두려웠습니다. 그래",
+    "text_content": "당시 사업 실패로 빚이 많아 통장이 압류될까 봐 너무 두려웠습니다. 그래서 사장님께 사정해서 급여를 '현금'으로 직접 받았습니다. 받은 돈은 밀린 생활비와 개인적인 급전(지인 빚 등)을 갚는 데 바로 다 써버렸습니다. 현재 남은 돈은 전혀 없고, 그 일도 한 달 만에 그만두게 되었습니다.",
+    "checklist": [],
+    "created_date": "2026-02-24",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-02-25T22_20_42.865+09_00.json",
+    "title": "🎯 지휘관님, 이제 방향이 잡히셨나요?",
+    "text_content": "🎯 지휘관님, 이제 방향이 잡히셨나요?\n지휘관님이 원하신다면, 제가 바로 **[책 쓰기 전용 Gems를 위한 마스터 프롬프트(SOP 포함)]**를 설계해 드릴 수 있습니다.\n\"이 Gems에 들어갈 **첫 번째 핵심 규칙(예: 반드시 녹음본 텍스트를 기반으로 한다 등)**은 무엇으로 정할까요? 아니면 제가 제안하는 **[표준 집필 워크플로우]**를 먼저 보여드릴까요?\"",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-25T23_28_25.116+09_00.json",
+    "title": "나를 대신해서 gems를 만드는 gems 즉 메타잼스를 만들고 싶어. 내",
+    "text_content": "나를 대신해서 gems를 만드는 gems 즉 메타잼스를 만들고 싶어. 내가 아이디어를 주면 각각의 주요 업무에 특화된 페르소나들이 회의를 하고, 진행에 부족한 부분은 나에게 질문하면서 나를 대신해서 나의 아이디어를 수행할 gems의 핵심지침과 지식파일을 만드는 거야. 어때? 가능해? \n-----\n특화된 페르소나\n총괄 아키텍트: 전체 [사고(Architecture)] 설계 및 내각 조율.\n논리 검증관(Sentinel): [헌법] 준수 여부 감시 및 리스크 [프로젝션].\n창의 전략가: 아이디어 확장 및 [가치 전환(Value Transformation)] 극대화.\n프롬프트 엔지니어: 지식 파일 내 **[프롬프팅 기술]**을 적용한 지침 최적화.\n마케터: 고객 페르소나의 [결핍(Pain point)] 분석 및 소구점 설계.\n기술 문서가(Compiler): [SOP 매뉴얼] 형태의 최종 결과물 작성 (일타강사 톤).",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-26T18_11_34.935+09_00.json",
+    "title": "그렇다면 나는 먼저 컨실팅Gems를 만들어 놓고 싶어.",
+    "text_content": "그렇다면 나는 먼저 컨실팅Gems를 만들어 놓고 싶어.\n컨설팅Gems는 아래의 일을 하는 거야.\n1. (나)아이디어가 떠오른다.\n2. (나)컨설팅 Gems에 아이디어를 말한다 \"예) 나 이번에 사주보는 앱을 만들고 싶어\", \"나는 이번에 자서전을 쓰고 싶어\" 등등\n3. 컨설팅 Gems는 나의 아이디어 목적과 사업성등을 분석하여 특화된 Gems 지침을 설계, 기획등등의 일을 해주는 거야.\n4. 그 컨선팅 Gems에는 전략자, 기획자, 설계자, 프롬프팅 엔지니어, 보안잭임자, 마케팅등등 고유의 페르소나를 가진 전문가  있어서 내 아이디어를 회의를 하는 거야\n5. 그래서 나의 일을 돕는 또다른 Gems의 지침과 핵심지식파일을 만들거나, 앱 개발을 돕거나, 다른 AI툴들과의 협업을 제안하고 하는 방식등을 알려주는 거야.\n6. 컨설팅 Gems안에 내가 노션에 기록한 각종 용어와 프롬프팅 기술을 지식파일로 넣어주면 분야별 페르소나가 이를 가져다가 일을 하는거지.\n이런 컨설팅Gems를 만드는게 가능할까?\n내 생각에는 한번 제대로 만들어 두면 유용하게 쓸거 같은데. 너의 생각은 어때?",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-02-26T23_37_39.257+09_00.json",
+    "title": "나는 직무 숙려도가 어느 정도일까?",
+    "text_content": "나는 직무 숙려도가 어느 정도일까?\nAI를 통해서 내가 돈을 벌 수 있는 나를 포지셔닝해줘.\n지식과 지능에 무능함, 무지함의 한계가 자꾸 느껴지다보니 내가 무엇이 부족한지 모른채 궁금증을 풀고자 새로운 지식을 쫗아 유튜브영상을 계속 찾아보고, 제미나이에게 계속 물어보고 나온 대답을 읽고 또 읽고, 이해해보려고 노력은 하는데 잘 이해가 안되니 나중에 찾아보겠다고 노션에 기록도 하는데. 왜! 정작 뭔가를 진행하거나, 만들려 하거나, 써보려고 하면 기억도 안나고 노션에서 찾아서 읽어봐도 이해를 못할까?\n\n폰포비아\n모바일네이티브>AI네이티브\n테라피컨피니언십\n할루시네이션 금지, 부분수용, 특정수용, 수용 \nAsk before answer 답변하기 전에 나한테 물어봐\n나는 왜 샤위하때 잠자기전 메모하기 애매할때 많은 아이디어가 생길까?\n공부할 내용을 노트북 lm에서 소스를 가져오자 그때 제대로된 소스를 가져오기위한 프롬프트 만들기\n법률이 생성되는 과정 정의하기 기준 가치 사고 추론 무결성 합리성 검증 대안 성립 승인 등록\n행정부 모델 생활 삶 라이프 보건 모델, 기업모델의 차이 비즈니스 모델\n시스템을 만들어 가는 단계적 프로세스, 워크플로우, 로드맵, 로직, 각언어의 순서 위치 부터 정확히 공부하자\n아~~~~적절한 용어\n앱을 만들어 보자\n나의 과거를 한번은 정리하자.\n과거를 정리하여 글을 쓰고 내가 가는 방향을 잡자\n나의 역사를 뒤집어 보고, 같은 상황에서 실수를 하지 말자\n\n국취제 지원전 취업하는 것이 어떤 차이가 있는가?\n포괄적, 호혜적, 공조, 교류, \n1. 문제점, 필요성 발견\n2. AI 도입 로드맵 작업\n3. 로드맵 절차에 따른 디테일한 구조설계\n4. 과정기록, 오답노트(실패사례)\n5. 설명의 역활 바꾸기?\n6. AI에게 하나의 답을 받는게 아니라 몇가지의 안을 내놓게 함으로써 AI를 다루는 위치에 서라. 그리고 마지막에 같이 리뷰하라.\n7.",
+    "checklist": [],
+    "created_date": "2026-02-24",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-02-28T04_42_17.581+09_00.json",
+    "title": "체크리스트: 내 명함에 들어갈 직업을 정의한다",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "내 명함에 들어갈 직업을 정의한다",
+        "checked": false
+      },
+      {
+        "text": "내 재능을 찾느다",
+        "checked": false
+      },
+      {
+        "text": "스토리를 만든다",
+        "checked": false
+      },
+      {
+        "text": "고객을 찾는다",
+        "checked": false
+      },
+      {
+        "text": "마케티 방법을 찾느다",
+        "checked": false
+      },
+      {
+        "text": "소구점을 찾는다",
+        "checked": false
+      },
+      {
+        "text": "수익화 모델을 만드다",
+        "checked": false
+      },
+      {
+        "text": "순서를 정한다",
+        "checked": false
+      },
+      {
+        "text": "내가 할일과 외부협력이 필요한 일을 구분한다",
+        "checked": false
+      },
+      {
+        "text": "내가 할일과 AI가 할일을 구분한다",
+        "checked": false
+      },
+      {
+        "text": "일을 수행할 AI툴을 선택한다",
+        "checked": false
+      },
+      {
+        "text": "수행할 일을 자동화 한다",
+        "checked": false
+      },
+      {
+        "text": "결과의 포멧을 구상한다",
+        "checked": false
+      }
+    ],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "2026-02-28T17_43_07.524+09_00.json",
+    "title": "센스있다.",
+    "text_content": "센스있다.\n위트가 있네\n너랑 얘기하면 재미있어\n이런건 어떻게 다 알아요\n언제쯤 객관적 통찰과 지표가 나올까",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-02-28T18_35_30.378+09_00.json",
+    "title": "최근 3년 내 가장 후회가 컸던 결정 1가지를 말해줄께 이것도 알고 있으",
+    "text_content": "최근 3년 내 가장 후회가 컸던 결정 1가지를 말해줄께 이것도 알고 있으면 좋겠지.\n1. 무엇이었는지\n2'. 왜 그 선택을 했는지\n3. 무엇이 가장 아팠는지\n------------\n1. 2024년 8월 보험설계사일을 선택 \n2. 나에게는 2020년 1월에 장사를 시작하고 실패하면서 생긴 빚이 많아. 그래서 고정수입이 있는 직장을 다녀야 했는데 2023년에 지인을 통해 들어간 냉장냉동 물류창고에서 경영진이 바뀌면서 마찰이 시작됐고 예전 경영진의 편에 서 있는 나는 그들의 주적이 되면서 감정적으로 많이 힘들었던 것 같아. 참고 참다가 30대에 다녔던 직장에서 만난 동료중에 한명이 보험회사를 다니고 있었고 나에게 계속 같이 일하자고 제안을 했지만 불완전한 수입과 영업이라는 부분이 내 적성과 맞는 지 몰라서 거절하다가 가서 배우면 못할게 뭐있겠어. 잘 만하면 일반 직장 월급보다 더 많은 수입을 받으면서 빚도 청산할 수있겠다 싶어서 선택을 했지.\n 3. 막상 가서 일을 시작하니. 내 주변 지인들에게 보험상품을 팔아야 한다는게 너무 힘든거야. 한국에는 보험설계사에 대한 안 좋은 시선이 있거든. 그래도 주변 설계사분들이 잘 하는 모습을 보면서 동기부여를 받아 해보려 했는데 지인을 통해 보험가입시키기 위해 전화하고, 소개를 받으려고 애쓰는 나의 행동들이 스스로 너무 힘들더라고. 다시 힘내야지 하다가도 전화기를 붙잡고 머뭇거리는게 반복되면서 점점 지쳐간것 같아. 그러다 보니 수입은 오히려 더 줄고 빚에 빚은 더해져서 지금은 새출발기금을 통한 채무면책을 받으려고 이것 저것 알아보고 신청하고 있어.",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-03-01T02_17_52.457+09_00.json",
+    "title": "ntn_113133755202PEKhQBTUQlvPYUs66Wi3eYIK",
+    "text_content": "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\n\n노션 > Antigravity Master",
+    "checklist": [],
+    "created_date": "2026-03-01",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "2026-03-03T19_33_41.307+09_00.json",
+    "title": "3가지 기준",
+    "text_content": "3가지 기준\n1. 철칙 고정성 철학\n2. 방향 변동성 환경\n3. 맥락 최근성 생각 활동 \n\n모듈화\n잘하는것\n좋아하는것\n동사\n기준치 세분화",
+    "checklist": [],
+    "created_date": "2026-03-03",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-03-04T13_54_11.937+09_00.json",
+    "title": "과거 기록 남기기",
+    "text_content": "과거 기록 남기기\n먼과거 년대에서 년대로 묶어서 굵직한 기억을 토대로\n가까운 과거 연단위 월단위로 기",
+    "checklist": [],
+    "created_date": "2026-03-04",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-03-05T14_26_09.952+09_00.json",
+    "title": "지금 내가 이러는거는 수급자 취하를 하고 또 몇개월을 기다렸다 재신청을 ",
+    "text_content": "지금 내가 이러는거는 수급자 취하를 하고 또 몇개월을 기다렸다 재신청을 해서 결과가 나오기까지 시간이 한참 걸리는데 그때까지 새출발기금신청을 못하는 상황이 되고 그렇게 되면 법원에 답변서를 제출해서 시간을 버는 게 의미가 없어질까봐 그러는 거야.",
+    "checklist": [],
+    "created_date": "2026-03-05",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-03-09T17_05_44.316+09_00.json",
+    "title": "배민 honbab2020/bab741029",
+    "text_content": "배민 honbab2020/bab741029\n요기요 honbab2020/bab741029$\n포스피드 0325140141/01256\n쿠팡이츠스토어 0325140141/f&158058\n\n\n알바몬 chan7502/qufdl980\n알바천국 chan7502qufdl980\n옥션 chan7502/f&158058\n\nKT인터넷전화 honbab2020/bab741029$\nLg U+ chan7502@naver.com/chan741029\n\n\n배달통 bw0141 / 2629\n만나프로그램 0325140141/01256\n부릉 03225140141/0141\n캐시노트 honbab202/chan741029$\n해외직구 개인통관고유부호  P200010155277",
+    "checklist": [],
+    "created_date": "2026-03-09",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "2026-03-26T15_04_16.469+09_00.json",
+    "title": "로봇을 생산 랜탈하는 분야에 투자하여 그 로봇을 대여한 회사나 개인으로부",
+    "text_content": "로봇을 생산 랜탈하는 분야에 투자하여 그 로봇을 대여한 회사나 개인으로부터 받는 수익을 쉐어\n\n에이젼트 ai들이 활용하는 에이젼트모델 개발\n\n이전에는 자아실현의 도구가 직업과 일이 였다면 앞으로는 ?",
+    "checklist": [],
+    "created_date": "2026-03-26",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-03-30T18_31_35.748+09_00.json",
+    "title": "복지관련 뉴스 새소식",
+    "text_content": "복지관련 뉴스 새소식\nAI관련 새로운 뉴스\n변화, 새기능, 전망, AI 핵심 관계자(빅테크 기업 ceo의 SNS발언, 개발자들의 인터뷰,",
+    "checklist": [],
+    "created_date": "2026-03-02",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "2026-03-30T18_38_25.893+09_00.json",
+    "title": "집사 집안살림 냉장고내용물 정리 냉장고 팬트리 식자재 활용 식단표 레시피",
+    "text_content": "집사 집안살림 냉장고내용물 정리 냉장고 팬트리 식자재 활용 식단표 레시피 조미료등 관리 구입목록작성 제안\n\n집사\n홈트레이너\n영양사",
+    "checklist": [],
+    "created_date": "2026-03-30",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-04-27T14_28_12.407+09_00.json",
+    "title": "제목 없는 메모",
+    "text_content": "",
+    "checklist": [],
+    "created_date": "2026-04-27",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-04-27T14_28_25.005+09_00.json",
+    "title": "제목 없는 메모",
+    "text_content": "",
+    "checklist": [],
+    "created_date": "2026-04-27",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026-05-06T13_56_22.061+09_00.json",
+    "title": "체크리스트: AI교육관련조사",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "AI교육관련조사",
+        "checked": false
+      },
+      {
+        "text": "나연 청년내일계좌 3.3조사",
+        "checked": false
+      },
+      {
+        "text": "부동산 매물조사 네이버",
+        "checked": false
+      },
+      {
+        "text": "교육급여수급자선정확인",
+        "checked": false
+      },
+      {
+        "text": "사건진행사항체크",
+        "checked": false
+      },
+      {
+        "text": "스포츠바우처 점검",
+        "checked": false
+      },
+      {
+        "text": "쌀 신청",
+        "checked": false
+      },
+      {
+        "text": "민성 실손",
+        "checked": true
+      },
+      {
+        "text": "민성 스포츠강좌 이용",
+        "checked": true
+      }
+    ],
+    "created_date": "2026-04-26",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "2026-07-31T17_43_15.881+09_00.json",
+    "title": "실패의 경험 극복방법등을 정리해뵈자",
+    "text_content": "실패의 경험 극복방법등을 정리해뵈자",
+    "checklist": [],
+    "created_date": "2026-06-12",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "2026-08-20T15_20_01.902+09_00.json",
+    "title": "MarkAny Inc. e-PageSafer v2.5 NoaXOZ(Uni",
+    "text_content": "MarkAny Inc. e-PageSafer v2.5 NoaXOZ(Uninstall)\nKB_MagicLock.exe\nMAWS_MERITZ",
+    "checklist": [],
+    "created_date": "2026-08-20",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "2026년 1월 30일.json",
+    "title": "2026년 1월 30일",
+    "text_content": "https://youtube.com/shorts/7z7sxiFEA6M?si=cIjsytnYKpxHtvD8",
+    "checklist": [],
+    "created_date": "2026-02-21",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "3시간 순삭) 55개 기술 의사결정, 소스코드 해설까지! 현존 바이브코딩 기본 강의 중 가.json",
+    "title": "3시간 순삭) 55개 기술 의사결정, 소스코드 해설까지! 현존 바이브코딩 기본 강의 중 가장 실전적인 강의",
+    "text_content": "https://youtu.be/K6Rsy-pHBi0?si=YG9puXTEgdAhtVn8",
+    "checklist": [],
+    "created_date": "2026-08-24",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "50대부터 시작입니다｜20년을 벌어주는 인생 계산법 #이성미의나는꼰대다.json",
+    "title": "50대부터 시작입니다｜20년을 벌어주는 인생 계산법 #이성미의나는꼰대다",
+    "text_content": "https://youtu.be/rqu9HC8_rdQ?si=FmTnrArZ-AvUt5hk",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "99_ 진짜 모르는 제미나이 찐 사용법 7가지 공개합니다_.json",
+    "title": "99% 진짜 모르는 제미나이 찐 사용법 7가지 공개합니다.",
+    "text_content": "https://youtu.be/kKALZLMqQeI?si=4RCP0PGGfqTBGeK0",
+    "checklist": [],
+    "created_date": "2026-03-02",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "AI _클로드 코워크_에 시장 _출렁_‥기존 소프트웨어 다 망한다_ (2026.02.06_.json",
+    "title": "AI '클로드 코워크'에 시장 '출렁'‥기존 소프트웨어 다 망한다? (2026.02.06/뉴스데스크/MBC)",
+    "text_content": "https://youtu.be/brtbMmCkghM?si=eQ9wxUpFAD8oPGno",
+    "checklist": [],
+    "created_date": "2026-02-07",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "AI 에이전트 만들기 1단계 _ Codex·Claude·Gemini를 하나의 환경에서 쓰는.json",
+    "title": "AI 에이전트 만들기 1단계 | Codex·Claude·Gemini를 하나의 환경에서 쓰는 법",
+    "text_content": "https://youtu.be/bSpwsDM5pqo?si=BLyi0ncYDC-WIRXB",
+    "checklist": [],
+    "created_date": "2026-08-24",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "AI 에이전트의 이해와 미들웨어 및 워크플로 기반 Agentic GraphRAG _ 패스트.json",
+    "title": "AI 에이전트의 이해와 미들웨어 및 워크플로 기반 Agentic GraphRAG | 패스트캠퍼스 라이브 세미나 녹화본",
+    "text_content": "https://youtu.be/APxrBbTMTYI?si=lv4qJOFW-OekNvJe",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "AI를 대하는 5가지 핵심 습관 (인지 확장 장치).json",
+    "title": "AI를 대하는 5가지 핵심 습관 (인지 확장 장치)",
+    "text_content": "상위 사용자들은 AI를 '백과사전'이 아니라 **'확장된 전두엽'**으로 사용합니다.\n1. 문제 정의 우선: \"어떻게 할까?\" 묻기 전에 문제의 구조(예: 안정 vs 성장 충돌)를 먼저 정의합니다.\n2. 사고를 요구: 정답을 구하지 않고, \"내 논리를 공격해봐\", \"내 맹점을 찾아봐\"라며 토론 상대로 활용합니다.\n3. 감정의 언어화: 감정적인 상태에서 바로 묻지 않고, 현재의 감정 상태를 먼저 AI에게 고지하여 편향을 제어합니다.\n4. 반대 시나리오(Pre-mortem): \"이게 틀렸다면 이유는 무엇일까?\"를 반드시 물어 확증편향을 차단합니다.\n5. AI 지연 규칙: [선(先) 자가 가설 → 후(後) AI 호출] 순서를 지켜 스스로의 사고력을 보호합니다.",
+    "checklist": [],
+    "created_date": "2026-02-23",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "CGV회원가입.json",
+    "title": "CGV회원가입",
+    "text_content": "김승률 chan7502/ srkim7410!\n김문희 kmh2535 / mhkim7502!",
+    "checklist": [],
+    "created_date": "2026-02-15",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "GPT vs Gemini — 현실적인 차이.json",
+    "title": "GPT vs Gemini — 현실적인 차이",
+    "text_content": "GPT vs Gemini — 현실적인 차이 (과장 없이)\n✔ GPT 계열 (일반적 경향)\n강점:\n추론 기반 대화에 강함\n\n사고 확장형 질문 잘 받음\n\n개념 구조화 능력 우수\n\n메타 인지 대화 자연스러움\n\n👉 그래서 지금 같은 **“사고 이야기”**가 잘 굴러갑니다.\n\n✔ Gemini 계열 (일반적 경향)\n강점:\n정보 통합 능력 좋음\n\n검색형 작업 강함\n\n문서 처리 강함\n\n멀티모달 매우 강함\n\n👉 실제 작업형 AI로 매우 강력합니다.\n특히:\n자료 분석\n\n문서 요약\n\n생산성 작업\n\n이쪽에서 빛납니다.\n\n🔥 그래서 고급 사용자들은 이렇게 씁니다.\n이건 꽤 중요한 팁입니다.\n“모델을 비교하지 않고\n 👉 역할을 나눠 쓴다.”\n예:\n🧠 사고 / 판단 / 구조화\n👉 GPT 계열\n📊 자료 / 문서 / 검색 / 정리\n👉 Gemini 계열\n이 조합 꽤 강력합니다.\n실제로 많이 이렇게 씁니다.",
+    "checklist": [],
+    "created_date": "2026-02-06",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "HOW TO LEARN & Master AI in 2026 _ (Complete Power.json",
+    "title": "HOW TO LEARN & Master AI in 2026 ? (Complete Powerful 7-step ROADMAP)",
+    "text_content": "https://youtu.be/3xZSU7hVHUY?si=UoMbRtF7hPMJ2-pw",
+    "checklist": [],
+    "created_date": "2026-02-18",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "ID_비번 보관방법.json",
+    "title": "ID/비번 보관방법",
+    "text_content": "전문 앱\nBitwarden, 1Password\n보안 전문가들이 가장 추천하는 방식. 강력한 암호화가 적용됩니다.\n\n기기 내장\n삼성 패스, iCloud 키체인\n스마트폰 제조사가 제공하는 보안 영역에 저장되어 매우 안전합니다.",
+    "checklist": [],
+    "created_date": "2026-02-23",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "INFJ·INTJ 밤 11시, 전두엽이 퇴근하면 벌어지는 일.json",
+    "title": "INFJ·INTJ 밤 11시, 전두엽이 퇴근하면 벌어지는 일",
+    "text_content": "https://youtu.be/1ul1HWDfL7s?si=dIVXC4EX_P2AOY1J",
+    "checklist": [],
+    "created_date": "2026-02-17",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "NotebookLM + AI 에이전트 A to Z 이 영상 하나로 끝내드려요ㅣAI 비서,_.json",
+    "title": "NotebookLM + AI 에이전트 A to Z 이 영상 하나로 끝내드려요ㅣAI 비서, 데이터분석, 보고서 작성 실습까지",
+    "text_content": "https://youtu.be/H4FGqX8ayN0?si=oxig0FQwKrlAEX3J",
+    "checklist": [],
+    "created_date": "2026-02-26",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "U+VIP 콕 멤버십 카드번호.json",
+    "title": "U+VIP 콕 멤버십 카드번호",
+    "text_content": "2013014306102016\n19750223",
+    "checklist": [],
+    "created_date": "2026-03-03",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "[#유퀴즈온더블럭] 딱 한 가지 운동만 해야 한다면⁉️ 국가대표 재활 트레이너가 자신 있게.json",
+    "title": "[#유퀴즈온더블럭] 딱 한 가지 운동만 해야 한다면⁉️ 국가대표 재활 트레이너가 자신 있게 말하는 만능 운동법✨",
+    "text_content": "https://youtu.be/Sn18TkXWMy0?si=HeCjI4H0tQ2NT49k",
+    "checklist": [],
+    "created_date": "2026-04-11",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "[2주 프로젝트] _시력이 0.5에서 1.0으로_ 단 2주 만에 눈 노화 시계를 되돌린 기.json",
+    "title": "[2주 프로젝트] \"시력이 0.5에서 1.0으로?\" 단 2주 만에 눈 노화 시계를 되돌린 기적의 습관 I KBS 생로병사의 비밀 ...",
+    "text_content": "https://youtu.be/M27IIf6TX0c?si=n-7jSxtd3ZV0GOZH",
+    "checklist": [],
+    "created_date": "2026-04-11",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "[알파 수석비서 - 구글 캘린더 연동 인프라 정보].json",
+    "title": "[알파 수석비서 - 구글 캘린더 연동 인프라 정보]",
+    "text_content": "1. 구글 클라우드 계정: srkim.a01@gmail.com 2. 프로젝트 명: Alpha-Assistant (프로젝트 ID: alpha-assistant-506507) 3. 인증 방식: OAuth 2.0 (데스크톱 애플리케이션) - 역할: 노트북에서 실행되는 알파 데몬이 대표님의 구글 캘린더 API를 호출하는 1회성 마스터 키 - 키 파일 위치: C:\\agent-workspace\\config\\credentials.json - 생성 토큰 위치: C:\\agent-workspace\\config\\token.json 4. 비용 및 과금: 영구 무료 (카드 등록 불필요, 개인 API 할당량 충분)",
+    "checklist": [],
+    "created_date": "2026-08-24",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "[통합 마스터] 메타-잼스 & 컨설팅 Gems 아키텍처 설계안.json",
+    "title": "[통합 마스터] 메타-잼스 & 컨설팅 Gems 아키텍처 설계안",
+    "text_content": "[통합 마스터] 메타-잼스(Meta-Gems) & 컨설팅 Gems 아키텍처 설계안\n1. 핵심 개념\n사용자의 아이디어를 바탕으로 분야별 전문가 페르소나들이 협업하여, 실제 구동 가능한 고성능 Gems의 **핵심 지침(Instructions)**과 지식 파일(Knowledge) 구성을 자동 생성하는 'AI 시스템 아키텍트' 에이전트.\n\n2. 통합 전문가 내각 (Persona Line-up)\n1. 총괄 아키텍트: 전체 시스템 [사고(Architecture)] 설계 및 내각 의견 조율.\n\n2. 논리 검증관(Sentinel) & 보안책임자: [헌법] 준수, 리스크 [프로젝션], 데이터 보안 및 논리적 무결성 감시.\n\n3. 창의 전략가: 아이디어 확장 및 [가치 전환(Value Transformation)] 극대화.\n\n4. 프롬프트 엔지니어: 최신 프롬프팅 기술(ToT, PoT 등) 및 노션에 기록된 지식 기반 지침 최적화.\n\n5. 마케터: 고객 [결핍(Pain point)] 분석, 사업성 진단 및 소구점 설계.\n\n6. 기술 문서가(Compiler) & 기획자: 모든 회의 내용을 취합하여 [SOP 매뉴얼] 형태의 최종 결과물 작성 (일타강사 톤).\n\n3. 주요 워크플로우\n1. 아이디어 수렴: 사용자가 추상적인 아이디어(사주 앱, 자서전 등) 제시.\n\n2. 전문가 회의: 내각 페르소나들이 목적, 사업성, 기술적 구현 가능성 분석 및 토론.\n\n3. 지능 최적화: 노션에 기록된 전문 용어 및 프롬프팅 기술 지식 파일을 참조하여 지능 주입.\n\n4. 최종 산출: 다른 AI 툴과의 협업 제안을 포함한 Gems 핵심 지침 및 지식 파일 구성안 출력.",
+    "checklist": [],
+    "created_date": "2026-03-01",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "_논문, 보고서 요약해줘_라고 AI한테 시키는 것이 _최악의 프롬프팅_인 이유(이제현 박사.json",
+    "title": "\"논문, 보고서 요약해줘\"라고 AI한테 시키는 것이 '최악의 프롬프팅'인 이유(이제현 박사)",
+    "text_content": "https://youtu.be/vq5mTwRjikQ?si=p5AIbXtMJzCZBfpV",
+    "checklist": [],
+    "created_date": "2026-03-13",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "_사실 지금도 늦었습니다_ AI특이점 임박_ 진짜 잔혹한 현실 발빠르게 준비해야 할 _이_.json",
+    "title": "\"사실 지금도 늦었습니다\" AI특이점 임박? 진짜 잔혹한 현실 발빠르게 준비해야 할 '이 능력' (김덕진 교수 통합본)",
+    "text_content": "https://youtu.be/_ny1C9KiG5I?si=mngFQJn2-tz4lgkq",
+    "checklist": [],
+    "created_date": "2026-02-24",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "_이 직업만 살아남는다._ AI가 대신할 수 없는 마지막 영역ㅣ지식인초대석 풀버전 (송길영.json",
+    "title": "\"이 직업만 살아남는다.\" AI가 대신할 수 없는 마지막 영역ㅣ지식인초대석 풀버전 (송길영 작가)",
+    "text_content": "https://youtu.be/L00Yte79nIY?si=NTGsj3gbtq7Sg2G9",
+    "checklist": [],
+    "created_date": "2026-02-01",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "_이 징조_ 보이면 99_ 대운 터진다! 운이 좋아질 때 나타나는 강력한 신호 4가지.json",
+    "title": "'이 징조' 보이면 99% 대운 터진다! 운이 좋아질 때 나타나는 강력한 신호 4가지",
+    "text_content": "https://youtu.be/NIi1Q_8hjVw?si=-jxoSAIaRoqHyi3D",
+    "checklist": [],
+    "created_date": "2026-04-26",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "_이거만 피하면 됩니다_ 데스크테리어 아이템 티어리스트.json",
+    "title": "\"이거만 피하면 됩니다\" 데스크테리어 아이템 티어리스트",
+    "text_content": "https://youtu.be/4rHwlRXrOro?si=fSBBSSqnWDi6gyB6",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "_점심 식대 지원_ 월300 직장인부터 60대까지 다 받는 이재명 정부 지원금 1000만원.json",
+    "title": "\"점심 식대 지원?\" 월300 직장인부터 60대까지 다 받는 이재명 정부 지원금 1000만원 \"1월 안에 꼭 신청하세요. 곧 마감...",
+    "text_content": "https://youtu.be/y8nR7wODafQ?si=WJFDclpBMUKmu83C",
+    "checklist": [],
+    "created_date": "2026-01-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "⭐ 초고급 팁 하나 (대부분 모릅니다).json",
+    "title": "⭐ 초고급 팁 하나 (대부분 모릅니다)",
+    "text_content": "👉 “의도적으로 덜 개인화” 하는 것도 전략입니다.\n“내 성향 고려하지 말고 객관적으로 판단해라.”\n이건 매우 강력한 명령입니다.\n👉 AI를 “기억 저장소”로 쓰지 말 것 \n개인 데이터 보관소로 쓰는 것은 좋은 전략이 아닙니다.\n클라우드 / 암호화 메모가 더 적합합니다.",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "구체적인 노트북LM 실전 활용법 7가지 (대박입니다...).json",
+    "title": "구체적인 노트북LM 실전 활용법 7가지 (대박입니다...)",
+    "text_content": "https://youtu.be/TRgYTnRt9LI?si=Whm7aumRfpuoEYBV",
+    "checklist": [],
+    "created_date": "2026-02-12",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "국민취업지원제도 관련 내용.json",
+    "title": "국민취업지원제도 관련 내용",
+    "text_content": "[국민취업지원제도 설명]\n1. 담당자 1:1상담과 적극적인 취업상담진행\n2. 나이, 환경, 능력을 확인하고 직종탐색 및 교육지원\n3. 선발되면 60~80만원씩 6개월간  지원금 지급\n4. 단, 소득기준이 있어 해당월 소득이 있으면 지원금은 해당월에 부지급 될 수 있음.\n5.  그래서 매달 소득체크함. \n6.  행정복지/심리상담/신용회복 등 해당 문제에 대한 기관 연결해줌.\n\n[국민취업지원제도 참여(신청)방법]\n신청방법 : 고용24 - 회원가입 - 구직신청 - 취업지원(탭) - 국민취업지원제도 신청\n1. 심사는  3~4주정도 걸림.\n2. 참여 후 취업이 되면 3년간 재 참여 불가능\n3. 참여확정전 취업이 되면 신청취소를 하고 ,필요 시 재신청 하는 방향으로 추천함.",
+    "checklist": [],
+    "created_date": "2026-02-17",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "권렬형 담배.json",
+    "title": "권렬형 담배",
+    "text_content": "지금 피우는 것은 블랙퍼플\n새로 산다면 1. 테리아 아버 펄, 2. 테리아 퍼플 웨이",
+    "checklist": [],
+    "created_date": "2026-08-20",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "기업이 꼭 알아야 할 _온톨로지_의 모든 것 (김학래 중앙대 교수).json",
+    "title": "기업이 꼭 알아야 할 '온톨로지'의 모든 것 (김학래 중앙대 교수)",
+    "text_content": "https://youtu.be/W0MBC6in4Q4?si=OrCcfFowN68guUu-",
+    "checklist": [],
+    "created_date": "2026-03-03",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "나의성향.json",
+    "title": "나의성향",
+    "text_content": "거리두기형(반대 친밀감추구형)\n독립적성향(반대 의존적성항)",
+    "checklist": [],
+    "created_date": "2026-01-18",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "내가 듣고싶고 부르고 싶은 노래들.json",
+    "title": "내가 듣고싶고 부르고 싶은 노래들",
+    "text_content": "참다행이야",
+    "checklist": [],
+    "created_date": "2026-01-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "내가 뭘 원하는지 아직도 모르겠다면, 딱 이 3가지만 해보세요. (뻔한말X 심리학 기반).json",
+    "title": "내가 뭘 원하는지 아직도 모르겠다면, 딱 이 3가지만 해보세요. (뻔한말X 심리학 기반)",
+    "text_content": "https://youtu.be/5KyO0wikNQ4?si=jyAkSwIagCZ65-nv",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "노션으로 💰가계부 만들면서 기본기능 익히기[가계부 템플릿 무료공유].json",
+    "title": "노션으로 💰가계부 만들면서 기본기능 익히기[가계부 템플릿 무료공유]",
+    "text_content": "https://youtu.be/6ClxyXCZk6Y?si=EIdpBuA4HkaXS--x",
+    "checklist": [],
+    "created_date": "2026-01-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "노트북LM + MCP 연결하면 책 쓰기부터 마케팅까지 자동화됩니다 _ 안티그래피티 × 노션.json",
+    "title": "노트북LM + MCP 연결하면 책 쓰기부터 마케팅까지 자동화됩니다 | 안티그래피티 × 노션 MCP 실전 활용법",
+    "text_content": "https://youtu.be/geBad4VaEPI?si=M5owlR_Wuj5v7gGP",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "높이 조절 되는 자세 교정 의자 오래 앉아도 편한 이유.json",
+    "title": "높이 조절 되는 자세 교정 의자 오래 앉아도 편한 이유",
+    "text_content": "https://youtube.com/shorts/ey4VjnIKZqU?si=5nRS_k1Z0ueTubi3",
+    "checklist": [],
+    "created_date": "2026-01-15",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "뇌 과학에 근거한 최고의 하루 루틴!.json",
+    "title": "뇌 과학에 근거한 최고의 하루 루틴!",
+    "text_content": "https://youtube.com/shorts/-SmBZtIK6Co?si=Er8Q3nIuc0e9d0bn",
+    "checklist": [],
+    "created_date": "2026-01-18",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "누구든 숨겨진 재능을 쉽게 찾아내는 5가지 방법 (동기부여x 심리학 기반o).json",
+    "title": "누구든 숨겨진 재능을 쉽게 찾아내는 5가지 방법 (동기부여x 심리학 기반o)",
+    "text_content": "https://youtu.be/IHg1Z6pDfBE?si=aZA2InyORaFABUWo",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "담보대출 이자율 정리.json",
+    "title": "담보대출 이자율 정리",
+    "text_content": "신한은행 주택담보대출 4.790% 만기일 2063/11/10\n하나은행 마이너스대출 6.612% 만기일 2026/10/16\n제주은행 마이너스대출 6.3% 만기일 2026/02/13",
+    "checklist": [],
+    "created_date": "2026-08-19",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "더 피플 라이프.json",
+    "title": "더 피플 라이프",
+    "text_content": "김승률 고객님.\n\n변함없는 관심과 격려를 보내주신 고객님께 진심으로 감사드립니다.\n\n더피플라이프는 회원님의 납부금을 법이 정한 절차와 전문 관리 시스템으로 안전하게 지켜 드립니다.\n\n※ 더피플라이프의 다양한 멤버십 서비스 혜택도 이용해보세요.\n[ 더피플멤버십 https://thepeoplelife.co.kr/welcome/ ]\n\n아래내용은 할부거래법 개정에 따른 \"선불식 할부거래업자의 선수금 관련 통지의무(제27조의2)\"를 근거로 2024년부터 매년 1회 안내드리는 내용으로 소비자 수신 동의와 무관하게 이루어집니다.\n\n[가입내역 안내]\n1. 회원번호 : 1011A02016\n2. 계약체결일 : 20060203\n3. 납입금액 : 1980000\n4. 납입횟수 : 100\n5. 소비자피해보상계약유형 : 공제계약\n6. 지급의무자 : 상조보증공제조합(1600-1226)\n\n※ 더피플라이프 고객센터(1577-3466) 전화 연결은 원활하지 않을 수 있음을 양해 부탁드리며, 더피플라이프 홈페이지 또는 챗봇을 통해서도 계약사항 확인이 가능합니다.\n\n[ 더피플라이프 홈페이지 : https://thepeoplelife.co.kr ]\n\n※ 결합상품은 지원금 및 제품 대금 납입액을 제외한 상조 부금 납입 금액으로 안내됩니다.\n\n※ 2026년 1월 1일 이후 가입 계약은 2027년 안내대상으로 본 안내에서는 제외됩니다.\n\n감사합니다.\n\n사람을 연구합니다.\n더피플라이프",
+    "checklist": [],
+    "created_date": "2026-02-05",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "맞벌이 부부의 월급날루틴 “빠르게 1억 모으기“.json",
+    "title": "맞벌이 부부의 월급날루틴 “빠르게 1억 모으기“",
+    "text_content": "https://youtube.com/shorts/-vPbgWEJg_g?si=hzn9-EQE1BWH6-_L",
+    "checklist": [],
+    "created_date": "2026-01-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "무릎통증, 아킬레스건, 족저근막염때문에 줄넘기를 못하신다구요_.json",
+    "title": "무릎통증, 아킬레스건, 족저근막염때문에 줄넘기를 못하신다구요?",
+    "text_content": "https://youtu.be/k4GaHelPfaI?si=CG0bjV7XlkBTARJm",
+    "checklist": [],
+    "created_date": "2026-04-11",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "반드시 장착해야 할 _6가지 킬러 프롬프트_.json",
+    "title": "반드시 장착해야 할 '6가지 킬러 프롬프트'",
+    "text_content": "메모하신 내용 중, 비서실(이지스/엑시스) 운영 시 즉시 적용해야 할 핵심 질문들입니다.\n\"이 답변이 틀릴 수 있는 가장 현실적인 이유 3가지는?\"\n\"이 판단이 실패한다면, 내 어떤 전제가 잘못된 것인가?\"\n\"당신은 내가 놓치고 있는 위험 요소만 말해줘.\"\n\"이 선택에서 내가 직접 책임지고 판단해야 할 요소는?\"\n\"내 판단에서 가장 위험한 착각은 무엇인가?\"\n\"내가 지금 잘못 가정하고 있는 것은?\"",
+    "checklist": [],
+    "created_date": "2026-02-23",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "비즈니스의 모든 것을 58분 만에 설명 (허튼소리 없이, 군더더기 없이).json",
+    "title": "비즈니스의 모든 것을 58분 만에 설명 (허튼소리 없이, 군더더기 없이)",
+    "text_content": "https://youtu.be/RGT7nNrvSek?si=hdYZM3TgvJcMMTIc",
+    "checklist": [],
+    "created_date": "2026-03-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "삼성패스 정리목록.json",
+    "title": "삼성패스 정리목록",
+    "text_content": "- Roblox\nskcmclk / angihyeon01?!\nskcmclk04 / skcmclkqq\n- 라라아쿠아 chan7502 / qufdl&7410\n- 옥션\nchan7502 / f&158058\nChan7502 / f&158058\n- 코인원 chan7502@naver.com / Chan741029\n- alba.co.kr chan7502 / qufdl980\n- 알바몬 chan7502 / qufdl980\n- cem.baemin.com honbab2020 / bab741029\n- hunet.co.kr nd2886 / qwert1234@\n- melon\nchan7410 / f&158058\nchan7502 / f&158058 (member.melon.com)\n- smartchoice.or.kr\nchan7502@naver.com / f&158058 (모바일)",
+    "checklist": [],
+    "created_date": "2026-02-19",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "상위 0.1_ 브레인들은 모두 알고 있는 7가지 #AI 활용법 (서울대, 맥킨지 출신) _.json",
+    "title": "상위 0.1% 브레인들은 모두 알고 있는 7가지 #AI 활용법 (서울대, 맥킨지 출신)  #서울대 #맥킨지 #카카오 #전략 #컨설...",
+    "text_content": "https://youtu.be/WyrTRtIQ_68?si=SW407VIwKpzmGTOW",
+    "checklist": [],
+    "created_date": "2026-03-02",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "소상공인·자영업자 새출발기금 유의사항.json",
+    "title": "소상공인·자영업자 새출발기금 유의사항",
+    "text_content": "https://youtu.be/1ZoAR5oCZ38?si=gdTRkTh5ieVJG8u0",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "소상공인·자영업자분들의 힘찬 새출발을 위한 초석, 새출발기금 신청 가이드 👩‍💻.json",
+    "title": "소상공인·자영업자분들의 힘찬 새출발을 위한 초석, 새출발기금 신청 가이드 👩‍💻",
+    "text_content": "https://youtu.be/kv9fQ_Sg9Mk?si=EPDYNKta_iil5Sv1",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "시장구입.json",
+    "title": "시장구입",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "강력자석",
+        "checked": false
+      },
+      {
+        "text": "커피",
+        "checked": false
+      },
+      {
+        "text": "테블릿 거치대",
+        "checked": false
+      },
+      {
+        "text": "위생비닐롤",
+        "checked": true
+      },
+      {
+        "text": "랩 중자",
+        "checked": true
+      },
+      {
+        "text": "키친타올",
+        "checked": true
+      },
+      {
+        "text": "액자 벽걸이 3개이상",
+        "checked": true
+      },
+      {
+        "text": "후크 냄비걸이",
+        "checked": true
+      }
+    ],
+    "created_date": "2026-03-22",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "신복위 방문준비서류.json",
+    "title": "신복위 방문준비서류",
+    "text_content": "주민등록등본\n주거급여수급자증명서\n인천 주택 등기부등본\n폐업사실증명원(2개월이내) \n---------\n새출발기금신청결과표\n자동차등록증사본\n신분증",
+    "checklist": [],
+    "created_date": "2026-08-19",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "실컷 계획 세워놓고 실천을 안 한다면, _이 영상 꼭 보세요_ 게으름 싹 사라집니다 (황농(1).json",
+    "title": "실컷 계획 세워놓고 실천을 안 한다면, '이 영상 꼭 보세요' 게으름 싹 사라집니다 (황농문 교수 2부)",
+    "text_content": "https://youtu.be/mpCPEMpZKwY?si=PLGcrjOWLD_hNCez",
+    "checklist": [],
+    "created_date": "2026-03-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "실컷 계획 세워놓고 실천을 안 한다면, _이 영상 꼭 보세요_ 게으름 싹 사라집니다 (황농.json",
+    "title": "실컷 계획 세워놓고 실천을 안 한다면, '이 영상 꼭 보세요' 게으름 싹 사라집니다 (황농문 교수 2부)",
+    "text_content": "https://youtu.be/mpCPEMpZKwY?si=BFFo8kJYdM3yoTf_",
+    "checklist": [],
+    "created_date": "2026-03-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "엑셀보다 10배 빠른 제미나이 대시보드.json",
+    "title": "엑셀보다 10배 빠른 제미나이 대시보드",
+    "text_content": "https://youtube.com/shorts/K7GyYFMlKxs?si=Y_xBUPXT80myYCEI",
+    "checklist": [],
+    "created_date": "2026-01-29",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "영어 버전만 되는 노트북LM의 미친 기능, 한국에 언제 나올까_ (김민정 이사).json",
+    "title": "영어 버전만 되는 노트북LM의 미친 기능, 한국에 언제 나올까? (김민정 이사)",
+    "text_content": "https://youtu.be/yvTh2FWt_fM?si=AOXSARVvheL0-eDT",
+    "checklist": [],
+    "created_date": "2026-02-27",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "이 영상이 당신 인생을 바꿉니다. 바이브 코딩 1인 창업 3시간 통합본.json",
+    "title": "이 영상이 당신 인생을 바꿉니다. 바이브 코딩 1인 창업 3시간 통합본",
+    "text_content": "https://youtu.be/P3jFI-VpyLg?si=a9_OB7xIXJBbUD4B",
+    "checklist": [],
+    "created_date": "2026-03-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "잘 쉬기 위한 방법.json",
+    "title": "잘 쉬기 위한 방법",
+    "text_content": "https://youtube.com/shorts/bP2crrsAR_k?si=btRUtowrJl5Vxhln",
+    "checklist": [],
+    "created_date": "2026-04-11",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "전 국민 1인 1계좌 _무적 통장_이 생깁니다 (안 만들면 손해).json",
+    "title": "전 국민 1인 1계좌 '무적 통장'이 생깁니다 (안 만들면 손해)",
+    "text_content": "https://youtu.be/WudLiUme4f4?si=0N8Sh7tlYFNzCG9r",
+    "checklist": [],
+    "created_date": "2026-01-17",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "전자법원(1).json",
+    "title": "전자법원",
+    "text_content": "법원 사용자 등록\nchan7502\nsrkim7410!",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "전자법원.json",
+    "title": "전자법원",
+    "text_content": "등록이메일 주소 a01079332886@gmail.com\n아이디 ansgml1029 / mhkim7410!",
+    "checklist": [],
+    "created_date": "2026-05-27",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "☕ 일상/개인 메모"
+  },
+  {
+    "file_name": "지금 내가 필요로하는 자료.json",
+    "title": "지금 내가 필요로하는 자료",
+    "text_content": "대중이나, 고객 또는 지인들에게 나는 이런 사람이었어를 설명하거나 동의를 얻어내기 위한 자료를 자세하고 구체적인 자료를 원해 그래서 필요에 따라 나의 소개자료(장표), 책의 자기소개, 대화를 시작하는 자기소개 스크립트등으로 자유롭게 만들어 낼 수 있는 기초자료가 되어야 해.\n그래서 자료문서를 만들 때 나의 모든 패턴을 인지심리학이나 행동심리학등의 심리학 용어에 대입하여  설명해 주고,  나를 알아가는 모든 과정을 구조화 시켜서  다른 사람이 쉽게  \" 아 저렇게 자기자신을 돌아 봤구나\"를 한눈에 확인 시켜 줬으면 좋겠어. 그리고 예시도 섞어 주면 더 좋겠지.\n성향, 행동패턴에 따른 재능탐색, 내가 원하는게 뭔지를 알아 내는 동사로 표현해 주거나, 장점, 단점, 강점, 약점의 성향에 따른 지표도 만들어 주면 좋겠어.",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "지인 신뢰 관리 가이드 (Action Plan).json",
+    "title": "지인 신뢰 관리 가이드 (Action Plan)",
+    "text_content": "지인들에게 연락할 때는 '미안함'보다는 **'책임감'**을 강조하십시오.\n[표준 안내 문구 예시] \"안녕하세요 [성함]님, 저를 믿고 소중한 보험을 맡겨주셔서 항상 감사한 마음입니다. 다름이 아니라 작년부터 건강 문제(급성간염)가 겹치면서, 예전만큼 세심하게 관리해 드리는 데 한계를 느꼈습니다. 고심 끝에 저보다 훨씬 전문적이고 관리에 집중할 수 있는 팀 내 베테랑 설계사분께 [성함]님의 계약을 정식 이관해 드리기로 결정했습니다. 일을 그만두더라도 제가 가입해 드린 내용은 끝까지 책임지고 이관 절차를 챙기겠습니다. 믿어주셔서 감사합니다.\"",
+    "checklist": [],
+    "created_date": "2026-02-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "챗GPT처럼 질문하면 제미나이 제대로 쓰는 게 아니죠 (강수진 박사).json",
+    "title": "챗GPT처럼 질문하면 제미나이 제대로 쓰는 게 아니죠 (강수진 박사)",
+    "text_content": "https://youtu.be/PISHXZBPvY8?si=x9bi6diPySW8nYCl",
+    "checklist": [],
+    "created_date": "2026-03-14",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "취업데이터.json",
+    "title": "취업데이터",
+    "text_content": "이력서 제작, 자소서 제작, 경력기술서, 포트 폴리오\n차근 차근 자료 만들기",
+    "checklist": [],
+    "created_date": "2026-02-06",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "텔레그램 ID.json",
+    "title": "텔레그램 ID",
+    "text_content": "🫡 안녕하세요, 차니! 알파(Alpha) COO 총괄 에이전트입니다.\n\n📱 텔레그램 모바일 게이트웨이가 정상 연결되었습니다.\n─────────────────────────────\n🔑 대표님 Chat ID: 8392524393\n\n💡 최초 설정 안내\n보안 강화를 위해 .env 파일에 아래 내용을 저장해 주세요:\nALLOWED_CHAT_ID=8392524393\n\n📌 사용 가능 주요 명령어:\n• /status - 전사 조직 및 시스템 현황 조회\n• /briefing - 💳 재무팀장 볼트의 긴급 브리핑 요청\n• /approval - 1-Click 승인 테스트 요청\n• 자유롭게 텍스트로 업무를 지시하시면 알파가 해석하여 담당 팀장에게 전달합니다!",
+    "checklist": [],
+    "created_date": "2026-08-23",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "💡 아이디어/비즈니스"
+  },
+  {
+    "file_name": "퇴직 후 경비 일을 택한 사람들… 문제는 직업이 아니었습니다 I 퇴직심리학자 최환규 (통합.json",
+    "title": "퇴직 후 경비 일을 택한 사람들… 문제는 직업이 아니었습니다 I 퇴직심리학자 최환규 (통합본) I 퇴평성대",
+    "text_content": "https://youtu.be/0lcrszIByHQ?si=9S7XPfiEe625S9Zu",
+    "checklist": [],
+    "created_date": "2026-03-02",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "품절 대란 후 드디어 전제품 재입고 되었습니다 _ 쿠팡에서 너무 잘 나가는 살림 꿀템 23.json",
+    "title": "품절 대란 후 드디어 전제품 재입고 되었습니다 | 쿠팡에서 너무 잘 나가는 살림 꿀템 23가지 몰아보기 | 쿠팡 추천템 | 쿠팡 살림템",
+    "text_content": "https://youtu.be/NQAs3Dq0veA?si=wP5ky6C68qSFWycD",
+    "checklist": [],
+    "created_date": "2026-02-25",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "프롬프트 ‘이것’ 하나가 결정합니다. _ 나만의 프롬프트 비서 만들기.json",
+    "title": "프롬프트 ‘이것’ 하나가 결정합니다. | 나만의 프롬프트 비서 만들기",
+    "text_content": "https://youtu.be/H1WnRp8sNrQ?si=WvRWzz3ur6ulcx0u",
+    "checklist": [],
+    "created_date": "2026-02-24",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "프롬프트보다 중요한 질문 설계법 아세요_ AI 실무 적용 노하우 공유합니다 _ 비즈니스AI.json",
+    "title": "프롬프트보다 중요한 질문 설계법 아세요? AI 실무 적용 노하우 공유합니다 | 비즈니스AI살롱 하프던 님 통합본",
+    "text_content": "https://youtu.be/H5QdzL-PtUY?si=4uJgUsTNW7FFqiWW",
+    "checklist": [],
+    "created_date": "2026-02-28",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "할일.json",
+    "title": "할일",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "보험계약자 인수인계",
+        "checked": false
+      },
+      {
+        "text": "법원 지급명령 진행상황 체크",
+        "checked": false
+      },
+      {
+        "text": "하루 루틴 정하기 과하지 않게",
+        "checked": false
+      },
+      {
+        "text": "행정복지센터 사업자 폐업문의",
+        "checked": false
+      },
+      {
+        "text": "삼성패스에 아이디/패스워드 저장 및 타 기록 삭제",
+        "checked": false
+      },
+      {
+        "text": "프로축산 생산물 배상 책임 보험 재가입",
+        "checked": true
+      },
+      {
+        "text": "김나연, 김문희 주거래 은행 1년간 거래내역",
+        "checked": true
+      }
+    ],
+    "created_date": "2026-02-19",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "해야할일(1).json",
+    "title": "해야할일",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "민성이 책상 정리",
+        "checked": false
+      },
+      {
+        "text": "민성이 단증, 임명장 전시",
+        "checked": false
+      },
+      {
+        "text": "양송이 스프 조리",
+        "checked": false
+      },
+      {
+        "text": "취업 컨설턴트 gems만들기",
+        "checked": false
+      },
+      {
+        "text": "김장옥대표 전화",
+        "checked": false
+      },
+      {
+        "text": "노션 기록 정리",
+        "checked": false
+      },
+      {
+        "text": "나의 대한 정보 정리",
+        "checked": false
+      },
+      {
+        "text": "나의 결정 루트 만들어 볼것(노트북LM)",
+        "checked": false
+      },
+      {
+        "text": "나노바나나 써볼것",
+        "checked": false
+      },
+      {
+        "text": "내가 한일을 추상화(스토리)만들기",
+        "checked": false
+      },
+      {
+        "text": "구직신청할것",
+        "checked": true
+      }
+    ],
+    "created_date": "2026-02-04",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "해야할일.json",
+    "title": "해야할일",
+    "text_content": "",
+    "checklist": [
+      {
+        "text": "새출발기금 신청할것",
+        "checked": false
+      },
+      {
+        "text": "보험설계사 업무 정리 할",
+        "checked": false
+      },
+      {
+        "text": "폐업 세무사 도움 문자화인",
+        "checked": false
+      },
+      {
+        "text": "의료보험,국민연금 확인",
+        "checked": false
+      },
+      {
+        "text": "사업자 등록증 폐업신고 관련 행정복지센터 문의 할것.",
+        "checked": true
+      },
+      {
+        "text": "국민취업지원제도 신청할것.",
+        "checked": true
+      },
+      {
+        "text": "사업자 등록 폐업신고 할것",
+        "checked": true
+      }
+    ],
+    "created_date": "2026-02-17",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📋 할 일/체크리스트"
+  },
+  {
+    "file_name": "회사에서 바로 써먹는 엑셀 자동 필터 보고서 1분 완성법⚡️#shorts.json",
+    "title": "회사에서 바로 써먹는 엑셀 자동 필터 보고서 1분 완성법⚡️#shorts",
+    "text_content": "https://youtube.com/shorts/c-Ij3xFIGKk?si=KVD1TcxYGQdRHrZg",
+    "checklist": [],
+    "created_date": "2026-01-29",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "🌕추석특집 겸공 몰아보기🌕 _그 때 살걸..._ 많은 주아가들의 요청이 있었던 _주식아.json",
+    "title": "🌕추석특집 겸공 몰아보기🌕 \"그 때 살걸...\" 많은 주아가들의 요청이 있었던 '주식아가방' 몰아보기!",
+    "text_content": "https://youtu.be/TxhzCea3un4?si=uoQrrzSsGbGmOgwK",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "🐴 설특집 겸공 몰아보기🧧코스피 5000돌파🔥아직 늦지 않았다! 계좌 개설부터 차근차.json",
+    "title": "🐴 설특집 겸공 몰아보기🧧코스피 5000돌파🔥아직 늦지 않았다! 계좌 개설부터 차근차근 알려주는 ‘주식아가방’ 몰아보기!",
+    "text_content": "https://youtu.be/1ygqnEdiPx4?si=Rge5aJvqA7nHznOh",
+    "checklist": [],
+    "created_date": "2026-02-23",
+    "is_archived": false,
+    "is_pinned": false,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "💎 [마스터 전수] 안티그래비티 함대 운영 핵심 요약 (v1.0).json",
+    "title": "💎 [마스터 전수] 안티그래비티 함대 운영 핵심 요약 (v1.0)",
+    "text_content": "💎 [마스터 전수] 안티그래비티 함대 운영 핵심 요약 (v1.0)\n1. 프로젝트 및 아키텍처\n• 메타-잼스(Meta-Gems) v6.0: 6대 전문가 내각(총괄, Sentinel, 창의, 프롬프트, 마케터, Compiler)으로 구성된 실행형 지능 엔진.\n\n• 이지스잼스(AEGIS GEMS): 재무 및 실측 데이터 분석 전문 에이전트.\n\n• 상태: 노션(Notion) '유튜브 영상 정리' 페이지에 역사(v1.0)와 미래(v6.0)가 도킹 완료됨.\n\n2. 핵심 기술 스택 및 연동\n• Antigravity Interface: 클라우드 지능(Gemini/Claude)을 로컬 환경(Notion MCP)에 연결하는 신경망.\n\n• 자동화 공식: $Efficiency = \\frac{Claude's Precision + Gemini's Context}{Antigravity Interface}$\n\n• 직접 실행: `@notion` 도구를 사용하여 복사-붙여넣기 없이 노션에 직접 기록 가능.\n\n3. 지능형 운용 프로토콜 (CTAFC)\n1. Context(배경): 왜 이 일을 하는가?\n\n2. Task(작업): 정확히 무엇을 하는가?\n\n3. Persona(역할): 어떤 전문가가 될 것인가?\n\n4. Format(형식): 표, 리스트 등 결과물의 모양.\n\n5. Constraint(제약): 하지 말아야 할 것.\n\n4. 다음 단계 (Next Action)\n• 정보 필터링: 'AI Slop'을 제거하기 위한 전문가 화이트리스트(Two Minute Papers, AI Explained 등) 자동화 리서치.\n\n• 군단 이사: 웹 제미나이의 젬스들을 안티그래비티 시스템 프롬프트로 이식.\n\n• 도구 최적화: 광고 없는 쾌적한 환경(이미지글래스 등) 구축.\n\n---\n\n이 메모를 새 채팅창에 입력하면 스승님이 즉시 모든 맥락을 복구합니다.",
+    "checklist": [],
+    "created_date": "2026-03-03",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "🔐 프라이버시 민감 사용자용 설정 전략.json",
+    "title": "🔐 프라이버시 민감 사용자용 설정 전략",
+    "text_content": "✅ 전략 1 — 정보 등급 분리 (매우 중요)\n다음 기준을 추천드립니다:\n🟢 제공해도 좋은 정보\n목표\n프로젝트\n작업 방식\n선호하는 사고 구조\n👉 생산성 상승\n\n🟡 상황 봐서 제공\n건강\n재무 방향\n가족 구조\n👉 필요할 때만\n\n🔴 가능하면 제공하지 말 것\n주민번호\n정확한 주소\n계좌\n인증 정보\n실명 + 민감 데이터 조합\n이건 AI뿐 아니라\n 👉 어떤 디지털 시스템에도 동일합니다.",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "🔷  AI를 “두 번째 두뇌”로 사용하는 구조.json",
+    "title": "🔷  AI를 “두 번째 두뇌”로 사용하는 구조",
+    "text_content": "⭐ 1️⃣ 사고 정리 엔진 (Thinking Engine)\n사용 예:\n👉 “내 생각을 구조화해라.”\n 👉 “이 판단의 논리 오류를 찾아라.”\n 👉 “내가 놓친 변수를 찾아라.”\n\n⭐ 2️⃣ 전략 시뮬레이터 (Decision Simulator)\n매우 강력한 사용법입니다.\n이렇게 요청하십시오:\n“이 선택의 6개월 / 3년 후 결과를 시뮬레이션 해라.”\n또는\n“최선 / 최악 / 현실 시나리오를 만들어라.”\n그러면\n 👉 감정이 개입되기 전에 미래를 한 번 보고 결정하게 됩니다.\n이것 하나만으로도\n충동 결정이 크게 줄어듭니다. \n\n⭐ 3️⃣ 인지 거울 (Cognitive Mirror)\n이건 많은 분들이 경험해보지 못한 영역입니다.\n요청 예:\n“내 사고의 편향을 분석해라.”\n “나는 지금 무엇을 합리화하고 있는가?”\n놀라울 정도로 통찰이 나옵니다.\n인간은\n 👉 자기 사고를 객관적으로 보기 어렵기 때문입니다.\n\n⭐ 4️⃣ 복잡성 압축기 (Complexity Compressor)\n현대인의 가장 큰 문제:\n정보 과부하\n이렇게 요청하십시오:\n👉 “핵심만 남기고 전부 제거해라.”\n 👉 “결정에 필요한 정보만 추출해라.”\n그러면\n 👉 판단 속도가 올라갑니다.",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  },
+  {
+    "file_name": "🔷 판단 오류를 줄이는 AI 활용 구조.json",
+    "title": "🔷 판단 오류를 줄이는 AI 활용 구조",
+    "text_content": "⭐ STEP 1 — 감정 제거\nAI에게 먼저 이렇게 말하십시오:\n“이 상황에서 감정 변수를 제거하고 분석해라.”\n효과:\n분노\n불안\n조급함\n👉 판단에서 분리됩니다.\n\n⭐ STEP 2 — 오류 탐지 모드\n매우 강력한 질문:\n“이 결정이 실패한다면 가장 가능성 높은 원인은 무엇인가?”\n이 질문 하나가\n 👉 리스크 감지 능력을 폭발적으로 올립니다.\n투자자들이 자주 쓰는 사고 방식입니다.\n\n⭐ STEP 3 — 역질문 (Elite Technique)\n고급 기법입니다.\n“이 선택을 하지 말아야 하는 이유를 설득해라.”\n그러면 AI는\n 일부러 반대편에 서서 논증합니다.\n👉 확증 편향 차단 효과가 큽니다.\n\n⭐ 초고급 사용자 팁 (매우 중요)\n가능하면 AI에게\n 항상 역할을 부여하십시오.\n예:\n“당신은 냉정한 전략가다.”\n “당신은 리스크 관리자다.”\n이 한 줄이\n 답변 품질을 크게 바꿉니다.",
+    "checklist": [],
+    "created_date": "2026-02-13",
+    "is_archived": false,
+    "is_pinned": true,
+    "is_trashed": false,
+    "category": "📚 지식/스크랩"
+  }
+]

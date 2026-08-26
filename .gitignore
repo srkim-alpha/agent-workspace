@@ -1,0 +1,40 @@
+# Security & Credentials Isolation (Tier 3)
+.env
+.env.*
+credentials.json
+token.json
+config/credentials.json
+config/token.json
+*.pem
+*.key
+*.p12
+
+# Logs & Execution Runtime Outputs
+*.log
+logs/
+temp_screenshots/
+
+# Python Cache & Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Temporary Files
+tmp/
+*.tmp
+*.bak
+*.swp
+
+# Virtual Environments & IDE
+venv/
+.venv/
+env/
+ENV/
+.vscode/
+.idea/

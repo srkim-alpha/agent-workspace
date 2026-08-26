@@ -1,0 +1,24 @@
+[
+  {
+    "date": "2026-08-24",
+    "chapter": "AI 수석비서 하네스 & 서치 에이전트 구축 및 모닝 브리핑 엔진",
+    "summary_file": "C:\\agent-workspace\\data\\daily_summaries\\2026-08-24.md",
+    "timestamp": "2026-08-24T22:12:20.389500+09:00",
+    "top_summary": {
+      "pain_points": "• 텔레그램 가드레일 승인 후 일정 삭제/수정 API 미실행 버그\n• 음성 인식(STT) 및 Gemini API 호출 시 이벤트 루프 블로킹으로 인한 3~5분 지연\n• 백그라운드 텔레그램 데몬 중복 실행으로 인한 중복 응답 및 리소스 낭비",
+      "solution_ideas": "• ReAct 루프 엔진 및 60초 타임아웃 서킷 브레이커 도입\n• 모든 I/O 네트워크 연산 asyncio.to_thread() 비동기 전환\n• 글로벌 리서치 전담 '서치(Search)' 에이전트 구축 및 08:15 KST 사전 캐싱 파이프라인(data/morning_briefing.json) 완성\n• 최상위 영구 헌법(docs/agent_rules.md) 확립 및 민감정보 자동 마스킹 적용",
+      "monetization_insights": "• 1인 기업 및 중소기업 대상 '맞춤형 업무 자동화 에이전트 구축 패키지' 구독형(SaaS) 상품화\n• 리얼 타임 텔레그램 음성 비서 + 구글 캘린더 연동 하네스 구축 노하우 전자책/강의 아카이브화"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "chapter": "AI 수석비서 하네스 & 서치 에이전트 구축 및 모닝 브리핑 엔진",
+    "summary_file": "C:\\agent-workspace\\data\\daily_summaries\\2026-08-25.md",
+    "timestamp": "2026-08-25T22:23:50.621082+09:00",
+    "top_summary": {
+      "pain_points": "• 텔레그램 가드레일 승인 후 일정 삭제/수정 API 미실행 버그\n• 음성 인식(STT) 및 Gemini API 호출 시 이벤트 루프 블로킹으로 인한 3~5분 지연\n• 백그라운드 텔레그램 데몬 중복 실행으로 인한 중복 응답 및 리소스 낭비",
+      "solution_ideas": "• ReAct 루프 엔진 및 60초 타임아웃 서킷 브레이커 도입\n• 모든 I/O 네트워크 연산 asyncio.to_thread() 비동기 전환\n• 글로벌 리서치 전담 '서치(Search)' 에이전트 구축 및 08:15 KST 사전 캐싱 파이프라인(data/morning_briefing.json) 완성\n• 최상위 영구 헌법(docs/agent_rules.md) 확립 및 민감정보 자동 마스킹 적용",
+      "monetization_insights": "• 1인 기업 및 중소기업 대상 '맞춤형 업무 자동화 에이전트 구축 패키지' 구독형(SaaS) 상품화\n• 리얼 타임 텔레그램 음성 비서 + 구글 캘린더 연동 하네스 구축 노하우 전자책/강의 아카이브화"
+    }
+  }
+]

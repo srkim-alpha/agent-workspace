@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-26",
+  "timestamp": "2026-08-26T08:15:20.476332+09:00",
+  "research": {
+    "tech_trends": [
+      {
+        "title": "맥킨지: 2026년 AI의 현주소, 투자 대비 수익(ROI) 달성을 향한 가도",
+        "summary_3lines": [
+          "기업들이 단순한 기술 도입을 넘어 실질적인 투자 대비 수익(ROI) 창출에 집중하고 있습니다.",
+          "2026년에는 AI가 비용 절감을 넘어 비즈니스 성장을 견인하는 핵심 동력으로 자리 잡았습니다.",
+          "성공적인 수익화를 위해 구체적이고 검증 가능한 비즈니스 모델 구축이 필수적인 시점입니다."
+        ],
+        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPVkNzT2lMcURPYXQxQmh0azdzbjVrNFktNzZFLTZacnFlR2xZYXczRnI4MHh2amsya2xOOEh1QURSbFUxU0ZUWGQ5WE5kVHJtbEFJb0NOdTNVUVhPeC1iVVJOZk1VbXpwLVBuYzVod0tMVmlYbVdzNjgwcF83MTVJTWNvVFRaZw?oc=5"
+      },
+      {
+        "title": "AIMultiple: 2026년 주목해야 할 에이전틱 AI 트렌드와 활용 사례",
+        "summary_3lines": [
+          "스스로 판단하고 실행하는 에이전틱 AI가 다양한 산업군의 핵심 비즈니스 인프라로 부상했습니다.",
+          "반복적인 업무 자동화를 넘어 복잡한 의사결정과 고객 응대를 스스로 처리하는 수준으로 진화했습니다.",
+          "1인 사업가와 에이전시들이 인력 부족을 극복하고 생산성을 극대화할 수 있는 강력한 기회를 제공합니다."
+        ],
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9wVmhFMnZHZXo0RkI3S203dDdSck9KZzl3SFh4d0dSNkVzR2RtU1VHRWptbGxFMzJQc0ZvZTVPdi1FYVd2WHNKaHhlN1c4Wm5lTkE?oc=5"
+      }
+    ],
+    "youtube_video": {
+      "title": "내 7자리 매출을 만든 AI 시스템 (풀 에이전시 OS 해부)",
+      "channel_name": "AI Agency Insider",
+      "summary_3lines": [
+        "고수익 에이전시를 구축하고 운영하는 데 활용된 구체적인 AI 자동화 시스템 구조를 공개합니다.",
+        "반복적인 업무를 완벽히 자동화하여 적은 인원으로도 높은 매출을 올리는 비법을 다룹니다.",
+        "1인 비즈니스 운영자가 AI를 통해 업무 효율성을 극대화하고 수익을 다각화하는 실질적인 가이드를 제공합니다."
+      ],
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1QN0d6ZGJiR2gtUTlod2UzYVdQQ3pjaXRXUV9nRmZSWTQzQlI2M3FtT1A3Qkh3ZXY0aWd0TExRRmNzLUNvb21NTUFGR1ZkM0Fma3ktSWNn?oc=5"
+    },
+    "korea_market_insight": "국내 1인 비즈니스 시장에서도 단순 챗봇 도입을 넘어, 반복 업무를 자율 처리하는 '에이전틱 AI' 시스템을 구축하여 고수익 자동화 에이전시 모델을 선점해야 합니다."
+  }
+}
