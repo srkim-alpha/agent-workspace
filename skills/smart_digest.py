@@ -89,6 +89,13 @@ def fetch_youtube_content(url_or_id: str) -> dict:
 
         # 2. Caption tracks extraction
         tracks = player_data.get("captions", {}).get("playerCaptionsTracklistRenderer", {}).get("captionTracks", [])
+        if not tracks:
+            m_cap = re.search(r'"captionTracks":\s*(\[.+?\])\s*,\s*"', raw_html)
+            if m_cap:
+                try:
+                    tracks = json.loads(m_cap.group(1))
+                except Exception:
+                    pass
         
         selected_track = None
         for t in tracks:
@@ -126,6 +133,7 @@ def fetch_youtube_content(url_or_id: str) -> dict:
         "content_type": "YouTube",
         "video_id": video_id,
         "title": title,
+        "description": description,
         "caption_found": caption_found,
         "raw_text": content_payload[:5000]
     }
@@ -180,6 +188,33 @@ def fetch_web_article_text(url: str) -> dict:
     }
 
 
+def clean_youtube_description(desc_text: str) -> str:
+    """
+    Sanitizes YouTube description text by filtering out promo URLs, 
+    link title headers, timestamps, and navigation markers.
+    """
+    if not desc_text:
+        return ""
+
+    lines = [line.strip() for line in desc_text.splitlines() if line.strip()]
+    valid_lines = []
+
+    for i, line in enumerate(lines):
+        # 1. Skip lines containing URLs
+        if re.search(r"https?://", line):
+            continue
+        # 2. Skip timestamp/chapter lines like 00:00 Intro, 0:05 End
+        if re.search(r"^\d{1,2}:\d{2}", line):
+            continue
+        # 3. Skip lines immediately preceding a URL line (often link titles/headers)
+        if i + 1 < len(lines) and re.search(r"https?://", lines[i + 1]):
+            continue
+
+        valid_lines.append(line)
+
+    return " ".join(valid_lines).strip()
+
+
 def generate_smart_digest(url: str) -> dict:
     """
     Main entry point: Fetches content from URL and generates a 3-part structured digest using Gemini.
@@ -203,6 +238,30 @@ def generate_smart_digest(url: str) -> dict:
     raw_text = data.get("raw_text", "")
     content_type = data.get("content_type", "Content")
     caption_found = data.get("caption_found", False)
+    description = data.get("description", "")
+
+    # Fallback Guard: For YouTube videos without captions and with short/empty clean description (<50 chars)
+    if content_type == "YouTube" and not caption_found:
+        substantive_desc = clean_youtube_description(description)
+        if len(substantive_desc) < 50:
+            notice_msg = (
+                f"⚠️ **[Smart Digest 안내]**\n"
+                f"자막 및 상세 설명이 없어 요약이 불가능한 영상입니다.\n"
+                f"(제목: {title})"
+            )
+            logger.info(f"Fallback Guard Triggered: '{title}' (Caption=False, SubstantiveDescLen={len(substantive_desc)})")
+            return {
+                "url": url,
+                "title": title,
+                "content_type": content_type,
+                "caption_found": False,
+                "fallback_triggered": True,
+                "digest_text": notice_msg,
+                "success": True
+            }
+        else:
+            # Use title + substantive description for raw_text
+            raw_text = f"제목: {title}\n영상 상세 설명:\n{substantive_desc}"
 
     gemini_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not gemini_key or not raw_text:
