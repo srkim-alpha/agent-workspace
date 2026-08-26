@@ -30,6 +30,7 @@ from core.calendar_manager import (
 from core.agent_engine import AgentEngine
 from core.briefing_manager import get_morning_briefing, prepare_daily_briefing_cache
 from core.resilience_manager import safe_gemini_call, sanitize_user_facing_error
+from core.interaction_guard import check_ambiguity
 from tools.shopping_search import search_naver_shopping
 from tools.browser_controller import capture_page, run_browser_test
 agent_engine = AgentEngine()
@@ -557,6 +558,14 @@ async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT
     logger.info(f"대표님 지시 처리 중 (Voice={is_voice}): {user_text}")
 
     voice_prefix = f"🎙️ **[음성 지시]**: *\"{user_text}\"*\n\n" if is_voice else ""
+
+    # 0. Ambiguity Pre-Filter (Clarification Guard)
+    guard_res = check_ambiguity(user_text)
+    if guard_res.get("is_ambiguous"):
+        logger.info(f"Clarification Guard 감지 (모호한 질의): '{user_text}' ({guard_res['latency_ms']:.2f}ms)")
+        reply_msg = f"{voice_prefix}{guard_res['clarification_message']}"
+        await safe_reply_text(update.message, reply_msg)
+        return
 
     # 1. 1차 경량 복잡도 분류 (Gemini Flash)
     complexity, reason = await agent_engine.classify_complexity(user_text)
