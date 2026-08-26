@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 import json
 import uuid
 import asyncio
@@ -31,6 +32,7 @@ from core.agent_engine import AgentEngine
 from core.briefing_manager import get_morning_briefing, prepare_daily_briefing_cache
 from core.resilience_manager import safe_gemini_call, sanitize_user_facing_error
 from core.interaction_guard import check_ambiguity
+from skills.smart_digest import generate_smart_digest, save_digest_to_notion
 from tools.shopping_search import search_naver_shopping
 from tools.browser_controller import capture_page, run_browser_test
 agent_engine = AgentEngine()
@@ -565,6 +567,29 @@ async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT
         logger.info(f"Clarification Guard 감지 (모호한 질의): '{user_text}' ({guard_res['latency_ms']:.2f}ms)")
         reply_msg = f"{voice_prefix}{guard_res['clarification_message']}"
         await safe_reply_text(update.message, reply_msg)
+        return
+
+    # 0.5 URL Auto-Digest (Smart Digest Pipeline)
+    url_match = re.search(r"https?://[^\s]+", user_text)
+    if url_match:
+        target_url = url_match.group(0)
+        logger.info(f"URL 감지 - Smart Digest 스킬 가동: {target_url}")
+        status_text = f"{voice_prefix}📊 **[Smart Digest 콘텐츠 요약 가동]**\nURL 원문({target_url}) 및 콘텐츠를 분석하여 3줄 인사이트를 생성 중입니다..."
+        status_msg = await safe_reply_text(update.message, status_text)
+
+        digest_res = await asyncio.to_thread(generate_smart_digest, target_url)
+        digest_text = digest_res.get("digest_text", "")
+
+        # Save digest to Notion Knowledge DB
+        await asyncio.to_thread(save_digest_to_notion, digest_res)
+
+        reply_msg = (
+            f"{voice_prefix}📰 **[알파 Smart Digest 수석비서 보고서]**\n\n"
+            f"🔗 **원문 링크**: {target_url}\n"
+            f"📌 **콘텐츠**: {digest_res.get('title', '')} ({digest_res.get('content_type', '')})\n\n"
+            f"{digest_text}"
+        )
+        await safe_edit_text(status_msg, reply_msg)
         return
 
     # 1. 1차 경량 복잡도 분류 (Gemini Flash)
