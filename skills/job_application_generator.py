@@ -13,6 +13,7 @@ if str(BASE_DIR) not in sys.path:
 MASTER_HUB_PATH = BASE_DIR / "career_hub" / "career_master_hub.md"
 OUTPUT_DIR = BASE_DIR / "data" / "outputs"
 DOCS_APPS_DIR = BASE_DIR / "docs" / "applications"
+BASE_URL = "https://srkim-alpha.github.io/agent-workspace/applications/"
 
 class JobApplicationGenerator:
     """AI Tailored Job Application Generator (PDF & GitHub Pages WebApp)."""
@@ -478,7 +479,7 @@ class JobApplicationGenerator:
         except Exception as e:
             print(f"Git commit/push warning: {e}")
 
-        web_url = f"https://srkim-alpha.github.io/agent-workspace/applications/{sanitized_company}/"
+        web_url = f"{BASE_URL}{sanitized_company}/"
         return web_url
 
     def send_telegram_notification(self, company_name: str, pdf_path: Optional[Path], web_url: str) -> bool:
