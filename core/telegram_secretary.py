@@ -639,10 +639,10 @@ async def command_cleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     generator = JobApplicationGenerator()
     del_res = await asyncio.to_thread(generator.delete_application, text_arg)
     if del_res.get("is_all"):
-        reply_msg = "🧹 [전체 정리 완료] 배포된 모든 테스트 웹페이지를 정리했습니다. (로컬 원본 PDF는 보존)"
+        reply_msg = "🧹 [전체 정리 완료] 배포된 모든 테스트 웹페이지를 정리했습니다."
     else:
-        target_name = text_arg if text_arg else "지정 타겟"
-        reply_msg = f"🧹 [타겟 삭제 완료] '{target_name}' 관련 웹페이지 배포를 해제했습니다."
+        t_kw = del_res.get("target_keyword", text_arg if text_arg else "지정 타겟")
+        reply_msg = f"🧹 [타겟 삭제 완료] '{t_kw}' 웹페이지만 선별 삭제했습니다."
     await safe_reply_text(update.message, reply_msg)
 
 async def command_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -675,20 +675,16 @@ async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT
     delete_keywords = ["지워", "삭제", "정리"]
     if any(kw in user_text for kw in delete_keywords):
         logger.info(f"삭제/정리 의도 감지: '{user_text}'")
-        raw_target = user_text
-        for kw in delete_keywords + ["해줘", "지워줘", "삭제해", "페이지", "지원서", "배포", "해제", "/정리"]:
-            raw_target = raw_target.replace(kw, "")
-        raw_target = raw_target.strip()
 
         from skills.job_application_generator import JobApplicationGenerator
         generator = JobApplicationGenerator()
-        del_res = await asyncio.to_thread(generator.delete_application, raw_target if raw_target else user_text)
+        del_res = await asyncio.to_thread(generator.delete_application, user_text)
 
         if del_res.get("is_all"):
-            reply_msg = "🧹 [전체 정리 완료] 배포된 모든 테스트 웹페이지를 정리했습니다. (로컬 원본 PDF는 보존)"
+            reply_msg = "🧹 [전체 정리 완료] 배포된 모든 테스트 웹페이지를 정리했습니다."
         else:
-            target_disp = raw_target if raw_target else user_text
-            reply_msg = f"🧹 [타겟 삭제 완료] '{target_disp}' 관련 웹페이지 배포를 해제했습니다."
+            t_kw = del_res.get("target_keyword", user_text)
+            reply_msg = f"🧹 [타겟 삭제 완료] '{t_kw}' 웹페이지만 선별 삭제했습니다."
 
         await safe_reply_text(update.message, reply_msg)
         return

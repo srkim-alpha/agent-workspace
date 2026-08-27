@@ -10,12 +10,11 @@ if str(BASE_DIR) not in sys.path:
 
 from skills.job_application_generator import JobApplicationGenerator
 
-class TestTelegramDeleteRouter(unittest.TestCase):
+class TestTelegramDeleteRouterPrecision(unittest.TestCase):
 
     def setUp(self):
         self.generator = JobApplicationGenerator()
         
-        # Create dummy deployment directories for two targets
         self.geo_docs = BASE_DIR / "docs" / "applications" / "geo_young"
         self.geo_root = BASE_DIR / "applications" / "geo_young"
         self.gray_docs = BASE_DIR / "docs" / "applications" / "graybox"
@@ -26,33 +25,32 @@ class TestTelegramDeleteRouter(unittest.TestCase):
             with open(d / "index.html", "w", encoding="utf-8") as f:
                 f.write("<h1>Test</h1>")
 
-        # Create dummy PDF in data/outputs
         self.outputs_dir = BASE_DIR / "data" / "outputs"
         self.outputs_dir.mkdir(parents=True, exist_ok=True)
         self.pdf_path = self.outputs_dir / "geo_young_김승률_지원서.pdf"
         with open(self.pdf_path, "w", encoding="utf-8") as f:
             f.write("PDF Ground Truth Content")
 
-    def test_target_delete_application(self):
-        """Tests target deletion (e.g. '지오영'). Only geo_young folder should be removed, graybox remains, PDF preserved."""
-        result = self.generator.delete_application("지오영")
+    def test_precision_target_delete(self):
+        """Tests that '그래이박스 지워' extracts target_keyword '그래이박스' and deletes only graybox."""
+        result = self.generator.delete_application("그래이박스 지워")
         self.assertTrue(result["success"])
         self.assertFalse(result["is_all"])
-        self.assertFalse(self.geo_docs.exists())
-        self.assertFalse(self.geo_root.exists())
-        self.assertTrue(self.gray_docs.exists())  # graybox should still exist!
+        self.assertEqual(result["target_keyword"], "그래이박스")
+        self.assertFalse(self.gray_docs.exists())
+        self.assertTrue(self.geo_docs.exists())  # geo_young preserved!
         self.assertTrue(self.pdf_path.exists())   # PDF preserved
-        print(f"[Pass] Target delete verified: {result}")
+        print(f"[Pass] Precision target delete verified: {result}")
 
-    def test_all_delete_application(self):
-        """Tests all deletion (e.g. '다 지워'). All deployment folders removed, PDF preserved."""
+    def test_precision_all_delete(self):
+        """Tests that '/정리' or '다 지워' triggers all delete mode."""
         result = self.generator.delete_application("다 지워")
         self.assertTrue(result["success"])
         self.assertTrue(result["is_all"])
         self.assertFalse(self.geo_docs.exists())
         self.assertFalse(self.gray_docs.exists())
         self.assertTrue(self.pdf_path.exists())   # PDF preserved
-        print(f"[Pass] All delete verified: {result}")
+        print(f"[Pass] Precision all delete verified: {result}")
 
     def tearDown(self):
         for d in [self.geo_docs, self.geo_root, self.gray_docs, self.gray_root]:

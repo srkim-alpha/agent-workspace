@@ -489,31 +489,32 @@ class JobApplicationGenerator:
         web_url = f"{BASE_URL}{slug}/"
         return web_url
 
-    def delete_application(self, target: str = "") -> Dict[str, Any]:
+    def delete_application(self, text: str = "") -> Dict[str, Any]:
         """
         Deletes GitHub Pages deployment HTML directories (docs/applications/{slug} and applications/{slug}).
         Preserves local PDF in data/outputs/ (Non-destructive Ground Truth principle).
         """
         import shutil
         cleaned_slugs = []
-        target_clean = target.strip()
+        text_strip = text.strip()
         
-        all_keywords = ["다", "전부", "모두", "테스트", "임시", "전체", "all", "test", "정리해", "/정리"]
-        
-        # Determine if this is an all-delete or target-delete
-        is_all = not target_clean or target_clean in all_keywords or any(k == target_clean for k in all_keywords)
-        if not is_all and target_clean:
-            # Check if text contains any explicit 'all' keyword
-            tokens = target_clean.split()
-            if any(t in all_keywords for t in tokens):
-                # If only all keyword remains
-                rem = [t for t in tokens if t not in all_keywords and t not in ["지워", "삭제", "정리", "페이지"]]
-                if not rem:
-                    is_all = True
+        # 1) 전체 삭제 조건: '다', '전체', '모두', '전부'가 포함되거나 '/정리' 단독 입력
+        is_all = any(kw in text_strip for kw in ['다', '전체', '모두', '전부']) or text_strip == '/정리' or text_strip == ''
 
+        target_keyword = ""
         target_slug = ""
-        if not is_all and target_clean:
-            target_slug = self.get_slug(target_clean)
+
+        if not is_all:
+            # 2) 타겟 선별 삭제 조건: 문장에서 명령 키워드 제거
+            target_keyword = text_strip
+            for rem in ['지워줘', '지워', '삭제해줘', '삭제해', '삭제', '정리해줘', '정리해', '내려줘', '페이지', '지원서', '배포', '해제', '/정리']:
+                target_keyword = target_keyword.replace(rem, '')
+            target_keyword = target_keyword.strip()
+
+            if not target_keyword:
+                is_all = True
+            else:
+                target_slug = self.get_slug(target_keyword)
 
         for base_path in [DOCS_APPS_DIR, BASE_DIR / "applications"]:
             if base_path.exists():
@@ -525,7 +526,7 @@ class JobApplicationGenerator:
                     if is_all:
                         should_delete = True
                     else:
-                        if (target_slug and (item.name == target_slug or target_clean in item.name or target_slug in item.name or item.name in target_clean)) or (target_clean in item.name):
+                        if (target_slug and (item.name == target_slug or target_keyword in item.name or target_slug in item.name or item.name in target_keyword)) or (target_keyword in item.name):
                             should_delete = True
 
                     if should_delete:
@@ -533,11 +534,10 @@ class JobApplicationGenerator:
                         if item.name not in cleaned_slugs:
                             cleaned_slugs.append(item.name)
 
-        summary_name = "all" if is_all else (target_clean if target_clean else "general")
-        # Git commit & push
+        commit_msg = "Clean all application pages" if is_all else f"Remove {target_keyword} application page"
         try:
             subprocess.run(["git", "add", "-A"], cwd=str(BASE_DIR), check=True)
-            subprocess.run(["git", "commit", "-m", f"Auto-clean deployment: {summary_name}"], cwd=str(BASE_DIR), check=False)
+            subprocess.run(["git", "commit", "-m", commit_msg], cwd=str(BASE_DIR), check=False)
             subprocess.run(["git", "push", "origin", "main"], cwd=str(BASE_DIR), check=False)
         except Exception as e:
             print(f"Git push warning during delete: {e}")
@@ -545,7 +545,7 @@ class JobApplicationGenerator:
         return {
             "success": True,
             "is_all": is_all,
-            "target": target_clean,
+            "target_keyword": target_keyword,
             "cleaned_slugs": cleaned_slugs
         }
 
