@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
-  <title>알파 커리어 자산화 & 시각화 수석비서 뷰어</title>
+  <title>알파 커리어 자산화 & 시각화 수석비서 뷰어 (실전 모드)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg-dark: #0a0e17;
@@ -74,7 +77,6 @@
       font-family: 'Outfit', sans-serif;
       font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.5px;
       background: linear-gradient(90deg, #ffffff, var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -102,14 +104,23 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+      }
     }
 
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 320px 1fr 340px;
+      grid-template-columns: 340px 1fr 360px;
       gap: 20px;
       padding: 20px;
       overflow: hidden;
@@ -123,7 +134,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .panel-header {
@@ -131,7 +142,7 @@
       border-bottom: 1px solid var(--border-color);
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -146,10 +157,9 @@
       overflow-y: auto;
     }
 
-    /* Left File List */
     .file-item {
-      padding: 14px;
-      margin-bottom: 10px;
+      padding: 12px;
+      margin-bottom: 8px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
@@ -158,10 +168,10 @@
       gap: 12px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      position: relative;
     }
 
-    .file-item:hover, .file-item.selected {
+    .file-item:hover,
+    .file-item.selected {
       background: rgba(0, 242, 254, 0.08);
       border-color: var(--accent-cyan);
       transform: translateY(-2px);
@@ -169,19 +179,43 @@
     }
 
     .file-icon {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11px;
+      flex-shrink: 0;
     }
 
-    .icon-docx { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid #3b82f6; }
-    .icon-hwp { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid #ec4899; }
-    .icon-pdf { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+    .icon-docx,
+    .icon-doc {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid #3b82f6;
+    }
+
+    .icon-hwp,
+    .icon-hwpx {
+      background: rgba(236, 72, 153, 0.2);
+      color: #f472b6;
+      border: 1px solid #ec4899;
+    }
+
+    .icon-pdf {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid #ef4444;
+    }
+
+    .icon-txt,
+    .icon-md {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid #10b981;
+    }
 
     .file-info {
       flex: 1;
@@ -189,7 +223,7 @@
     }
 
     .file-name {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -197,111 +231,135 @@
     }
 
     .file-meta {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
-    /* Center Document Preview & STAR tags */
     .doc-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .text-box {
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 16px;
-      font-size: 13.5px;
+      padding: 14px;
+      font-size: 13px;
       line-height: 1.6;
       color: #d1d5db;
       white-space: pre-wrap;
-      max-height: 260px;
+      max-height: 240px;
       overflow-y: auto;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
-    /* STAR Competency Cards */
     .star-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .star-card {
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
       border-left: 4px solid var(--accent-cyan);
       backdrop-filter: blur(8px);
-      transition: all 0.3s ease;
     }
 
-    .star-s { border-left-color: var(--star-s); }
-    .star-t { border-left-color: var(--star-t); }
-    .star-a { border-left-color: var(--star-a); }
-    .star-r { border-left-color: var(--star-r); }
+    .star-s {
+      border-left-color: var(--star-s);
+    }
+
+    .star-t {
+      border-left-color: var(--star-t);
+    }
+
+    .star-a {
+      border-left-color: var(--star-a);
+    }
+
+    .star-r {
+      border-left-color: var(--star-r);
+    }
 
     .star-tag {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
-    .star-s .star-tag { color: var(--star-s); }
-    .star-t .star-tag { color: var(--star-t); }
-    .star-a .star-tag { color: var(--star-a); }
-    .star-r .star-tag { color: var(--star-r); }
+    .star-s .star-tag {
+      color: var(--star-s);
+    }
+
+    .star-t .star-tag {
+      color: var(--star-t);
+    }
+
+    .star-a .star-tag {
+      color: var(--star-a);
+    }
+
+    .star-r .star-tag {
+      color: var(--star-r);
+    }
 
     .star-desc {
-      font-size: 12.5px;
+      font-size: 12px;
       color: #e2e8f0;
       line-height: 1.4;
     }
 
-    /* Right Tree View */
     .tree-folder {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       border: 1px dashed rgba(255, 255, 255, 0.15);
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
       background: rgba(0, 0, 0, 0.2);
     }
 
     .folder-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--accent-cyan);
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
     .tree-file {
-      font-size: 12.5px;
-      padding: 8px 10px;
-      margin-top: 6px;
+      font-size: 12px;
+      padding: 6px 8px;
+      margin-top: 4px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+      border-radius: 6px;
       color: #cbd5e1;
       display: flex;
       align-items: center;
-      gap: 8px;
-      animation: fadeIn 0.4s ease-out;
+      gap: 6px;
+      animation: fadeIn 0.3s ease-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateX(10px); }
-      to { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    /* Animated Virtual Mouse Cursor */
     #virtual-cursor {
       position: absolute;
       top: 100px;
@@ -340,35 +398,47 @@
     }
 
     @keyframes rippleAnim {
-      0% { opacity: 1; transform: scale(0.3); }
-      100% { opacity: 0; transform: scale(1.5); }
+      0% {
+        opacity: 1;
+        transform: scale(0.3);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.5);
+      }
     }
 
     .drag-ghost {
       position: absolute;
-      padding: 10px 14px;
+      padding: 8px 12px;
       background: rgba(0, 242, 254, 0.9);
       color: #000;
       font-weight: 700;
-      font-size: 12px;
-      border-radius: 8px;
+      font-size: 11.5px;
+      border-radius: 6px;
       pointer-events: none;
       z-index: 9998;
-      box-shadow: 0 10px 25px rgba(0,242,254,0.5);
+      box-shadow: 0 10px 25px rgba(0, 242, 254, 0.5);
       display: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 260px;
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <div class="logo-group">
       <div class="logo-icon">α</div>
-      <h1>CAREER ASSET VISUAL ORGANIZER</h1>
+      <h1>REAL CAREER ASSET ORGANIZER ENGINE</h1>
     </div>
     <div class="status-badge">
       <div class="status-dot"></div>
-      <span id="organizer-status">PLAYWRIGHT INTERACTIVE ENGINE ACTIVE</span>
+      <span id="organizer-status">PRODUCTION DIRECTORY ACTIVE</span>
     </div>
   </header>
 
@@ -376,33 +446,11 @@
     <!-- Left Column: Raw Document List -->
     <section class="card-panel">
       <div class="panel-header">
-        <span>Scanned Career Documents</span>
-        <span id="raw-count">3 Files</span>
+        <span>Scanned Real Resumes</span>
+        <span id="raw-count">0 Files</span>
       </div>
       <div class="panel-body" id="raw-file-list">
-        <div class="file-item" id="file-0" onclick="selectDocument(0)">
-          <div class="file-icon icon-docx">DOCX</div>
-          <div class="file-info">
-            <div class="file-name">2024_이력서_AI_Lead_Engineer.docx</div>
-            <div class="file-meta">2024년도 | AI Lead Architect</div>
-          </div>
-        </div>
-
-        <div class="file-item" id="file-1" onclick="selectDocument(1)">
-          <div class="file-icon icon-hwp">HWP</div>
-          <div class="file-info">
-            <div class="file-name">2025_자소서_수석비서_AI아키텍트.hwp</div>
-            <div class="file-meta">2025년도 | Executive Assistant</div>
-          </div>
-        </div>
-
-        <div class="file-item" id="file-2" onclick="selectDocument(2)">
-          <div class="file-icon icon-pdf">PDF</div>
-          <div class="file-info">
-            <div class="file-name">2023_경력기술서_백엔드_클라우드.pdf</div>
-            <div class="file-meta">2023년도 | Backend & Cloud</div>
-          </div>
-        </div>
+        <!-- Dynamically populated -->
       </div>
     </section>
 
@@ -410,37 +458,32 @@
     <section class="card-panel">
       <div class="panel-header">
         <span>STAR Competency Analysis Canvas</span>
-        <span id="active-filename">Select a file</span>
+        <span id="active-filename">Waiting...</span>
       </div>
       <div class="panel-body">
-        <div class="doc-title" id="doc-title-text">2024_이력서_AI_Lead_Engineer.docx</div>
-        <div class="text-box" id="doc-text-body">
-[이력서 미리보기]
-- 성명: 김성근 (Alpha Leader)
-- 직무: AI Lead Engineer / 수석 AI 아키텍트
-- 주요 성과: 텔레그램-노션 통합 에이전트 파이프라인 구축 및 지능형 사전 필터링(Clarification Guard) 구현.
-        </div>
+        <div class="doc-title" id="doc-title-text">대표님 이력서 실전 분석</div>
+        <div class="text-box" id="doc-text-body">문서를 선택하면 텍스트 미리보기 및 STAR 역량 분석이 표시됩니다.</div>
 
-        <div class="panel-header" style="padding: 10px 0; border: none; margin-bottom: 8px;">
+        <div class="panel-header" style="padding: 8px 0; border: none; margin-bottom: 6px;">
           <span>Gemini STAR Competency Extraction</span>
         </div>
 
         <div class="star-container" id="star-box">
           <div class="star-card star-s">
             <div class="star-tag">S (Situation)</div>
-            <div class="star-desc" id="star-s-desc">모바일 환경에서 비동기 지능형 상황 파악 요구 증대</div>
+            <div class="star-desc" id="star-s-desc">-</div>
           </div>
           <div class="star-card star-t">
             <div class="star-tag">T (Task)</div>
-            <div class="star-desc" id="star-t-desc">1:1 수석비서 게이트웨이 및 노션 지식 DB 자동 연동</div>
+            <div class="star-desc" id="star-t-desc">-</div>
           </div>
           <div class="star-card star-a">
             <div class="star-tag">A (Action)</div>
-            <div class="star-desc" id="star-a-desc">Intent 분류 ➔ Smart Digest 3줄 요약 ➔ Notion DB 적재</div>
+            <div class="star-desc" id="star-a-desc">-</div>
           </div>
           <div class="star-card star-r">
             <div class="star-tag">R (Result)</div>
-            <div class="star-desc" id="star-r-desc">응답 지연시간 2초 이내 단축 및 모바일 처리 성공률 99.5% 달성</div>
+            <div class="star-desc" id="star-r-desc">-</div>
           </div>
         </div>
       </div>
@@ -453,87 +496,74 @@
         <span style="color: var(--accent-cyan);">clean_tree/</span>
       </div>
       <div class="panel-body" id="tree-view">
-
-        <div class="tree-folder" id="folder-2024">
-          <div class="folder-title">📁 2024_AI_Lead_Engineer/</div>
-          <div class="tree-file" id="tf-0" style="display: none;">📄 2024_이력서_AI_Lead_Engineer.docx</div>
-        </div>
-
-        <div class="tree-folder" id="folder-2025">
-          <div class="folder-title">📁 2025_Executive_Assistant/</div>
-          <div class="tree-file" id="tf-1" style="display: none;">📄 2025_자소서_수석비서_AI아키텍트.hwp</div>
-        </div>
-
-        <div class="tree-folder" id="folder-2023">
-          <div class="folder-title">📁 2023_Backend_Cloud/</div>
-          <div class="tree-file" id="tf-2" style="display: none;">📄 2023_경력기술서_백엔드_클라우드.pdf</div>
-        </div>
-
+        <!-- Dynamically populated folder trees -->
       </div>
     </section>
   </main>
 
-  <!-- Virtual Mouse Pointer -->
   <div id="virtual-cursor">
     <div class="cursor-pointer"></div>
     <div class="cursor-ripple"></div>
   </div>
 
-  <!-- Drag Ghost element -->
   <div id="drag-ghost" class="drag-ghost">Moving File...</div>
 
   <script>
-    const sampleData = [
-      {
-        filename: "2024_이력서_AI_Lead_Engineer.docx",
-        title: "김성근 대표 - AI Lead Engineer & 수석 아키텍트",
-        text: "## 주요 성과 (2024)\n- Gemini 3.5 Flash-lite 기반 멀티에이전트 오케스트레이션 설계\n- Playwright 하드 타임아웃 10초 및 0-의존성 모듈 수석 아키텍팅\n- Telegram & Notion 지식 파이프라인 결속 완료",
-        star: {
-          s: "모바일 환경에서 시스템 상황 파악 및 지능형 요약 요구 증대",
-          t: "텔레그램-노션 통합 비동기 수석비서 에이전트 시스템 구축",
-          a: "Intent 분류 ➔ Smart Digest 3줄 인사이트 ➔ Notion DB 자동 적재 파이프라인 완료",
-          r: "지연시간 2초 이내 단축 및 모바일 처리 성공률 99.5% 달성"
-        },
-        targetFolder: "folder-2024",
-        treeFileId: "tf-0"
-      },
-      {
-        filename: "2025_자소서_수석비서_AI아키텍트.hwp",
-        title: "김성근 대표 - 수석비서 & AI 오케스트레이션 비전",
-        text: "## 비전 및 성과 (2025)\n- Clarification Guard 모듈 구현으로 모호한 질의 2초 이내 사전 대응\n- YouTube/웹 콘텐츠 3줄 핵심 인사이트 추출 (Smart Digest Engine)\n- Tier 3 보안 정책에 따른 .env 완전 격리 유지",
-        star: {
-          s: "브라우저 제어 및 모호한 사용자 질의 시 타임아웃 발생 위험",
-          t: "0.5초 경량 사전 필터링 레이어 (Interaction Guard) 구축",
-          a: "Clarification Guard 배치 및 백그라운드 프로세스 가디언 재설계",
-          r: "시스템 멈춤 현상 100% 제거 및 초고속 모바일 반응속도 보장"
-        },
-        targetFolder: "folder-2025",
-        treeFileId: "tf-1"
-      },
-      {
-        filename: "2023_경력기술서_백엔드_클라우드.pdf",
-        title: "김성근 대표 - 백엔드 & 클라우드 파이프라인 수석",
-        text: "## 핵심 역량 (2023)\n- GitHub MCP 서버 공식 결속 및 공개 오픈소스 모듈화 이식\n- Python 표준 라이브러리 기반 0-의존성 초경량 설계\n- Git commit/push 자동화 및 마스킹 보안 거버넌스",
-        star: {
-          s: "검증된 오픈소스 기술을 안전하게 수석비서 모듈로 이식 요구",
-          t: "GitHub MCP 기반 모듈 분석 및 로컬 0-의존성 모듈 이식",
-          a: "Search API로 pyhwp, docx 파싱 분석 후 career_parser 작성",
-          r: "보안 격리 상태에서 단독 이식 및 테스트 100% 완수"
-        },
-        targetFolder: "folder-2023",
-        treeFileId: "tf-2"
+    let globalDocsData = [];
+    let globalFoldersData = {};
+
+    function loadDynamicData(docs, folders) {
+      globalDocsData = docs;
+      globalFoldersData = folders;
+
+      // Render Left List
+      const leftList = document.getElementById('raw-file-list');
+      leftList.innerHTML = '';
+      document.getElementById('raw-count').innerText = `${docs.length} Files`;
+
+      docs.forEach((item, idx) => {
+        const ext = item.ext.replace('.', '').toLowerCase();
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'file-item';
+        itemDiv.id = `file-${idx}`;
+        itemDiv.onclick = () => selectDocument(idx);
+        itemDiv.innerHTML = `
+          <div class="file-icon icon-${ext}">${ext.toUpperCase()}</div>
+          <div class="file-info">
+            <div class="file-name">${item.filename}</div>
+            <div class="file-meta">${item.folder_name} | ${item.char_count}자</div>
+          </div>
+        `;
+        leftList.appendChild(itemDiv);
+      });
+
+      // Render Right Folder Tree
+      const treeView = document.getElementById('tree-view');
+      treeView.innerHTML = '';
+
+      Object.keys(folders).forEach(folderName => {
+        const folderDiv = document.createElement('div');
+        folderDiv.className = 'tree-folder';
+        folderDiv.id = `folder-${folderName}`;
+        folderDiv.innerHTML = `<div class="folder-title">📁 ${folderName}/</div>`;
+        treeView.appendChild(folderDiv);
+      });
+
+      if (docs.length > 0) {
+        selectDocument(0);
       }
-    ];
+    }
 
     function selectDocument(idx) {
+      if (!globalDocsData[idx]) return;
       document.querySelectorAll('.file-item').forEach(el => el.classList.remove('selected'));
       const activeItem = document.getElementById(`file-${idx}`);
       if (activeItem) activeItem.classList.add('selected');
 
-      const item = sampleData[idx];
+      const item = globalDocsData[idx];
       document.getElementById('active-filename').innerText = item.filename;
-      document.getElementById('doc-title-text').innerText = item.title;
-      document.getElementById('doc-text-body').innerText = item.text;
+      document.getElementById('doc-title-text').innerText = item.filename;
+      document.getElementById('doc-text-body').innerText = item.text || '(텍스트 추출 완료)';
 
       document.getElementById('star-s-desc').innerText = item.star.s;
       document.getElementById('star-t-desc').innerText = item.star.t;
@@ -564,15 +594,16 @@
       document.getElementById('drag-ghost').style.display = 'none';
     }
 
-    function showTreeFile(treeFileId) {
-      const tf = document.getElementById(treeFileId);
-      if (tf) {
-        tf.style.display = 'flex';
+    function addTreeFile(folderName, filename) {
+      const folderDiv = document.getElementById(`folder-${folderName}`);
+      if (folderDiv) {
+        const fileDiv = document.createElement('div');
+        fileDiv.className = 'tree-file';
+        fileDiv.innerHTML = `📄 ${filename}`;
+        folderDiv.appendChild(fileDiv);
       }
     }
-
-    // Default select first item
-    selectDocument(0);
   </script>
 </body>
+
 </html>

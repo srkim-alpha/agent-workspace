@@ -1,7 +1,7 @@
 """
 Career Document Parser Module (skills/career_parser.py)
 -------------------------------------------------------
-Lightweight 0-dependency parser for multi-format career documents (DOCX, HWP, PDF, TXT, MD).
+Lightweight 0-dependency parser for multi-format career documents (.docx, .doc, .hwp, .hwpx, .pdf, .txt, .md).
 Uses standard library zipfile, xml.etree.ElementTree, re, and binary stream inspection.
 """
 
@@ -26,7 +26,6 @@ def parse_docx(file_path: str) -> str:
             xml_content = docx_zip.read('word/document.xml')
         root = ET.fromstring(xml_content)
         
-        # WordML namespace for text element <w:t>
         paragraphs = []
         for elem in root.iter():
             if elem.tag.endswith('p'):
@@ -35,15 +34,32 @@ def parse_docx(file_path: str) -> str:
                     paragraphs.append("".join(texts))
         return "\n".join(paragraphs)
     except Exception as e:
-        logger.warning(f"DOCX Zip parsing failed for {file_path}: {e}")
-        # Fallback: binary string search
-        try:
-            with open(file_path, 'rb') as f:
-                raw = f.read().decode('utf-8', errors='ignore')
-                matches = re.findall(r'[\uac00-\ud7a30-9a-zA-Z\s.,!?-]{2,}', raw)
-                return "\n".join(m.strip() for m in matches if len(m.strip()) > 3)
-        except Exception:
-            return f"DOCX Content ({os.path.basename(file_path)})"
+        logger.warning(f"DOCX Zip parsing fallback for {file_path}: {e}")
+        return parse_doc_binary(file_path)
+
+
+def parse_doc_binary(file_path: str) -> str:
+    """Extracts text strings from legacy .doc (OLE Word binary) or uncompressed files."""
+    try:
+        with open(file_path, 'rb') as f:
+            raw = f.read()
+
+        # Try UTF-16LE decoding for Word binary stream
+        decoded_utf16 = raw.decode('utf-16le', errors='ignore')
+        matches_utf16 = re.findall(r'[\uac00-\ud7a30-9a-zA-Z\s.,!?-]{3,}', decoded_utf16)
+        if matches_utf16 and len("".join(matches_utf16)) > 50:
+            return "\n".join(m.strip() for m in matches_utf16 if len(m.strip()) > 3)
+
+        # Try CP949 / EUC-KR decoding
+        decoded_cp949 = raw.decode('cp949', errors='ignore')
+        matches_cp949 = re.findall(r'[\uac00-\ud7a30-9a-zA-Z\s.,!?-]{3,}', decoded_cp949)
+        if matches_cp949:
+            return "\n".join(m.strip() for m in matches_cp949 if len(m.strip()) > 3)
+
+        return f"DOC Binary Document ({os.path.basename(file_path)})"
+    except Exception as e:
+        logger.warning(f"DOC binary parsing warning for {file_path}: {e}")
+        return f"DOC Document ({os.path.basename(file_path)})"
 
 
 def parse_hwp(file_path: str) -> str:
@@ -90,7 +106,6 @@ def parse_pdf(file_path: str) -> str:
             raw = f.read()
 
         decoded = raw.decode('utf-8', errors='ignore')
-        # Extract text streams in PDF (between BT and ET tags)
         bt_blocks = re.findall(r'BT\s*(.*?)\s*ET', decoded, re.DOTALL)
         if bt_blocks:
             extracted = []
@@ -101,7 +116,6 @@ def parse_pdf(file_path: str) -> str:
             if extracted:
                 return "\n".join(extracted)
 
-        # Korean / English text extraction fallback
         matches = re.findall(r'[\uac00-\ud7a30-9a-zA-Z\s.,!?-]{3,}', decoded)
         if matches:
             return "\n".join(m.strip() for m in matches if len(m.strip()) > 3)
@@ -126,14 +140,6 @@ def parse_txt_or_md(file_path: str) -> str:
 def parse_career_document(file_path: str) -> dict:
     """
     Main parser entry point for career documents.
-    Returns:
-        dict: {
-            "file_path": str,
-            "filename": str,
-            "ext": str,
-            "text": str,
-            "char_count": int
-        }
     """
     path_obj = Path(file_path)
     filename = path_obj.name
@@ -141,6 +147,8 @@ def parse_career_document(file_path: str) -> dict:
 
     if ext == '.docx':
         text = parse_docx(file_path)
+    elif ext == '.doc':
+        text = parse_doc_binary(file_path)
     elif ext in ['.hwp', '.hwpx']:
         text = parse_hwp(file_path)
     elif ext == '.pdf':

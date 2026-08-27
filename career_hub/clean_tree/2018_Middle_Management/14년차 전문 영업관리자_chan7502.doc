@@ -1,0 +1,522 @@
+<html>
+<head>
+    <base href="http://www.saramin.co.kr">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="noindex,nofollow">
+    <link href="/css/ui/menu.css" media="all" rel="stylesheet" type="text/css">
+    <link href="/css/nudge/common-layout.css?v=20180830_3" media="all" rel="stylesheet" type="text/css" media="screen, print">
+    <link href="/css/nudge/content.css?v=20180830_3" media="all" rel="stylesheet" type="text/css" media="screen, print">
+    <link href="//www.saraminimage.co.kr/sri/css/resume_20180208.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/css/common_ui.css?v=20180830_3" rel="stylesheet" type="text/css" media="screen, print">
+    <script type="text/javascript" src="//www.saraminimage.co.kr/js/libs/prototype-1.6.0.3.js"></script>
+    <script type="text/javascript" src="//www.saraminimage.co.kr/js/libs/pngHack.mini.js"></script>
+    <title>이력서 보기</title>
+    <style type="text/css">
+        .section_profile .personal_info .dashboard ul {padding:0;}
+        a, li, div, table, p {font-family: "맑은 고딕";}
+        em, span {font-family: "맑은 고딕";font-style: normal;}
+        ol, ul, li {list-style: none;}
+        .portfolio_txtline span, .ico_point, .bar_txtline em, .bar_txtline span, .part_table .inpart_view td .box_point, .part_table .inpart_view td span, .part_table .inpart_view td p span {font-size:12px;}
+        .section_profile a, .section_profile, .section_profile .area_title, .section_part .part_table, .section_part .part_table table {width: 645px;}
+        .section_part .part_table a {color: #444;}
+        .section_part .part_table {margin: 1px;}
+        .section_part .part_table .inpart_view {border-collapse:collapse;}
+        .section_part .part_table .box_point {margin-bottom: 10px;}
+        .part_table .inpart_view th {border:1px solid #eaeaea;font-size: 12px;white-space: nowrap;}
+        .part_table .inpart_view td {border:1px solid #eaeaea;padding-bottom: 20px;font-size: 12px;word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .part_table .inpart_view .intit {word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .part_table .inpart_view .intxt {word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .myname em {font-size: 20px;color: #444;font-weight: bold;}
+        .blind {display: none;font-size: 0;width: 0;height: 0;text-indent: -999999em}
+        .wrapper_narrow.wrap_letterview {padding: 0px;}
+        .dashboard {width:645px;}
+        .dashboard table {width:645px;}
+        .dashboard .dashboard_list {width:643px;background: #fcfcfc;margin-bottom: 20px;border-collapse:collapse;}
+        .dashboard .dashboard_list th {padding: 10px 15px 0 15px;text-align: center;background: #fcfcfc;border: 1px solid #eaeaea;font-size: 12px;white-space: nowrap;}
+        .dashboard .dashboard_list th p {margin: 0 10px 15px 11px;}
+        .dashboard .dashboard_list td {padding: 10px 15px 20px 15px;vertical-align: middle;background: #fff;text-align: center;border: 1px solid #eaeaea;}
+        .dashboard .dashboard_list td p {font-size: 12px;word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .area_title {table-layout: fixed;width: 645px;word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .area_title .title {display:table-cell;}
+        .area_title .tit_another {display:table-cell;}
+        .area_title em {font-weight:bold;color:#fe6854;}
+        .address_list td {font-size: 12px;}
+        .address_list td p {margin-right:10px;word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .keypoint_list table {padding-top: 20px;width:645px;}
+        .keypoint_list table td p {font-size: 12px;}
+        .keypoint_list .list_type1 {padding-left:0;}
+        .keypoint_list .list_type1 li p {word-wrap: break-word;word-break: break-all;-ms-word-wrap: break-word;-ms-word-break: break-all;}
+        .keypoint_list .ico_point {top:initial;}
+        .dashboard .part_table {margin-top:15px;border-top:0;background-color:#fff;}
+        .portfolio_work_info {margin-top:0;}
+        .keypoint_list .list_type1 li {margin-bottom:3px;font-size:12px;line-height:14px}
+        .portfolio_txtline .keypoint_list .list_type1 {margin-top:5px;}
+    </style>
+</head>
+<body style="text-align:center;">
+<div class="wrapper_narrow wrap_letterview">
+    <!-- 제목 -->
+<table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <tr>
+        <td>
+            <div class="section_profile">
+                <div class="area_title">
+                    <h3 class="title">14년차 전문 영업관리자</h3>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- 기본정보 -->
+<table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_profile">
+                <div class="personal_info">
+                    <div class="my_data">
+                        <table style="width:645px;">
+                                                            <colgroup>
+                                    <col width="120px">
+                                    <col width="525px">
+                                </colgroup>
+                                                        <tbody>
+                            <tr>
+                                                                    <td>
+                                        <div style="width:100px"><img alt="" src="http://www.saramin.co.kr/zf_user/persons/picture?idx=8002191|4251d153e74563d641558cd472ebe7aeb12db594b69824c90b4f9ee9096f7555" border="0" width="100" height="140" /></div>
+                                    </td>
+                                                                <td>
+                                    <p class="myname">
+                                        <em>김승률</em>
+                                        <span class="birthday">
+                                            <span>1975년 (44세)</span> |
+                                            <span>남</span> |
+                                            <span>구직중</span>
+                                        </span>
+                                    </p>
+                                    <table class="address_list" cellspacing="0" border="0" cellpadding="0" style="width:525px">
+                                        <tbody>
+                                        <tr>
+                                            <td><p>chan7502@naver.com</p></td>
+                                            <td><p>010-4549-2886 </p></td>
+                                            <td><p>-</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><p>(21563) 인천 남동구 호구포로765번길 68-21 대한주택 나동 102호</p></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="keypoint_list">
+                <table>
+                    <tr>
+                        <td style="vertical-align:top;width:60px;"><strong class="ico_point">핵심역량</strong></td>
+                        <td style="width:585px;">
+                            <ul class="list_type1">
+                                                                    <li><p>남녀노소 누구도 이끌어 갈 수 있는 리더십과 인력관리 능력</p></li>
+                                                                    <li><p>논리적인 전달력과 설득력 보유</p></li>
+                                                                    <li><p>신속, 정확한 데이터 분석 및 가공 능력</p></li>
+                                                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="dashboard">
+                <table class="dashboard_list" cellspacing="0" border="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th><p>학력사항</p></th>
+                        <th><p>경력사항</p></th>
+                        <th><p>희망연봉/근무형태</p></th>
+                        <th><p>희망근무지</p></th>
+                        <th><p>포트폴리오</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p class="txt">대학교(2,3년) 졸업</p>
+                        </td>
+                        <td>
+                            <p class="txt">경력  14년 2개월</p>
+                        </td>
+                        <td>
+                            <p class="txt">회사내규에 따름/정규직<br>(직전 연봉 : 5,000&nbsp;만원)</p>
+                        </td>
+                        <td>
+                            <p class="txt">남동구</p>
+                        </td>
+                        <td>
+                            <p class="txt portfolio_txt">-</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">학력<span class="indetail">최종학력<span class="bar">대학교<em>2,3년</em>졸업</span></span></h3>
+                </div>
+                                    <div class="part_table">
+                                                    <table class="inpart_view" cellspacing="0" cellpadding="0">
+                                <thead>
+                                <tr>
+                                    <th scope="col">재학기간</th>
+                                    <th scope="col">구분</th>
+                                    <th scope="col">학교명(소재지)</th>
+                                    <th scope="col">전공</th>
+                                    <th scope="col">학점</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                                                    <tr>
+                                        <td class="lineup_center" rowspan="2">
+                                            2007.03 ~ 2009.02                                        </td>
+                                        <td class="lineup_center" rowspan="2">
+                                            졸업                                        </td>
+                                        <td>
+                                            시립인천전문대학 (인천)                                        </td>
+                                        <td>
+                                            e-비즈니스                                                                                                                                                                            </td>
+                                        <td class="lineup_center">4.29 / 4.5</td>
+                                    </tr>
+                                                                            <tr>
+                                            <td colspan="3">
+                                                                                                    <p class="box_point"><span class="ico_point">학위논문 & 졸업작품</span>졸업작품 - "냉장냉동 배송물류 사업계획서" 대상수상</p>
+                                                                                            </td>
+                                        </tr>
+                                                                                                        <tr>
+                                        <td class="lineup_center" rowspan="1">
+                                            1990.03 ~ 1993.02                                        </td>
+                                        <td class="lineup_center" rowspan="1">
+                                            졸업                                        </td>
+                                        <td>
+                                            항도실업고등학교                                        </td>
+                                        <td>
+                                            전문(실업)계                                            (전자과)                                                                                                                                </td>
+                                        <td class="lineup_center">-</td>
+                                    </tr>
+                                                                                                    </tbody>
+                            </table>
+                                            </div>
+                                                            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">경력<span class="indetail"><span>총 <em>14</em>년<em>2</em>개월</span></span></h3>
+                                            <div class="tit_another">
+                            <strong>[해외근무]</strong><span>카자흐스탄 <em>6</em>년</span>
+                        </div>
+                                    </div>
+                <div class="part_table">
+                                            <table class="inpart_view" cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th scope="col">근무기간</th>
+                                <th scope="col">회사명</th>
+                                <th scope="col">부서/직급/직책</th>
+                                <th scope="col">지역/직종</th>
+                                <th scope="col">연봉</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                            <tr>
+                                    <td class="lineup_center" rowspan="2">2002.06 ~ 2016.07<br/>(14년 2개월)</td>
+                                    <td>코리아로터리서비스</td>
+                                    <td>판매유통사업부&nbsp;/&nbsp;차장&nbsp;(본부장)</td>
+                                    <td>기타 / 영업·고객상담 > 영업기획·관리·지원</td>
+                                    <td class="lineup_center" style="white-space: nowrap;">
+                                        5,000만원                                                                            </td>
+                                </tr>
+                                                                    <tr>
+                                        <td colspan="4">
+                                            <p class="box_point"><span class="ico_point">담당업무</span>국내 영업관리 및 해외(카자흐스탄) 영업사무소, 영업본부 운영 관리</p>                                            <p class="box_point"><span class="ico_point">퇴사사유</span>개인사정</p>                                        </td>
+                                    </tr>
+                                                                                        </tbody>
+                        </table>
+                                    </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">자격증/어학/수상내역</h3>
+                </div>
+                <div class="part_table">
+                    <table class="inpart_view" cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr>
+                            <th scope="col">취득일/수상일</th>
+                            <th scope="col">구분</th>
+                            <th scope="col">자격/어학/수상명</th>
+                            <th scope="col">발행처/기관/언어</th>
+                            <th scope="col">합격/점수</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td class="lineup_center">2008.09 </td>
+                                <td>자격증/면허증</td>
+                                <td>유통관리사2급</td>
+                                <td>대한상공회의소</td>
+                                <td>최종합격</td>
+                            </tr>
+                                                    <tr>
+                                <td class="lineup_center">2008.11 </td>
+                                <td>자격증/면허증</td>
+                                <td>전자상거래관리사2급</td>
+                                <td>-</td>
+                                <td>최종합격</td>
+                            </tr>
+                                                    <tr>
+                                <td class="lineup_center">1994.07 </td>
+                                <td>자격증/면허증</td>
+                                <td>자동차운전면허</td>
+                                <td>경찰청(운전면허시험관리단)</td>
+                                <td>최종합격</td>
+                            </tr>
+                                                </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">보유기술</h3>
+                </div>
+                <div class="part_table">
+                    <table class="inpart_view" cellspacing="0" cellpadding="0">
+                        <thead>
+                        <tr>
+                            <th scope="col">보유능력</th>
+                            <th scope="col">수준</th>
+                            <th scope="col">상세내용</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td>스프레드시트 (MS Excel)</td>
+                                <td>상</td>
+                                <td>일반함수, 고급함수, 피벗테이블(차트)사용, 매크로기능사용</td>
+                            </tr>
+                                                    <tr>
+                                <td>파워포인트</td>
+                                <td>상</td>
+                                <td>디자인서식활용, 프리젠테이션 가능</td>
+                            </tr>
+                                                    <tr>
+                                <td>워드프로세스 (MS Word)</td>
+                                <td>상</td>
+                                <td>워드프로세싱 프로그램 원활한 사용 및 문서 작성/편집 우수</td>
+                            </tr>
+                                                </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">경력기술서</h3>
+                </div>
+                <div class="part_table">
+                    <table class="inpart_view" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td>
+                                소속 회사명 :  (주) 코리아로터리서비스<br />
+<br />
+【부서 : 인천사무소 / 직책 : LSR / 직급 : 대리 / 근무기간 : 2002.06 ~ 2008.03】<br />
+■ 담당업무 : 국내 최초 Lotto6/45 온라인 복권판매관리 및 가맹점 영업관리.<br />
+■ 주요업무<br />
+  • 인천지역 가맹점 모집 및 영업관리.<br />
+  • 점주관리, 매출관리, 수금관리, 장비관리, 소모품관리, complain처리 (주1회방문)<br />
+  • 프로모션진행, 모델샵전환, 도우미행사유도, 가맹점자체행사유도등의 판촉활동.<br />
+■ 업무성과<br />
+  • 인천지역 판매 유통망 구축 및 가맹점 판매준비지원.<br />
+     * 가맹점 대상선정 및 방문모집영업, 개인모집 달성율 144%(72/50개점) 달성.<br />
+     * 가맹점주 판매교육, 단말기설치지원, 광고/홍보물 설치지원, 판매준비율 100%완료.<br />
+  • 가맹점주 설득을 통한 복권전문점 업종전환 및 간판교체활동.<br />
+     * 담당판매점 대비 복권전문점 비율 30%전환유지 목표로 35%이상 전환.<br />
+     * 가맹점 가시성확보를 위한 전면간판교체, 입간판 및 에어간판 100% 설치 및 교체.<br />
+<br />
+【부서 : 카자흐스탄 유통본부 / 직책 : 사무소장 / 직급 : 과장 / 근무기간 : 2009.12 ~ 2013.03】<br />
+■ 담당업무 : 카자흐스탄 악토베(2년), 침켄트(1년) 지역사무소 관리.<br />
+■ 주요업무<br />
+  • 현지직원 고용 및 관리.<br />
+    * 악토베사무소 총 6명관리 - 영업사원3명 직영판매인3명<br />
+    * 침켄트사무소 총 14명관리 - 영업사원5명, 영업지원1명, 직영판매인8명<br />
+  • 게임판매관리 - 온라인복권 4종(로또6/38, 데일리5/30·5/36, 빙고), 즉석복권(8종).<br />
+  • 사무소 운영, 현지직원 직무교육, 가맹점 순회점검, 직영판매점 관리, 전도금관리, 사무업무.<br />
+■ 업무성과<br />
+  • 침켄트 보이콧사태 수습 및 사무소운영 성공사례로 채택, 차장 승진. (본부장발령).<br />
+  • 사무소 자체 데이터통계·분석 자동화 서식개발, 신속하고 정확한 데이터관리력 인정.<br />
+  • 담당 도시 내 인지도 높은 법인업체 대상 계약 협상 및 가맹 계약 체결<br />
+    * 악토베 도시 내 직영 판매소 16개점을 보유한 휴대폰 판매업체 가맹 계약.<br />
+    * 침켄트 도시 내 직영 판매소 38개점을 보유한 신문/잡지 판매업체 가맹 계약.<br />
+<br />
+【부서 : 카자흐스탄 남부본부 / 직책 : 본부장 / 직급 : 차장 / 근무기간 : 2013.03 ~ 2015.04】<br />
+■ 담당업무 : 남부지역 본부운영 - 알마티, 침켄트, 타라즈, 딸디고르간 4개 사무소 관리.<br />
+■ 주요업무<br />
+  • 본부 운영전략기획 - 사무소별 운영계획 취합 및 사무소 매출목표 설정.<br />
+  • 사무소 순회점검 - 분기별 1회 순회점검, 사무소 운영실태 확인 및 고충사항 처리.<br />
+  • 본부매출관리, 직원인사평가, 본부 운영자금관리, 전사전략회의참석, 추첨방송 감독.<br />
+■ 업무성과<br />
+  • 소장직무교육을 통한 현지인 소장 3명배출, 3개도시 현지인 소장체제 전환<br />
+  • 최초 “미스터리쇼퍼” 진행, 사무소 및 가맹점 관리상태 점검, 효과검증 및 전국시행.<br />
+<br />
+【부서 : TV홈쇼핑영업부 / 직책 : 팀장 / 직급 : 차장 / 근무기간 : 2015.11 ~ 2016.07】<br />
+■ 담당업무 : 사계절시트 “따소미플러스” TV홈쇼핑 런칭<br />
+■ 주요업무<br />
+  • 홈쇼핑상품제안영업, 방송협의, 사전영상촬영 및 방송진행감독, 매출/출고 관리지원<br />
+■ 업무성과<br />
+  • 라이브홈쇼핑 &quot;홈앤쇼핑&quot; 방송 확정, 2015년 12월 31일 1시간 생방송 진행.<br />
+     * 1회 방송 매출 1억 6천만원 달성. (당사목표 1억 2천으로 목표대비 133%달성)<br />
+  • T커머스홈쇼핑 &quot;쇼핑&T&quot; 방송 진행. (2016년 1월~3월까지 10주간 총 30회 방송)<br />
+     * 총매출 10억 달성 (회당 매출목표 1000만원 - 방송 회당 매출 3400만원)                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table><table width="645" border="0" cellspacing="0" cellpadding="0" style="width:645px;">
+    <colgroup>
+        <col width="100%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <td>
+            <div class="section_part">
+                <div class="area_title">
+                    <h3 class="title">자기소개서</h3>
+                </div>
+                <div class="part_table">
+                    <table class="inpart_view" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td>
+                                                                    <p class="intit">[경력사항 및 주요성과사례]</p>
+                                    <div class="intxt">“영업관리의 기초부터 확실히 익히며, 전문가로서의 역량을 키워나갔습니다.”<br />
+2002년 온라인 Lotto 복권 론칭을 준비하는 시점에 (주)코리아로터리서비스에 영업관리직으로 입사하여 우수가맹점확보를 목적으로 상권분석을 위해 상권소비특성, 유동인구, 주변 상권 등을 꼼꼼하게 조사하여 대상 가맹점을 선별하였고, 당시 국내에서는 생소했던 온라인복권사업을 이해시키기 위해 대상가맹점을 수차례 재방문하며 점주들의 수준과 연령에 맞게 논리적으로 설명하고, 설득하면서 최초 가맹점 모집업무를 성공적으로 완수하였고, 철저한 교육과 사전준비를 통해 ‘Lotto6/45’는 론칭 3개월 만에 ‘로또신화’라는 이슈를 만들어내며 성공적으로 사업을 안착시키게 되었습니다.<br />
+<br />
+1기 사업 동안 가맹점 관리 및 각종 마케팅 업무를 수행하면서 회사와 가맹점 모두의 상생을 최우선 과제로 삶고 점주들과 다양한 문제들을 함께 고민하고 해결해 가면서 좀 더 유통 전문가로서의 역량을 키우고자 유통관리사 자격에 도전하여 취득함으로써 업무역량을 더욱 넓혀 나갈 수 있었습니다.<br />
+<br />
+“영업조직의 관리자로서의 시작과 성공적인 성과 사례” <br />
+영업관리자로서 전문성과 영업실적이 쌓으면서 1기 로또사업 종료 후, 우수사원으로 인정받아 카자흐스탄 해외사업에 영업조직 관리자로 선발되어 6년간 주재원으로 근무하게 되었습니다.<br />
+<br />
+처음 카자흐스탄에서 악토베 지역 영업소장의 직책을 부여받고, 사무소임대, 직영판매점 임대 및 판매인교육, 현지직원채용, 직무교육 등의 업무를 시작으로 자체적인 독립 사무소를 운영하며 효율적인 내부관리를 위해 체계적인 관리시스템을 만들어 활용하였으며, 다양한 마케팅기획 및 활동을 통해 사업 기반을 안정적으로 안착시키면서 악토베 지역 사무소운영관리를 성공적으로 수행하였습니다.<br />
+<br />
+악토베 소장으로 근무한 지 2년이 지날 무렵, 카자흐스탄 친켄트 사무소에서 한국인 소장과 현지 직원들 간의 갈등으로 보이콧 사태가 발생하여 사태 해결 및 사무소 운영 정상화를 지시받고 친켄트로 이동하여, 가장 먼저 그간의 갈등을 해결하기 위해 원인을 파악하고, 소통과 협의를 통해 “전략적 조직구조 개편 및 업무역량 발전”이라는 공동의 목표를 세우고, 새로운 사무소 운영전략을 기획하여 시도하게 되었습니다.<br />
+<br />
+1단계, 직책 세분화 및 직책수당 지급<br />
+기존의 소장, 통역, 영업사원(Manager)으로 구분하던 기존의 직책 구조를 세분화하여 소장(Director), 부소장(Assistant Director), Senior Manager, Manager, Assistant Manager로 직책을 나누고, 업무성과 및 역량에 따라 직책을 부여, 수당을 지급함으로써 도전의식을 심어주어 개인의 역량을 스스로 개발해 나갈 수 있는 계기를 만들어 주었습니다.<br />
+<br />
+2단계, 직책에 따른 정확한 업무분장 및 직무교육<br />
+본인의 업무를 정확하고 깊이 있게 이해하도록 하여 업무에 대한 자신감을 심어주고 효율적인 업무 수행을 통해 성취감을 느끼며 일할 수 있는 조직구조를 갖춰나갔습니다.<br />
+<br />
+3단계, 현장대응 매뉴얼 제작을 통한 업무 표준화<br />
+현장에서 발생하는 다양한 문제들을 수집, 토의, 보완하여 최적의 방안을 도출하고 체계적으로 매뉴얼화하여 모든 직원이 공유함으로써 영업스킬을 향상시키고, 현장 대응 혼선을 방지하여 업무 피로도를 낮추고 즐겁게 일할 수 있는 분위기를 만들어 나갔습니다.<br />
+<br />
+친켄트 사무소의 새로운 운영전략은 시행 1년간의 효과 검증을 통해 성공사례로 인정되어 카자흐스탄 전체 사무소의 운영 관리 방침으로 정해졌고, 전사적 유통부문 조직개편의 필요성이 대두되어 4개 본부 신설, 본부별 4개 사무소 관리 체제가 시작되면서, 저는 본사가 있는 알마티로 이동, 남부지역 본부장의 직책을 부여받아 근무하게 되었으며, 침켄트 사무소에서 첫 번째 현지인 소장을 배출하게 되었습니다.<br />
+<br />
+알마티에서 본부장으로 업무를 수행하면서 기존에 만들어 놓은 내부관리시스템과 사무소운영전략을 토대로 소장직무교육을 통해 2개 지역 사무소를 추가로 현지인 소장체제로 전환하고, 가맹점 관리상황을 점검하기 위해 ‘미스터리쇼퍼’ 프로모션을 도입하여 사용함으로써 효과적인 본부운영을 진행할 수 있었습니다.</div>
+                                                                    <p class="intit">[직무 핵심역량 및 자질]</p>
+                                    <div class="intxt">“소통의 리더십을 통한 효과적인 조직관리 능력”<br />
+평소 원활한 대인관계는 물론이고, 영업관리 업무를 수행하면서 비즈니스 또는 조직관계에서 발생한 문제나 갈등을 특유의 친화력을 기반으로 한 소통을 통해 해결해 나가는 사람입니다.<br />
+<br />
+카자흐스탄사업 초기, 업무진행과정에서 현지 직원들의 개인행동, 지침 미이행등 수동적인 업무성향에 관리자로써 정말 곤혹스러웠던 경험이 있었습니다. 하지만 직원들과 꾸준한 대화를 통해 그들의 문화·환경·생각·행동의 다름을 이해하고, 존중하며 유대관계를 형성하면서 조직이 활성화되고 직원 모두가 능동적자세로 다양한 업무를 전략적으로 처리해 나갔으며, 그 중에서 새로운 비즈니스관계를 구축해야 했던 법인가맹점 계약 체결을 위해 직원들과 다양한 아이디어를 공유하고 행동하면서 대상 법인업체와 협상을 성공적으로 이끌어내는 결과를 만들어 낸것이 기억에 남습니다.<br />
+<br />
+“내부 관리 시스템 구축을 통한 체계적인 관리능력”<br />
+영업관리자는 내·외부적 정보를 정확하게 분석하여 기업의 영업이익을 극대화시키고 리스크는 최소화 할 수 있는 방안을 신속하게 도출, 현장에 적용 시키는 것이 영업관리의 기본적인 업무역량중 하나라고 생각합니다.<br />
+<br />
+성격상 꼼꼼하게 데이터를 관리하다 보니, 데이터 취합 및 정리에 소모되는 시간을 개선하고자 엑셀의 기능들을 깊이있게 학습하면서, 단순/반복적인 작업은 메크로 기능을 활용하여 처리속도를 획기적으로 높이고, 고급함수와 피벗테이블·차트를 이용한 자동화 서식을 제작하여 신속하고 정확한 데이터 분석 및 가공을 통해 기회 및 위험을 신속하게 파악하여 전략적으로 활용함으로써 업무진행의 효율성을 높이는 체계적인 정보관리능력을 갖게 되었습니다.</div>
+                                                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table></div>
+</body>
+</html>
