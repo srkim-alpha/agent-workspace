@@ -452,20 +452,27 @@ class JobApplicationGenerator:
                 os.remove(temp_html_path)
             return False
 
+    def get_slug(self, company_name: str) -> str:
+        clean = company_name.strip()
+        if "지오영" in clean:
+            return "geo_young"
+        s = re.sub(r'[()\s/\\:]+', '_', clean).strip('_')
+        return s if s else "app"
+
     def publish_to_github_pages(self, company_name: str, pwa_html: str) -> Optional[str]:
-        """Saves WebApp HTML to docs/applications/{company_name}/index.html and commits/pushes to Git."""
-        sanitized_company = re.sub(r'[\s/\\:]+', '_', company_name.strip())
+        """Saves WebApp HTML to docs/applications/{slug}/index.html and commits/pushes to Git."""
+        slug = self.get_slug(company_name)
         
-        # Save to docs/applications/{company}/index.html and applications/{company}/index.html
-        target_docs_dir = DOCS_APPS_DIR / sanitized_company
+        # Save to docs/applications/{slug}/index.html and applications/{slug}/index.html
+        target_docs_dir = DOCS_APPS_DIR / slug
         target_docs_dir.mkdir(parents=True, exist_ok=True)
         docs_index_path = target_docs_dir / "index.html"
         
         with open(docs_index_path, "w", encoding="utf-8") as f:
             f.write(pwa_html)
 
-        # Also copy to root applications/{company}/index.html
-        root_apps_dir = BASE_DIR / "applications" / sanitized_company
+        # Also copy to root applications/{slug}/index.html
+        root_apps_dir = BASE_DIR / "applications" / slug
         root_apps_dir.mkdir(parents=True, exist_ok=True)
         root_index_path = root_apps_dir / "index.html"
         with open(root_index_path, "w", encoding="utf-8") as f:
@@ -479,7 +486,7 @@ class JobApplicationGenerator:
         except Exception as e:
             print(f"Git commit/push warning: {e}")
 
-        web_url = f"{BASE_URL}{sanitized_company}/"
+        web_url = f"{BASE_URL}{slug}/"
         return web_url
 
     def send_telegram_notification(self, company_name: str, pdf_path: Optional[Path], web_url: str) -> bool:
@@ -533,7 +540,7 @@ class JobApplicationGenerator:
 
     def generate_job_application(self, company_name: str, job_posting_text: str) -> Dict[str, Any]:
         """Full pipeline execution: Data extraction -> PDF -> PWA WebApp -> Archiving -> Telegram Dispatch."""
-        sanitized_company = re.sub(r'[\s/\\:]+', '_', company_name.strip())
+        sanitized_company = self.get_slug(company_name)
         app_data = self.generate_application_data(company_name, job_posting_text)
 
         # 1. Render PDF HTML & PWA HTML
