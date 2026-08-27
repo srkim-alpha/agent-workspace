@@ -456,6 +456,8 @@ class JobApplicationGenerator:
         clean = company_name.strip()
         if "지오영" in clean:
             return "geo_young"
+        if "그래이박스" in clean or "graybox" in clean:
+            return "graybox"
         s = re.sub(r'[()\s/\\:]+', '_', clean).strip('_')
         return s if s else "app"
 
