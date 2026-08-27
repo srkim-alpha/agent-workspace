@@ -951,9 +951,10 @@ def main():
     app.add_handler(CommandHandler("status", status_command))
     app.add_handler(CommandHandler("briefing", briefing_command))
     app.add_handler(CommandHandler(["calendar", "schedule"], calendar_command))
-    app.add_handler(CommandHandler("지원", command_apply))
-    app.add_handler(CommandHandler("정리", command_cleanup))
-    app.add_handler(CommandHandler("대시보드", command_dashboard))
+    # Korean Slash Command & Text Handlers
+    app.add_handler(MessageHandler(filters.Regex(r"^/지원"), command_apply))
+    app.add_handler(MessageHandler(filters.Regex(r"^/정리"), command_cleanup))
+    app.add_handler(MessageHandler(filters.Regex(r"^/대시보드"), command_dashboard))
 
     # Message Handlers
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
