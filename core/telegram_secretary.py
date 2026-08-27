@@ -555,6 +555,105 @@ async def calendar_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = f"🗓️ **[알파 COO 구글 캘린더 일정 상황판]**\n\n{today_summary}\n\n{week_summary}"
     await safe_reply_text(update.message, msg)
 
+# 3.5 공고 URL 스크래핑 및 파싱 헬퍼
+def scrape_job_posting_url(url: str) -> tuple[str, str]:
+    """
+    Playwright (or fallback requests) stealth scraper to fetch job posting text and extract company name.
+    """
+    company_name = ""
+    body_text = ""
+    title = ""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=15000)
+            title = page.title() or ""
+            body_text = page.inner_text("body") or ""
+            browser.close()
+    except Exception as e:
+        logger.warning(f"Playwright scraping failed for {url}: {e}. Falling back to requests.")
+        import requests
+        from bs4 import BeautifulSoup
+        try:
+            res = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+            soup = BeautifulSoup(res.text, "html.parser")
+            title = soup.title.string if soup.title else ""
+            body_text = soup.get_text(separator="\n")
+        except Exception as req_err:
+            logger.error(f"Fallback request failed for {url}: {req_err}")
+            title = url
+            body_text = f"채용 공고 링크: {url}"
+
+    # Extract company name from title or body text
+    m_bracket = re.search(r'\[([^\]]+)\]', title)
+    if m_bracket and len(m_bracket.group(1).strip()) <= 20:
+        company_name = m_bracket.group(1).strip()
+
+    if not company_name:
+        m_inc = re.search(r'(\(?주\)?\s*[가-힣A-Za-z0-9]+|주식회사\s*[가-힣A-Za-z0-9]+)', title + " " + body_text[:300])
+        if m_inc:
+            company_name = m_inc.group(1).strip()
+
+    if not company_name:
+        parts = re.split(r'[-|_|\|]', title)
+        if parts and len(parts[0].strip()) > 1:
+            company_name = parts[0].strip()
+
+    if not company_name:
+        company_name = "맞춤_채용기업"
+
+    full_job_text = f"제목: {title}\n\nURL: {url}\n\n본문 내용:\n{body_text[:3000]}"
+    return company_name, full_job_text
+
+async def command_apply(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not check_whitelist(update):
+        await send_unauthorized_msg(update)
+        return
+
+    text_arg = " ".join(context.args).strip() if context.args else ""
+    if not text_arg and update.message and update.message.text:
+        raw_text = update.message.text.strip()
+        if raw_text.startswith("/지원"):
+            text_arg = raw_text[len("/지원"):].strip()
+
+    if not text_arg:
+        await safe_reply_text(
+            update.message,
+            "📄 **[/지원 사용법]**\n"
+            "`/지원 [채용공고 텍스트 또는 공고 URL]` 형태로 입력해 주십시오.\n\n"
+            "예시: `/지원 주식회사 지오영 의약품 물류센터 총괄 관리자 채용`"
+        )
+        return
+
+    await process_instruction_text(update, context, text_arg, is_voice=False)
+
+async def command_cleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not check_whitelist(update):
+        await send_unauthorized_msg(update)
+        return
+
+    text_arg = " ".join(context.args).strip() if context.args else ""
+    from skills.job_application_generator import JobApplicationGenerator
+    generator = JobApplicationGenerator()
+    del_res = await asyncio.to_thread(generator.delete_application, text_arg)
+
+    reply_msg = "🧹 [정리 완료] 요청하신 웹앱 페이지 배포를 해제했습니다. (로컬 원본은 안전하게 보존됩니다.)"
+    await safe_reply_text(update.message, reply_msg)
+
+async def command_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not check_whitelist(update):
+        await send_unauthorized_msg(update)
+        return
+
+    reply_text = (
+        "🌐 **[알파 커리어 대시보드 2.0]**\n\n"
+        "대표님의 마스터 경력 및 핵심 STAR 성과가 렌더링된 메인 커리어 대시보드입니다.\n"
+        "🔗 **접속 URL**: https://srkim-alpha.github.io/agent-workspace/"
+    )
+    await safe_reply_text(update.message, reply_text)
+
 # 6. 공통 지시 처리 로직 (ReAct Dynamic Model Tiering 단일 통로)
 async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT_TYPE, user_text: str, is_voice: bool = False):
     logger.info(f"대표님 지시 처리 중 (Voice={is_voice}): {user_text}")
@@ -569,25 +668,43 @@ async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT
         await safe_reply_text(update.message, reply_msg)
         return
 
-    # 0.5 URL Auto-Digest (Smart Digest Pipeline)
+    # 0.4 Delete / Cleanup Intent Interceptor
+    delete_keywords = ["/정리", "정리해", "삭제", "지워"]
+    if any(kw in user_text for kw in delete_keywords):
+        logger.info(f"삭제/정리 의도 감지: '{user_text}'")
+        target_name = user_text
+        for kw in delete_keywords + ["해줘", "지워줘", "삭제해", "페이지", "지원서", "테스트", "배포", "해제"]:
+            target_name = target_name.replace(kw, "")
+        target_name = target_name.strip()
+
+        from skills.job_application_generator import JobApplicationGenerator
+        generator = JobApplicationGenerator()
+        del_res = await asyncio.to_thread(generator.delete_application, target_name)
+
+        reply_msg = "🧹 [정리 완료] 요청하신 웹앱 페이지 배포를 해제했습니다. (로컬 원본은 안전하게 보존됩니다.)"
+        await safe_reply_text(update.message, reply_msg)
+        return
+
+    # 0.5 URL Auto-Scraping & Job Application Generator Router (Zero-Prompt)
     url_match = re.search(r"https?://[^\s]+", user_text)
     if url_match:
         target_url = url_match.group(0)
-        logger.info(f"URL 감지 - Smart Digest 스킬 가동: {target_url}")
-        status_text = f"{voice_prefix}📊 **[Smart Digest 콘텐츠 요약 가동]**\nURL 원문({target_url}) 및 콘텐츠를 분석하여 3줄 인사이트를 생성 중입니다..."
+        logger.info(f"공고 URL 감지 - 스크래핑 및 맞춤형 지원서 자동 생성: {target_url}")
+        status_text = f"{voice_prefix}🌐 **[공고 URL 감지 - 스크래핑 및 맞춤형 지원서 자동 생성 중]**\n공고 링크({target_url})에서 텍스트를 추출하고 지원서를 빌드하고 있습니다..."
         status_msg = await safe_reply_text(update.message, status_text)
 
-        digest_res = await asyncio.to_thread(generate_smart_digest, target_url)
-        digest_text = digest_res.get("digest_text", "")
+        company_name, job_text = await asyncio.to_thread(scrape_job_posting_url, target_url)
 
-        # Save digest to Notion Knowledge DB
-        await asyncio.to_thread(save_digest_to_notion, digest_res)
+        from skills.job_application_generator import JobApplicationGenerator
+        generator = JobApplicationGenerator()
+        res = await asyncio.to_thread(generator.generate_job_application, company_name, job_text)
 
+        web_url = res.get("web_url", "")
         reply_msg = (
-            f"{voice_prefix}📰 **[알파 Smart Digest 수석비서 보고서]**\n\n"
-            f"🔗 **원문 링크**: {target_url}\n"
-            f"📌 **콘텐츠**: {digest_res.get('title', '')} ({digest_res.get('content_type', '')})\n\n"
-            f"{digest_text}"
+            f"{voice_prefix}📄 **[맞춤형 입사지원서 생성 완료]**\n"
+            f"• 지원 기업: {company_name}\n"
+            f"• 모바일 웹앱 링크: {web_url}\n\n"
+            f"※ 첨부된 서류 제출용 A4 PDF를 확인해 주십시오."
         )
         await safe_edit_text(status_msg, reply_msg)
         return
@@ -834,6 +951,9 @@ def main():
     app.add_handler(CommandHandler("status", status_command))
     app.add_handler(CommandHandler("briefing", briefing_command))
     app.add_handler(CommandHandler(["calendar", "schedule"], calendar_command))
+    app.add_handler(CommandHandler("지원", command_apply))
+    app.add_handler(CommandHandler("정리", command_cleanup))
+    app.add_handler(CommandHandler("대시보드", command_dashboard))
 
     # Message Handlers
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))

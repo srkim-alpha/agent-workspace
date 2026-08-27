@@ -489,6 +489,54 @@ class JobApplicationGenerator:
         web_url = f"{BASE_URL}{slug}/"
         return web_url
 
+    def delete_application(self, target: str = "") -> Dict[str, Any]:
+        """
+        Deletes GitHub Pages deployment HTML directories (docs/applications/{slug} and applications/{slug}).
+        Preserves local PDF in data/outputs/ (Non-destructive Ground Truth principle).
+        """
+        import shutil
+        cleaned_slugs = []
+        target_clean = target.strip()
+        
+        target_slug = ""
+        if target_clean and target_clean not in ["테스트", "임시", "전체", "all", "test"]:
+            target_slug = self.get_slug(target_clean)
+
+        PRESERVED_SLUGS = {"geo_young", "종합물류_그래이박스"}
+
+        for base_path in [DOCS_APPS_DIR, BASE_DIR / "applications"]:
+            if base_path.exists():
+                for item in base_path.iterdir():
+                    if not item.is_dir():
+                        continue
+
+                    should_delete = False
+                    if target_slug:
+                        if item.name == target_slug or target_clean in item.name or target_slug in item.name:
+                            should_delete = True
+                    else:
+                        if item.name.startswith(("test_", "temp_", "sample_")) or item.name not in PRESERVED_SLUGS:
+                            should_delete = True
+
+                    if should_delete:
+                        shutil.rmtree(item, ignore_errors=True)
+                        if item.name not in cleaned_slugs:
+                            cleaned_slugs.append(item.name)
+
+        # Git commit & push
+        try:
+            subprocess.run(["git", "add", "-A"], cwd=str(BASE_DIR), check=True)
+            subprocess.run(["git", "commit", "-m", "Clean up application pages via telegram command"], cwd=str(BASE_DIR), check=False)
+            subprocess.run(["git", "push", "origin", "main"], cwd=str(BASE_DIR), check=False)
+        except Exception as e:
+            print(f"Git push warning during delete: {e}")
+
+        return {
+            "success": True,
+            "target": target_clean if target_clean else "General Cleanup",
+            "cleaned_slugs": cleaned_slugs
+        }
+
     def send_telegram_notification(self, company_name: str, pdf_path: Optional[Path], web_url: str) -> bool:
         """Sends Telegram dual notification (text with web URL + attached A4 PDF)."""
         import requests
