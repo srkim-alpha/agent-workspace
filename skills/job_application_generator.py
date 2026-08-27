@@ -93,23 +93,79 @@ class JobApplicationGenerator:
         selected = [item[1] for item in scores[:top_k]]
         return selected
 
+    def extract_tailored_position(self, job_text: str) -> str:
+        """Extracts 1 dynamic tailored position title based on job posting text."""
+        t = job_text.lower()
+        if any(k in t for k in ["scm", "물류", "wms", "입출고", "센터", "냉장", "냉동"]):
+            return "스마트 물류센터 총괄 관리자 / SCM전산 수석"
+        elif any(k in t for k in ["영업", "유통", "가맹점", "개설", "채널", "상권"]):
+            return "총괄 영업유통 & 신규 가맹 채널 개발 수석"
+        elif any(k in t for k in ["홈쇼핑", "방송", "기획", "t커머스", "마케팅"]):
+            return "TV홈쇼핑 & 이커머스 유통 총괄 부장"
+        elif any(k in t for k in ["ai", "에이전트", "전산", "데이터", "it", "파이썬"]):
+            return "AI 에이전트 수석아키텍트 / IT전산 총괄"
+        return "스마트 물류센터 총괄 관리자 & AI 에이전트 아키텍트"
+
+    def _get_profile_b64(self) -> Optional[str]:
+        """Loads profile photo from assets directory and returns base64 data URI."""
+        import base64
+        paths = [
+            BASE_DIR / "data" / "assets" / "profile.jpg",
+            BASE_DIR / "docs" / "assets" / "profile.jpg",
+            BASE_DIR / "career_hub" / "profile.jpg"
+        ]
+        for p in paths:
+            if p.exists():
+                try:
+                    with open(p, "rb") as f:
+                        encoded = base64.b64encode(f.read()).decode("utf-8")
+                        return f"data:image/jpeg;base64,{encoded}"
+                except Exception as e:
+                    print(f"Error reading profile photo: {e}")
+        return None
+
+    def filter_work_chronology(self, job_text: str, all_works: List[Dict[str, str]], top_k: int = 6) -> List[Dict[str, str]]:
+        """Filters out short-term experiences (< 3 months) and selects top core experiences matching job posting."""
+        # 1. Exclude short-term (< 3 months) entries (e.g. 프로축산 2개월)
+        filtered = [w for w in all_works if w["company"] != "프로축산" and "2개월" not in w.get("details", "")]
+
+        # 2. Score relevance based on job posting text
+        scored = []
+        for w in filtered:
+            text = f"{w['company']} {w['role']} {w['details']}"
+            score = 0
+            if w["company"] in ["주식회사 그래이박스", "주식회사 케이엠기획", "주식회사 지엠지", "(주)현대시트"]:
+                score += 5
+            for kw in ["물류", "scm", "wms", "영업", "유통", "전산", "현장", "관리", "팀장", "부장", "차장", "본부장"]:
+                if kw in job_text.lower() and kw in text.lower():
+                    score += 3
+            scored.append((score, w))
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top_entries = [item[1] for item in scored[:top_k]]
+
+        # Maintain original chronological order
+        ordered = [w for w in filtered if w in top_entries]
+        return ordered
+
     def generate_application_data(self, company_name: str, job_posting_text: str) -> Dict[str, Any]:
         """Generates tailored resume & cover letter data matching the job posting."""
         matched_stars = self.match_star_episodes(job_posting_text, top_k=3)
+        dynamic_position = self.extract_tailored_position(job_posting_text)
 
         # Basic Info (Privacy Protected)
         basic_info = {
             "name": "김승률 (Kim Seung-ryul)",
             "birth": "1975년 2월 23일 (만 51세)",
-            "position": "수석비서 & AI 에이전트 아키텍트 / 총괄 영업물류 및 CS 관리자",
-            "experience_total": "15년 8개월+ (Ground Truth 검증 경력)",
+            "position": dynamic_position,
+            "experience_total": "15년 8개월 (물류·유통·글로벌 사업 총괄)",
             "address": "인천광역시 남동구 호구포로765번길 68-21",
             "contact": "010-4549-2886 / chan7502@naver.com",
             "skills": "Python AI 에이전트 구축, MS Excel 쿼리/함수 자동화, ERP/WMS 물류전산, 지게차 3톤, CS 민원 조율"
         }
 
-        # Work Chronology
-        work_chronology = [
+        # Work Chronology (Full Ground Truth 12 items)
+        full_work_chronology = [
             {"period": "2024.08 ~ 2026.06", "company": "KB라이프파트너스", "role": "설계사 / 컨설턴트", "details": "고객 대면 1:1 맞춤형 자산 컨설팅 및 CS 관리, 프리미엄 케어"},
             {"period": "2025.12 ~ 2026.01", "company": "프로축산", "role": "직장가입자", "details": "축산물 물류 전산 및 출고 오퍼레이션 지원"},
             {"period": "2023.06 ~ 2024.08", "company": "주식회사 그래이박스", "role": "차장 / 전산OP", "details": "4000평 냉장/냉동 물류센터 입출고전산, WMS 연동, 월매출 12배 신장"},
@@ -124,6 +180,9 @@ class JobApplicationGenerator:
             {"period": "2002.01 ~ 2002.06", "company": "(주)희망백화점", "role": "사원 / 디자이너", "details": "백화점 쇼핑몰 디자인 및 온라인 전산 관리"}
         ]
 
+        # Apply filtering for job posting (Exclude < 3 months, select top core entries)
+        filtered_works = self.filter_work_chronology(job_posting_text, full_work_chronology, top_k=6)
+
         # Credentials
         credentials = [
             {"name": "유통관리사 2급", "issuer": "대한상공회의소", "date": "2008.09.24"},
@@ -136,7 +195,8 @@ class JobApplicationGenerator:
         return {
             "company_name": company_name,
             "basic_info": basic_info,
-            "work_chronology": work_chronology,
+            "work_chronology": filtered_works,
+            "full_work_chronology": full_work_chronology,
             "credentials": credentials,
             "matched_stars": matched_stars
         }
@@ -148,6 +208,19 @@ class JobApplicationGenerator:
         stars = app_data["matched_stars"]
         works = app_data["work_chronology"]
         creds = app_data["credentials"]
+
+        profile_b64 = self._get_profile_b64()
+        if profile_b64:
+            photo_html = f'<div class="profile-photo"><img src="{profile_b64}" alt="김승률 증명사진"></div>'
+        else:
+            photo_html = '''
+            <div class="profile-photo placeholder">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            '''
 
         meta_pwa = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -196,13 +269,13 @@ class JobApplicationGenerator:
         }}
         :root {{
             --primary: #0f172a;
-            --accent: #22d3ee;
+            --accent: #0284c7;
+            --accent-pwa: #22d3ee;
             --text-dark: #1e293b;
             --bg-light: #f8fafc;
         }}
         body {{
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-dark);
             background-color: {"#0f172a" if is_pwa else "#ffffff"};
             color: {"#f8fafc" if is_pwa else "#1e293b"};
             margin: 0;
@@ -217,28 +290,59 @@ class JobApplicationGenerator:
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }}
+        .profile-flex {{
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }}
+        .profile-photo {{
+            width: 120px;
+            height: 160px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid {"#38bdf8" if is_pwa else "#0284c7"};
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: {"#0f172a" if is_pwa else "#e2e8f0"};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        .profile-photo img {{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }}
+        .profile-photo.placeholder svg {{
+            stroke: {"#94a3b8" if is_pwa else "#64748b"};
+        }}
+        .header-content {{
+            flex-grow: 1;
+        }}
         h1 {{
-            font-size: 24px;
+            font-size: 22px;
             color: {"#38bdf8" if is_pwa else "#0f172a"};
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 3px solid {"#22d3ee" if is_pwa else "#0284c7"};
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 15px;
         }}
         h2 {{
-            font-size: 18px;
+            font-size: 17px;
             color: {"#22d3ee" if is_pwa else "#0284c7"};
             margin-top: 25px;
-            border-left: 4px solid var(--accent);
+            border-left: 4px solid {"#22d3ee" if is_pwa else "#0284c7"};
             padding-left: 10px;
         }}
         .info-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 10px;
             background: {"rgba(255,255,255,0.05)" if is_pwa else "#f1f5f9"};
-            padding: 15px;
+            padding: 12px 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            font-size: 13.5px;
         }}
         table {{
             width: 100%;
@@ -265,7 +369,7 @@ class JobApplicationGenerator:
         .star-card h3 {{
             margin-top: 0;
             color: {"#38bdf8" if is_pwa else "#0369a1"};
-            font-size: 16px;
+            font-size: 15.5px;
         }}
         .highlight {{
             color: {"#34d399" if is_pwa else "#059669"};
@@ -278,18 +382,21 @@ class JobApplicationGenerator:
 </head>
 <body>
     <div class="container">
-        <h1>🏆 [{co}] 맞춤형 입사지원서 & 핵심 역량 포트폴리오</h1>
-        
-        <h2>👤 1. 기본 인적사항 (Ground Truth)</h2>
-        <div class="info-grid">
-            <div><strong>성명/연령:</strong> {b['name']} ({b['birth']})</div>
-            <div><strong>주요 포지션:</strong> {b['position']}</div>
-            <div><strong>검증 경력:</strong> {b['experience_total']}</div>
-            <div><strong>연락처/이메일:</strong> {b['contact']}</div>
-            <div><strong>주소:</strong> {b['address']}</div>
+        <div class="profile-flex">
+            {photo_html}
+            <div class="header-content">
+                <h1>🏆 [{co}] 입사지원서 & 핵심 역량 포트폴리오</h1>
+                <div class="info-grid">
+                    <div><strong>성명/연령:</strong> {b['name']} ({b['birth']})</div>
+                    <div><strong>지원 포지션:</strong> <span class="highlight">{b['position']}</span></div>
+                    <div><strong>총 실무 경력:</strong> {b['experience_total']}</div>
+                    <div><strong>연락처/이메일:</strong> {b['contact']}</div>
+                    <div><strong>주소:</strong> {b['address']}</div>
+                </div>
+            </div>
         </div>
 
-        <h2>💼 2. 건강보험 검증 경력 연대기 (12개 사업장)</h2>
+        <h2>💼 2. 주요 경력사항</h2>
         <table>
             <thead>
                 <tr>
