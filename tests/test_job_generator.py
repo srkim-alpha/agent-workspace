@@ -40,7 +40,8 @@ class TestJobApplicationGenerator(unittest.TestCase):
         self.assertGreater(os.path.getsize(result["pdf_path"]), 0)
         self.assertIn("https://srkim-alpha.github.io/agent-workspace/applications/", result["web_url"])
         self.assertTrue(os.path.exists(result["archive_path"]))
-        print("[Pass] Full pipeline PDF, WebApp, and Archiving test succeeded.")
+        self.assertTrue(result.get("telegram_success", False))
+        print("[Pass] Full pipeline PDF, WebApp, Archiving, and Telegram notification test succeeded.")
 
 if __name__ == "__main__":
     unittest.main()

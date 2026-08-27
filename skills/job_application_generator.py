@@ -374,8 +374,57 @@ class JobApplicationGenerator:
         web_url = f"https://srkim-alpha.github.io/agent-workspace/applications/{sanitized_company}/"
         return web_url
 
+    def send_telegram_notification(self, company_name: str, pdf_path: Optional[Path], web_url: str) -> bool:
+        """Sends Telegram dual notification (text with web URL + attached A4 PDF)."""
+        import requests
+        from dotenv import load_dotenv
+
+        env_path = BASE_DIR / "config" / ".env"
+        load_dotenv(dotenv_path=env_path)
+        load_dotenv(dotenv_path=BASE_DIR / ".env")
+
+        bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+        chat_id = os.getenv("TELEGRAM_CHAT_ID", "8392524393")
+
+        if not bot_token or not chat_id:
+            print("[Telegram] Bot token or Chat ID missing.")
+            return False
+
+        text = f"""📄 [맞춤형 입사지원서 생성 완료]
+• 지원 기업: {company_name}
+• 모바일 웹앱 링크: {web_url}
+
+※ 첨부된 서류 제출용 A4 PDF를 확인해 주십시오."""
+
+        msg_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+        doc_url = f"https://api.telegram.org/bot{bot_token}/sendDocument"
+
+        success = True
+        try:
+            res_msg = requests.post(msg_url, data={"chat_id": chat_id, "text": text}, timeout=10)
+            if res_msg.status_code != 200:
+                print(f"[Telegram] Text message failed: {res_msg.status_code}")
+                success = False
+
+            if pdf_path and Path(pdf_path).exists():
+                with open(pdf_path, "rb") as f:
+                    res_doc = requests.post(
+                        doc_url,
+                        data={"chat_id": chat_id, "caption": f"📄 {company_name} 서류제출용 A4 PDF"},
+                        files={"document": (f"{company_name}_김승률_지원서.pdf", f, "application/pdf")},
+                        timeout=30
+                    )
+                    if res_doc.status_code != 200:
+                        print(f"[Telegram] Document send failed: {res_doc.status_code}")
+                        success = False
+        except Exception as e:
+            print(f"[Telegram] Dispatch error: {e}")
+            success = False
+
+        return success
+
     def generate_job_application(self, company_name: str, job_posting_text: str) -> Dict[str, Any]:
-        """Full pipeline execution: Data extraction -> PDF -> PWA WebApp -> Archiving."""
+        """Full pipeline execution: Data extraction -> PDF -> PWA WebApp -> Archiving -> Telegram Dispatch."""
         sanitized_company = re.sub(r'[\s/\\:]+', '_', company_name.strip())
         app_data = self.generate_application_data(company_name, job_posting_text)
 
@@ -405,12 +454,20 @@ class JobApplicationGenerator:
 """
         archive_success, archive_path, _ = archive_report_locally(f"{sanitized_company}_지원서생성_완료보고서", report_content)
 
+        # 5. Telegram Dual Dispatch (Text + PDF)
+        telegram_success = self.send_telegram_notification(
+            company_name=company_name,
+            pdf_path=output_pdf_path if pdf_success else None,
+            web_url=web_url
+        )
+
         return {
             "company_name": company_name,
             "pdf_success": pdf_success,
             "pdf_path": str(output_pdf_path) if pdf_success else None,
             "web_url": web_url,
             "archive_path": archive_path,
+            "telegram_success": telegram_success,
             "matched_stars": [s["title"] for s in app_data["matched_stars"]]
         }
 
