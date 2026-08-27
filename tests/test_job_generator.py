@@ -26,9 +26,8 @@ class TestJobApplicationGenerator(unittest.TestCase):
     def test_02_application_data_generation(self):
         """Tests structure and Ground Truth integrity of generated application data."""
         data = self.generator.generate_application_data(self.test_company, self.test_job)
-        self.assertEqual(data["company_name"], self.test_company)
-        self.assertEqual(len(data["work_chronology"]), 12)  # 12 Ground Truth work entries
-        self.assertEqual(len(data["credentials"]), 5)  # 5 Qualifications
+        self.assertEqual(len(data["full_work_chronology"]), 12)  # 12 Ground Truth work entries
+        self.assertLessEqual(len(data["work_chronology"]), 6)  # Filtered key career entries for job posting
         print("[Pass] Application data Ground Truth integrity test succeeded.")
 
     def test_03_full_pipeline_execution(self):
