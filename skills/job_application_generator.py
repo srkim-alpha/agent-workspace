@@ -522,11 +522,12 @@ class JobApplicationGenerator:
                 success = False
 
             if pdf_path and Path(pdf_path).exists():
+                attachment_name = Path(pdf_path).name
                 with open(pdf_path, "rb") as f:
                     res_doc = requests.post(
                         doc_url,
                         data={"chat_id": chat_id, "caption": f"📄 {company_name} 서류제출용 A4 PDF"},
-                        files={"document": (f"{company_name}_김승률_지원서.pdf", f, "application/pdf")},
+                        files={"document": (attachment_name, f, "application/pdf")},
                         timeout=30
                     )
                     if res_doc.status_code != 200:
