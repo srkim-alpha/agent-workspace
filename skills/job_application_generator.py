@@ -599,7 +599,7 @@ class JobApplicationGenerator:
                 from docx2pdf import convert
                 convert(str(output_docx_path), str(output_pdf_path))
                 if output_pdf_path.exists() and output_pdf_path.stat().st_size > 0:
-                    print(f"✅ docx2pdf conversion succeeded: {output_pdf_path}")
+                    print(f"[OK] docx2pdf conversion succeeded: {output_pdf_path}")
                     return True
             except Exception as e_pdf:
                 print(f"docx2pdf warning: {e_pdf}. Falling back to Playwright...")
