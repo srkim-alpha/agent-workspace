@@ -6,6 +6,7 @@ import uuid
 import asyncio
 import logging
 import platform
+import threading
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from dotenv import load_dotenv
@@ -607,6 +608,29 @@ def scrape_job_posting_url(url: str) -> tuple[str, str]:
     full_job_text = f"제목: {title}\n\nURL: {url}\n\n본문 내용:\n{body_text[:3000]}"
     return company_name, full_job_text
 
+def _bg_job_application_worker(user_text: str, target_display: str):
+    """
+    백그라운드 스레드에서 지원서 자동 생성 파이프라인(AI 텍스트+Playwright PDF+Git Push+직접 텔레그램 발송)을 비동기 수행
+    """
+    logger.info(f"🚀 [백그라운드 지원서 생성 스레드 가동] Target: '{target_display}', Text: {user_text}")
+    try:
+        url_match = re.search(r"https?://[^\s]+", user_text)
+        if url_match:
+            target_url = url_match.group(0)
+            company_name, job_text = scrape_job_posting_url(target_url)
+            if not company_name or company_name == "맞춤_채용기업":
+                company_name = target_display if target_display and target_display != "맞춤 채용기업" else "맞춤_채용기업"
+        else:
+            company_name = target_display if target_display else "맞춤 채용기업"
+            job_text = user_text
+
+        from skills.job_application_generator import JobApplicationGenerator
+        generator = JobApplicationGenerator()
+        res = generator.generate_job_application(company_name, job_text)
+        logger.info(f"✅ [백그라운드 지원서 생성 완료] 결과: {res}")
+    except Exception as e:
+        logger.error(f"❌ [백그라운드 지원서 생성 실패]: {e}", exc_info=True)
+
 async def command_apply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not check_whitelist(update):
         await send_unauthorized_msg(update)
@@ -627,7 +651,7 @@ async def command_apply(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    await process_instruction_text(update, context, text_arg, is_voice=False)
+    await process_instruction_text(update, context, f"/지원 {text_arg}", is_voice=False)
 
 async def command_cleanup(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not check_whitelist(update):
@@ -689,28 +713,37 @@ async def process_instruction_text(update: Update, context: ContextTypes.DEFAULT
         await safe_reply_text(update.message, reply_msg)
         return
 
-    # 0.5 URL Auto-Scraping & Job Application Generator Router (Zero-Prompt)
+    # 0.5 비동기 지원서 생성 파이프라인 분기 (threading.Thread 백그라운드 워커 & 180초 타임아웃 확장)
+    is_app_cmd = user_text.startswith("/지원") or any(kw in user_text for kw in ["지원서", "입사지원서"])
     url_match = re.search(r"https?://[^\s]+", user_text)
-    if url_match:
-        target_url = url_match.group(0)
-        logger.info(f"공고 URL 감지 - 스크래핑 및 맞춤형 지원서 자동 생성: {target_url}")
-        status_text = f"{voice_prefix}🌐 **[공고 URL 감지 - 스크래핑 및 맞춤형 지원서 자동 생성 중]**\n공고 링크({target_url})에서 텍스트를 추출하고 지원서를 빌드하고 있습니다..."
-        status_msg = await safe_reply_text(update.message, status_text)
+    is_url_app = url_match and not any(kw in user_text for kw in ["캡처", "검색", "최저가", "가격", "웹"])
 
-        company_name, job_text = await asyncio.to_thread(scrape_job_posting_url, target_url)
+    if is_app_cmd or is_url_app:
+        logger.info(f"지원서 자동 생성 요청 감지 (비동기 스레드 워커 분기): {user_text}")
 
-        from skills.job_application_generator import JobApplicationGenerator
-        generator = JobApplicationGenerator()
-        res = await asyncio.to_thread(generator.generate_job_application, company_name, job_text)
+        # 포지션/기업 타깃명 추출
+        clean_target = user_text
+        if clean_target.startswith("/지원"):
+            clean_target = clean_target[len("/지원"):].strip()
 
-        web_url = res.get("web_url", "")
-        reply_msg = (
-            f"{voice_prefix}📄 **[맞춤형 입사지원서 생성 완료]**\n"
-            f"• 지원 기업: {company_name}\n"
-            f"• 모바일 웹앱 링크: {web_url}\n\n"
-            f"※ 첨부된 서류 제출용 A4 PDF를 확인해 주십시오."
-        )
-        await safe_edit_text(status_msg, reply_msg)
+        for strip_word in ["입사지원서", "지원서", "생성해 줘", "생성해줘", "만들어 줘", "만들어줘", "작성해 줘", "작성해줘", "제출", "맞춤", "포지션", "채용공고", "채용"]:
+            clean_target = clean_target.replace(strip_word, "")
+
+        clean_target = clean_target.strip()
+
+        if url_match or not clean_target:
+            target_display = "맞춤 채용기업"
+        else:
+            target_display = clean_target[:30]
+
+        start_msg = f"{voice_prefix}⏳ [작업 시작] '{target_display}' 포지션 맞춤 지원서를 생성 중입니다. (약 30~60초 소요)"
+        await safe_reply_text(update.message, start_msg)
+
+        threading.Thread(
+            target=_bg_job_application_worker,
+            args=(user_text, target_display),
+            daemon=True
+        ).start()
         return
 
     # 1. 1차 경량 복잡도 분류 (Gemini Flash)
@@ -931,14 +964,14 @@ def main():
         logger.error("TELEGRAM_BOT_TOKEN 환경변수가 설정되지 않았습니다.")
         sys.exit(1)
 
-    logger.info("알파 수석비서 텔레그램 게이트웨이 (60초 타임아웃 확장 & Non-blocking STT) 초기화 중...")
+    logger.info("알파 수석비서 텔레그램 게이트웨이 (180초 타임아웃 확장 & 비동기 지원서 파이프라인) 초기화 중...")
     
-    # 텔레그램 네트워크 타임아웃 60초 확장 설정
+    # 텔레그램 네트워크 타임아웃 180초 확장 설정
     request_config = HTTPXRequest(
-        connect_timeout=60.0,
-        read_timeout=60.0,
-        write_timeout=60.0,
-        pool_timeout=60.0
+        connect_timeout=180.0,
+        read_timeout=180.0,
+        write_timeout=180.0,
+        pool_timeout=180.0
     )
     
     app = (

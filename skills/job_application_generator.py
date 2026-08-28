@@ -578,7 +578,7 @@ class JobApplicationGenerator:
 
         success = True
         try:
-            res_msg = requests.post(msg_url, data={"chat_id": chat_id, "text": text}, timeout=10)
+            res_msg = requests.post(msg_url, data={"chat_id": chat_id, "text": text}, timeout=30)
             if res_msg.status_code != 200:
                 print(f"[Telegram] Text message failed: {res_msg.status_code}")
                 success = False
@@ -590,7 +590,7 @@ class JobApplicationGenerator:
                         doc_url,
                         data={"chat_id": chat_id, "caption": f"📄 {company_name} 서류제출용 A4 PDF"},
                         files={"document": (attachment_name, f, "application/pdf")},
-                        timeout=30
+                        timeout=180
                     )
                     if res_doc.status_code != 200:
                         print(f"[Telegram] Document send failed: {res_doc.status_code}")

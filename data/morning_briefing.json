@@ -1,37 +1,37 @@
 {
-  "date": "2026-08-27",
-  "timestamp": "2026-08-27T08:15:12.773004+09:00",
+  "date": "2026-08-28",
+  "timestamp": "2026-08-28T08:15:09.607333+09:00",
   "research": {
     "tech_trends": [
       {
-        "title": "실행형 AI(Agentic AI) 비즈니스 활용의 3가지 핵심 트렌드",
+        "title": "2026년 AI 시장의 핵심은 투자 대비 수익(ROI) 달성",
         "summary_3lines": [
-          "단순 대화를 넘어 스스로 판단하고 실행하는 에이전트형 AI가 기업 업무의 핵심으로 자리 잡고 있습니다.",
-          "반복적인 수동 업무를 자동화하고 복잡한 워크플로우를 처리하여 기업의 운영 효율성을 극대화합니다.",
-          "앞으로는 개별 툴 도입을 넘어 여러 AI 에이전트가 협업하는 생태계 구축이 경쟁력이 될 것입니다."
-        ],
-        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPeXlJZGl2aHZxUk96bENma252NzF4WUdtQWRSLTMxS2NvNWlYSC1JbHNCNXVMSWRfWTlkNHNPRGhZVG5fTUs0UFB1TWE4N3J4TjR5ZWhBUW1ERkpaWVpmR1FJWElPYVhuaExQS3ozOUdNVVZ1Vk9IS1JDNGFMa3U2VVJOZw?oc=5"
-      },
-      {
-        "title": "2026년 AI 시장 동향: 투자 대비 수익(ROI) 창출의 본격화",
-        "summary_3lines": [
-          "기업들이 단순히 기술을 도입하는 단계를 지나, 실질적인 투자 대비 수익(ROI)을 증명해야 하는 국면에 진입했습니다.",
-          "철저한 비용 대비 효과 분석을 바탕으로 확실한 수익 모델이 검증된 AI 솔루션만이 살아남고 있습니다.",
-          "명확한 비즈니스 성과를 내지 못하는 투자는 줄어들고, 매출 증대와 직결되는 실용적 AI 도입이 가속화될 것입니다."
+          "맥킨지 보고서에 따르면 2026년 글로벌 AI 시장은 단순 기술 도입을 넘어 실질적인 투자 대비 수익(ROI) 창출에 집중하고 있습니다.",
+          "기업들은 AI 프로젝트의 비용 대비 효과를 엄격하게 평가하며, 수익성 중심의 비즈니스 모델 재편이 가속화되고 있습니다.",
+          "따라서 1인 비즈니스와 에이전트 서비스 역시 화려한 기술보다는 고객의 비용 절감과 매출 증대에 직접 기여하는 방향으로 설계되어야 합니다."
         ],
         "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPVkNzT2lMcURPYXQxQmh0azdzbjVrNFktNzZFLTZacnFlR2xZYXczRnI4MHh2amsya2xOOEh1QURSbFUxU0ZUWGQ5WE5kVHJtbEFJb0NOdTNVUVhPeC1iVVJOZk1VbXpwLVBuYzVod0tMVmlYbVdzNjgwcF83MTVJTWNvVFRaZw?oc=5"
+      },
+      {
+        "title": "자율형 AI(Agentic AI) 비즈니스 활용의 3대 핵심 트렌드",
+        "summary_3lines": [
+          "지시를 수행하는 수준을 넘어 스스로 판단하고 실행하는 자율형 AI 에이전트가 기업 비즈니스의 핵심 무기로 부상하고 있습니다.",
+          "복잡한 시장 조사나 다단계 업무 프로세스를 AI 에이전트 팀이 스스로 조율하며 처리하는 자동화 시스템이 보편화되는 추세입니다.",
+          "반복적인 업무를 수행하는 에이전트 구축 외에도, AI 시스템을 보호하는 보안 시장(2027년 48억 달러 규모 전망) 등 새로운 틈새 시장이 열리고 있습니다."
+        ],
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPeXlJZGl2aHZxUk96bENma252NzF4WUdtQWRSLTMxS2NvNWlYSC1JbHNCNXVMSWRfWTlkNHNPRGhZVG5fTUs0UFB1TWE4N3J4TjR5ZWhBUW1ERkpaWVpmR1FJWElPYVhuaExQS3ozOUdNVVZ1Vk9IS1JDNGFMa3U2VVJOZw?oc=5"
       }
     ],
     "youtube_video": {
-      "title": "월 2만 달러 고정 수익을 가로막는 AI 에이전시의 3가지 치명적 실수",
-      "channel_name": "YouTube",
+      "title": "월 2만 달러 수익을 가로막는 AI 에이전시의 3가지 치명적 실수",
+      "channel_name": "YouTube 채널",
       "summary_3lines": [
-        "AI 에이전시 비즈니스에서 흔히 저지르는 실수를 분석하고 안정적인 고정 수익(Retainer)을 만드는 방법을 다룹니다.",
-        "단순 기술 판매가 아닌 고객의 실제 비즈니스 문제 해결과 ROI 증명에 집중해야 장기 계약이 가능합니다.",
-        "소규모 에이전트가 고수익 구조를 만들기 위해 반드시 피해야 할 운영 전략을 명확하게 제시합니다."
+        "AI 에이전시 사업을 운영하며 고수익 월 구독 모델(Retainer)을 확보하지 못하게 만드는 대표적인 시행착오 3가지를 분석합니다.",
+        "기술 자체를 판매하는 대신 고객의 명확한 비즈니스 고통을 해결하는 솔루션 패키징의 중요성을 강조합니다.",
+        "1인 사업자가 클라이언트에게 지속적인 가치를 입증하고 안정적인 반복 수익을 창출하는 실전 영업 전략을 제시합니다."
       ],
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5xbUxMTGdGejJDUEtZaThhSUwyZFBGaWVZWV9zRlN2TjVqc1JTVnMzRmJUVUhnTFhYSnFlYWloOXJiWDFZQTBreWtTU3ctWUNMdVJ3U0dR?oc=5"
     },
-    "korea_market_insight": "단순 기술 도입을 넘어 고객의 확실한 ROI(투자수익률)를 증명하는 실행형 AI 에이전트 서비스를 패키지화하여, 국내 1인 비즈니스 및 중소기업을 타깃으로 한 고정 수익(Retainer) 모델의 에이전시 사업을 즉시 전개해야 합니다."
+    "korea_market_insight": "한국 시장에서는 단순 챗봇 구축을 넘어, 중소기업의 반복 행정 업무와 마켓 리서치를 자율적으로 대행하는 '맞춤형 AI 에이전트 구독 서비스'로 월 정액(Retainer) 비즈니스 모델을 구축하는 것이 유리합니다."
   }
 }
