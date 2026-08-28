@@ -313,6 +313,303 @@ class JobApplicationGenerator:
         )
         return rendered
 
+    def render_pdf_with_python_docx(self, app_data: Dict[str, Any], output_pdf_path: Path) -> bool:
+        """Generates a high-fidelity 2-page Wyndham Goseong style MS Word document and converts it to PDF via docx2pdf."""
+        output_pdf_path = Path(output_pdf_path)
+        output_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+        output_docx_path = output_pdf_path.with_suffix(".docx")
+
+        try:
+            import docx
+            from docx.shared import Inches, Pt, RGBColor
+            from docx.enum.text import WD_ALIGN_PARAGRAPH
+            from docx.enum.table import WD_TABLE_ALIGNMENT
+            from docx.oxml import OxmlElement
+            from docx.oxml.ns import qn
+
+            doc = docx.Document()
+            
+            # Set A4 margins (0.55 in ~ 14mm)
+            for section in doc.sections:
+                section.top_margin = Inches(0.55)
+                section.bottom_margin = Inches(0.55)
+                section.left_margin = Inches(0.55)
+                section.right_margin = Inches(0.55)
+
+            # Default font style
+            style = doc.styles['Normal']
+            font = style.font
+            font.name = '맑은 고딕'
+            font.size = Pt(10)
+            font.color.rgb = RGBColor(17, 24, 39)
+
+            def set_cell_bg(cell, hex_color):
+                tcPr = cell._element.get_or_add_tcPr()
+                shd = OxmlElement('w:shd')
+                shd.set(qn('w:val'), 'clear')
+                shd.set(qn('w:color'), 'auto')
+                shd.set(qn('w:fill'), hex_color)
+                tcPr.append(shd)
+
+            def set_borders(table):
+                tblPr = table._element.xpath('w:tblPr')
+                if tblPr:
+                    tblBorders = OxmlElement('w:tblBorders')
+                    for b_name in ['top', 'left', 'bottom', 'right', 'insideH', 'insideV']:
+                        b = OxmlElement(f'w:{b_name}')
+                        b.set(qn('w:val'), 'single')
+                        b.set(qn('w:sz'), '4')
+                        b.set(qn('w:space'), '0')
+                        b.set(qn('w:color'), 'D1D5DB')
+                        tblBorders.append(b)
+                    tblPr[0].append(tblBorders)
+
+            # --- PAGE 1: 이력서 ---
+            p_title = doc.add_paragraph()
+            p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p_title.paragraph_format.space_before = Pt(0)
+            p_title.paragraph_format.space_after = Pt(10)
+            r_title = p_title.add_run("이  력  서")
+            r_title.font.size = Pt(20)
+            r_title.font.bold = True
+
+            basic_info = app_data.get("basic_info", {})
+            tbl_profile = doc.add_table(rows=4, cols=5)
+            tbl_profile.alignment = WD_TABLE_ALIGNMENT.CENTER
+            set_borders(tbl_profile)
+
+            col_widths = [Inches(0.9), Inches(1.8), Inches(0.9), Inches(2.2), Inches(1.2)]
+            for row in tbl_profile.rows:
+                for idx, w in enumerate(col_widths):
+                    row.cells[idx].width = w
+
+            # Merge Photo Column (Row 0..3, Col 4)
+            photo_cell = tbl_profile.cell(0, 4)
+            for r_idx in range(1, 4):
+                photo_cell.merge(tbl_profile.cell(r_idx, 4))
+
+            p_photo = photo_cell.paragraphs[0]
+            p_photo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            photo_path = BASE_DIR / "assets" / "photo.jpg"
+            if photo_path.exists():
+                r_img = p_photo.add_run()
+                r_img.add_picture(str(photo_path), width=Inches(1.05), height=Inches(1.3))
+
+            info_rows = [
+                [("성 명", basic_info.get("name", "김승률")), ("생년월일", basic_info.get("birth", "1983.10.15"))],
+                [("연 락 처", "010-4549-2886"), ("이 메 일", "chan7502@naver.com")],
+                [("주 소", basic_info.get("address", "경기도 시흥시 배곧1로 27, 214동 1204호")), None],
+                [("지원회사", app_data.get("company_name", "")), ("지원포지션", basic_info.get("position", "수석 아키텍트"))]
+            ]
+
+            for r_idx, row_data in enumerate(info_rows):
+                cell_l1 = tbl_profile.cell(r_idx, 0)
+                cell_v1 = tbl_profile.cell(r_idx, 1)
+                cell_l1.text = row_data[0][0]
+                cell_v1.text = str(row_data[0][1])
+                set_cell_bg(cell_l1, "F4F5F7")
+                cell_l1.paragraphs[0].runs[0].font.bold = True
+                cell_l1.paragraphs[0].runs[0].font.size = Pt(9.5)
+                cell_v1.paragraphs[0].runs[0].font.size = Pt(9.5)
+
+                if r_idx == 2:
+                    cell_v1.merge(tbl_profile.cell(r_idx, 3))
+                elif row_data[1]:
+                    cell_l2 = tbl_profile.cell(r_idx, 2)
+                    cell_v2 = tbl_profile.cell(r_idx, 3)
+                    cell_l2.text = row_data[1][0]
+                    cell_v2.text = str(row_data[1][1])
+                    set_cell_bg(cell_l2, "F4F5F7")
+                    cell_l2.paragraphs[0].runs[0].font.bold = True
+                    cell_l2.paragraphs[0].runs[0].font.size = Pt(9.5)
+                    cell_v2.paragraphs[0].runs[0].font.size = Pt(9.5)
+
+            # Core Competencies
+            p_sec1 = doc.add_paragraph()
+            p_sec1.paragraph_format.space_before = Pt(8)
+            p_sec1.paragraph_format.space_after = Pt(2)
+            r_sec1 = p_sec1.add_run("■ 핵심 역량 요약")
+            r_sec1.font.size = Pt(11)
+            r_sec1.font.bold = True
+
+            for comp in app_data.get("core_competencies", [])[:3]:
+                p_b = doc.add_paragraph(style='List Bullet')
+                p_b.paragraph_format.space_before = Pt(0)
+                p_b.paragraph_format.space_after = Pt(2)
+                r_b = p_b.add_run(comp)
+                r_b.font.size = Pt(9.5)
+
+            # Work Chronology
+            p_sec2 = doc.add_paragraph()
+            p_sec2.paragraph_format.space_before = Pt(8)
+            p_sec2.paragraph_format.space_after = Pt(2)
+            r_sec2 = p_sec2.add_run("■ 주요 경력 사항")
+            r_sec2.font.size = Pt(11)
+            r_sec2.font.bold = True
+
+            works = app_data.get("work_chronology", [])
+            tbl_work = doc.add_table(rows=len(works) + 1, cols=4)
+            tbl_work.alignment = WD_TABLE_ALIGNMENT.CENTER
+            set_borders(tbl_work)
+
+            headers_w = [("근무기간", Inches(1.3)), ("사업장명", Inches(1.8)), ("직책", Inches(1.1)), ("담당 직무 및 핵심 성과", Inches(2.8))]
+            for c_idx, (h_text, h_w) in enumerate(headers_w):
+                cell = tbl_work.cell(0, c_idx)
+                cell.width = h_w
+                cell.text = h_text
+                set_cell_bg(cell, "F4F5F7")
+                r = cell.paragraphs[0].runs[0]
+                r.font.bold = True
+                r.font.size = Pt(9.5)
+                cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            for r_idx, w in enumerate(works, start=1):
+                row_vals = [w.get("period", ""), w.get("company", ""), w.get("role", ""), w.get("details", "")]
+                for c_idx, val in enumerate(row_vals):
+                    cell = tbl_work.cell(r_idx, c_idx)
+                    cell.text = str(val)
+                    cell.paragraphs[0].runs[0].font.size = Pt(9)
+                    if c_idx in [0, 2]:
+                        cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            # Education
+            p_sec3 = doc.add_paragraph()
+            p_sec3.paragraph_format.space_before = Pt(8)
+            p_sec3.paragraph_format.space_after = Pt(2)
+            r_sec3 = p_sec3.add_run("■ 학력 사항")
+            r_sec3.font.size = Pt(11)
+            r_sec3.font.bold = True
+
+            edus = app_data.get("education", [])
+            tbl_edu = doc.add_table(rows=len(edus) + 1, cols=5)
+            tbl_edu.alignment = WD_TABLE_ALIGNMENT.CENTER
+            set_borders(tbl_edu)
+
+            headers_e = [("학교명", Inches(1.8)), ("전공/학과", Inches(2.1)), ("구분", Inches(0.9)), ("기간", Inches(1.3)), ("학점", Inches(0.9))]
+            for c_idx, (h_text, h_w) in enumerate(headers_e):
+                cell = tbl_edu.cell(0, c_idx)
+                cell.width = h_w
+                cell.text = h_text
+                set_cell_bg(cell, "F4F5F7")
+                r = cell.paragraphs[0].runs[0]
+                r.font.bold = True
+                r.font.size = Pt(9.5)
+                cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            for r_idx, e in enumerate(edus, start=1):
+                row_vals = [e.get("school", ""), e.get("major", ""), e.get("status", ""), e.get("period", ""), e.get("gpa", "")]
+                for c_idx, val in enumerate(row_vals):
+                    cell = tbl_edu.cell(r_idx, c_idx)
+                    cell.text = str(val)
+                    cell.paragraphs[0].runs[0].font.size = Pt(9)
+                    if c_idx >= 2:
+                        cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            # Credentials
+            p_sec4 = doc.add_paragraph()
+            p_sec4.paragraph_format.space_before = Pt(8)
+            p_sec4.paragraph_format.space_after = Pt(2)
+            r_sec4 = p_sec4.add_run("■ 보유 자격증 & 면허")
+            r_sec4.font.size = Pt(11)
+            r_sec4.font.bold = True
+
+            creds = app_data.get("credentials", [])
+            tbl_cred = doc.add_table(rows=len(creds) + 1, cols=3)
+            tbl_cred.alignment = WD_TABLE_ALIGNMENT.CENTER
+            set_borders(tbl_cred)
+
+            headers_c = [("자격 / 면허명", Inches(2.8)), ("발급 기관", Inches(2.4)), ("취득 일자", Inches(1.8))]
+            for c_idx, (h_text, h_w) in enumerate(headers_c):
+                cell = tbl_cred.cell(0, c_idx)
+                cell.width = h_w
+                cell.text = h_text
+                set_cell_bg(cell, "F4F5F7")
+                r = cell.paragraphs[0].runs[0]
+                r.font.bold = True
+                r.font.size = Pt(9.5)
+                cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            for r_idx, c in enumerate(creds, start=1):
+                row_vals = [c.get("name", ""), c.get("issuer", ""), c.get("date", "")]
+                for c_idx, val in enumerate(row_vals):
+                    cell = tbl_cred.cell(r_idx, c_idx)
+                    cell.text = str(val)
+                    cell.paragraphs[0].runs[0].font.size = Pt(9)
+                    if c_idx == 2:
+                        cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+            # --- Page Break to Page 2 ---
+            doc.add_page_break()
+
+            # --- PAGE 2: 자기소개서 ---
+            p_title2 = doc.add_paragraph()
+            p_title2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p_title2.paragraph_format.space_before = Pt(0)
+            p_title2.paragraph_format.space_after = Pt(12)
+            r_title2 = p_title2.add_run("자  기  소  개  서")
+            r_title2.font.size = Pt(16)
+            r_title2.font.bold = True
+
+            sections = app_data.get("cover_letter_sections", [])
+            for sec in sections:
+                p_stitle = doc.add_paragraph()
+                p_stitle.paragraph_format.space_before = Pt(6)
+                p_stitle.paragraph_format.space_after = Pt(2)
+                r_stitle = p_stitle.add_run(sec.get("title", ""))
+                r_stitle.font.size = Pt(11)
+                r_stitle.font.bold = True
+
+                p_content = doc.add_paragraph()
+                p_content.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+                p_content.paragraph_format.line_spacing = 1.35
+                p_content.paragraph_format.space_before = Pt(0)
+                p_content.paragraph_format.space_after = Pt(6)
+                r_content = p_content.add_run(sec.get("content", ""))
+                r_content.font.size = Pt(10)
+
+            # Signature Block
+            p_date = doc.add_paragraph()
+            p_date.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p_date.paragraph_format.space_before = Pt(20)
+            p_date.paragraph_format.space_after = Pt(10)
+            r_date = p_date.add_run(app_data.get("today_str", "2026년 8월 28일"))
+            r_date.font.size = Pt(11)
+            r_date.font.bold = True
+
+            p_sig = doc.add_paragraph()
+            p_sig.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            p_sig.paragraph_format.space_before = Pt(0)
+            p_sig.paragraph_format.space_after = Pt(18)
+            r_sig = p_sig.add_run("지 원 자 :   김  승  률     (인 / 서명)")
+            r_sig.font.size = Pt(11.5)
+            r_sig.font.bold = True
+
+            p_comp = doc.add_paragraph()
+            p_comp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p_comp.paragraph_format.space_before = Pt(8)
+            p_comp.paragraph_format.space_after = Pt(0)
+            r_comp = p_comp.add_run(f"{app_data.get('company_name', '')} 귀중")
+            r_comp.font.size = Pt(14)
+            r_comp.font.bold = True
+
+            doc.save(str(output_docx_path))
+
+            # Convert to PDF
+            try:
+                from docx2pdf import convert
+                convert(str(output_docx_path), str(output_pdf_path))
+                if output_pdf_path.exists() and output_pdf_path.stat().st_size > 0:
+                    print(f"✅ docx2pdf conversion succeeded: {output_pdf_path}")
+                    return True
+            except Exception as e_pdf:
+                print(f"docx2pdf warning: {e_pdf}. Falling back to Playwright...")
+
+        except Exception as e_docx:
+            print(f"python-docx error: {e_docx}. Falling back to Playwright...")
+
+        # Fallback to Playwright HTML rendering if python-docx/docx2pdf fails
+        return self.render_pdf_with_playwright(app_data, output_pdf_path)
+
     def render_pdf_with_playwright(self, app_data_or_html: Any, output_pdf_path: Path) -> bool:
         """Renders A4 PDF using Playwright with print_a4.html and automatically cleans up temp files."""
         output_pdf_path = Path(output_pdf_path)
@@ -519,10 +816,10 @@ class JobApplicationGenerator:
         # 1. Render Interactive Dark Dashboard WebApp HTML
         dashboard_html = self.render_html_template(app_data, is_pwa=True)
 
-        # 2. Generate A4 PDF using print_a4.html
+        # 2. Generate A4 PDF using python-docx & docx2pdf (Wyndham Goseong 2-Page Format)
         pdf_filename = f"{sanitized_company}_김승률_지원서.pdf"
         output_pdf_path = OUTPUT_DIR / pdf_filename
-        pdf_success = self.render_pdf_with_playwright(app_data, output_pdf_path)
+        pdf_success = self.render_pdf_with_python_docx(app_data, output_pdf_path)
 
         # 3. Publish WebApp to GitHub Pages (Cleans up previous build files and deploys resume.pdf)
         web_url = self.publish_to_github_pages(company_name, dashboard_html, pdf_path=output_pdf_path if pdf_success else None)
