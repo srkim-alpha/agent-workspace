@@ -359,6 +359,8 @@ class JobApplicationGenerator:
             return "geo_young"
         if "그래이박스" in clean or "graybox" in clean:
             return "graybox"
+        if "엠아이큐브" in clean or "micube" in clean:
+            return "micubesoft"
         s = re.sub(r'[()\s/\\:]+', '_', clean).strip('_')
         return s if s else "app"
 

@@ -15,12 +15,12 @@
         }
 
         body {
-            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            font-family: 'Malgun Gothic', '맑은 고딕', 'Noto Sans KR', sans-serif;
             background-color: #ffffff;
             color: #111827;
             margin: 0;
             padding: 0;
-            font-size: 11px;
+            font-size: 10.5pt;
             line-height: 1.5;
         }
 
@@ -44,14 +44,24 @@
             box-sizing: border-box;
         }
 
-        .doc-title {
-            font-size: 22px;
+        .doc-title-p1 {
+            font-size: 22pt;
             font-weight: bold;
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             color: #111827;
             margin-top: 0;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .doc-title-p2 {
+            font-size: 18pt;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 4px;
+            color: #111827;
+            margin-top: 0;
+            margin-bottom: 16px;
         }
 
         .profile-layout {
@@ -73,10 +83,10 @@
         }
 
         .profile-photo {
-            width: 95px;
-            height: 120px;
+            width: 100px;
+            height: 125px;
             margin: 0 auto;
-            border: 1px solid #cbd5e1;
+            border: 1px solid #d1d5db;
             border-radius: 2px;
             overflow: hidden;
             display: flex;
@@ -92,10 +102,10 @@
         }
 
         .section-header {
-            font-size: 13px;
+            font-size: 12pt;
             font-weight: bold;
             color: #111827;
-            margin-top: 12px;
+            margin-top: 14px;
             margin-bottom: 6px;
         }
 
@@ -103,28 +113,28 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 12px;
-            font-size: 11px;
+            font-size: 10pt;
         }
 
         table.data-table th {
-            background-color: #f1f5f9;
+            background-color: #f4f5f7;
             color: #111827;
-            font-weight: 600;
-            padding: 7px 10px;
-            border: 1px solid #cbd5e1;
+            font-weight: bold;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
             text-align: center;
         }
 
         table.data-table td {
-            padding: 7px 10px;
-            border: 1px solid #cbd5e1;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
             color: #111827;
         }
 
         .bullet-list {
             margin: 4px 0 10px 18px;
             padding: 0;
-            font-size: 11px;
+            font-size: 10pt;
             color: #111827;
         }
 
@@ -135,50 +145,53 @@
 
         .cover-box {
             background: #ffffff;
-            border-bottom: 1px solid #cbd5e1;
-            padding: 8px 0;
-            margin-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 10px 0;
+            margin-bottom: 12px;
         }
 
         .cover-subtitle {
             margin: 0 0 6px 0;
-            font-size: 12px;
+            font-size: 12pt;
             font-weight: bold;
             color: #111827;
         }
 
         .cover-text {
             margin: 0;
-            font-size: 10.5pt;
+            font-size: 11pt;
             line-height: 1.75;
             text-align: justify;
             color: #111827;
         }
 
         .signature-block {
-            margin-top: 35px;
-            text-align: center;
+            margin-top: 40px;
         }
 
         .date-line {
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
+            text-align: center;
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 25px;
             color: #111827;
         }
 
         .signature-name {
-            font-size: 13px;
+            text-align: right;
+            font-size: 13pt;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             color: #111827;
+            padding-right: 15px;
         }
 
         .target-company {
-            font-size: 15px;
+            text-align: center;
+            font-size: 15pt;
             font-weight: bold;
             color: #111827;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .highlight {
@@ -191,7 +204,7 @@
 <body>
     <!-- PAGE 1: 이력서 -->
     <div class="page page-1">
-        <div class="doc-title">이 력 서</div>
+        <div class="doc-title-p1">이 력 서</div>
 
         <div class="profile-layout">
             <div class="profile-info-wrap">
@@ -312,7 +325,7 @@
 
     <!-- PAGE 2: 자기소개서 -->
     <div class="page page-2">
-        <div class="doc-title">자 기 소 개 서</div>
+        <div class="doc-title-p2">자 기 소 개 서</div>
 
         <div class="cover-letter-body">
             {% for sec in cover_letter_sections %}
