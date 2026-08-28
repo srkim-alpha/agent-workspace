@@ -6,6 +6,8 @@ import subprocess
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
+import jinja2
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
@@ -13,6 +15,7 @@ if str(BASE_DIR) not in sys.path:
 MASTER_HUB_PATH = BASE_DIR / "career_hub" / "career_master_hub.md"
 OUTPUT_DIR = BASE_DIR / "data" / "outputs"
 DOCS_APPS_DIR = BASE_DIR / "docs" / "applications"
+TEMPLATES_DIR = BASE_DIR / "templates"
 BASE_URL = "https://srkim-alpha.github.io/agent-workspace/applications/"
 
 class JobApplicationGenerator:
@@ -286,408 +289,28 @@ class JobApplicationGenerator:
         }
 
     def render_html_template(self, app_data: Dict[str, Any], is_pwa: bool = False) -> str:
-        """Renders HTML template for A4 2-Page PDF or PWA WebApp (Wyndham Goseong Premium Spec)."""
+        """Renders HTML template using Jinja2 engine (templates/resume_template.html)."""
         from datetime import datetime
         today_str = datetime.now().strftime("%Y년 %m월 %d일")
         
-        co = app_data["company_name"]
-        b = app_data["basic_info"]
-        comps = app_data.get("core_competencies", [])
-        works = app_data["work_chronology"]
-        education = app_data.get("education", [])
-        creds = app_data["credentials"]
-        cover_sections = app_data.get("cover_letter_sections", [])
+        env = jinja2.Environment(loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)))
+        template = env.get_template("resume_template.html")
 
         profile_b64 = self._get_profile_b64()
-        if profile_b64:
-            photo_html = f'<div class="profile-photo"><img src="{profile_b64}" alt="김승률 증명사진"></div>'
-        else:
-            photo_html = '''
-            <div class="profile-photo placeholder">
-                <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </div>
-            '''
 
-        meta_pwa = """
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#0f172a">
-""" if is_pwa else '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
-
-        # Page 1: Core Competencies HTML
-        comps_html = ""
-        for comp in comps:
-            comps_html += f"<li>{comp}</li>\n"
-
-        # Page 1: Work Chronology HTML
-        works_html = ""
-        for w in works:
-            works_html += f"""
-            <tr>
-                <td style="font-weight: 600; text-align: center;">{w['period']}</td>
-                <td><strong>{w['company']}</strong></td>
-                <td style="text-align: center;">{w['role']}</td>
-                <td>{w['details']}</td>
-            </tr>
-            """
-
-        # Page 1: Education HTML
-        edu_html = ""
-        for e in education:
-            edu_html += f"""
-            <tr>
-                <td><strong>{e['school']}</strong></td>
-                <td>{e['major']}</td>
-                <td style="text-align: center;">{e['status']}</td>
-                <td style="text-align: center;">{e['period']}</td>
-                <td style="text-align: center;">{e['gpa']}</td>
-            </tr>
-            """
-
-        # Page 1: Credentials HTML
-        creds_html = ""
-        for c in creds:
-            creds_html += f"""
-            <tr>
-                <td><strong>{c['name']}</strong></td>
-                <td>{c['issuer']}</td>
-                <td style="text-align: center;">{c['date']}</td>
-            </tr>
-            """
-
-        # Page 2: Cover Letter Sections HTML
-        cover_html = ""
-        for sec in cover_sections:
-            cover_html += f"""
-            <div class="cover-box">
-                <h3 class="cover-subtitle">{sec['title']}</h3>
-                <p class="cover-text">{sec['content']}</p>
-            </div>
-            """
-
-        # CSS Styling
-        if is_pwa:
-            css_styles = """
-        :root {
-            --primary: #38bdf8;
-            --accent: #22d3ee;
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-card: #334155;
-            --table-header-bg: #0f172a;
-        }
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            padding: 15px;
-            line-height: 1.5;
-        }
-        .page {
-            max-width: 850px;
-            margin: 0 auto 20px auto;
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-card);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        .doc-title {
-            font-size: 22px;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 5px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        """
-        else:
-            css_styles = """
-        @page {
-            size: A4 portrait;
-            margin: 0;
-        }
-        :root {
-            --primary: #111827;
-            --accent: #1e3a8a;
-            --bg-body: #ffffff;
-            --bg-card: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #4b5563;
-            --border-card: #d1d5db;
-            --table-header-bg: #f1f3f5;
-        }
-        body {
-            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 20mm;
-            box-sizing: border-box;
-            background: #ffffff;
-        }
-        .page-1 {
-            page-break-after: always;
-            break-after: page;
-        }
-        .page-2 {
-            min-height: 297mm;
-            box-sizing: border-box;
-        }
-        .doc-title {
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            letter-spacing: 5px;
-            color: #111827;
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-        """
-
-        html_content = f"""<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    {meta_pwa}
-    <title>[{co}] 입사지원서 & 자기소개서 - 김승률</title>
-    <style>
-        {css_styles}
-        .profile-table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 15px;
-            font-size: 11px;
-        }}
-        .profile-table th, .profile-table td {{
-            border: 1px solid var(--border-card);
-            padding: 6px 8px;
-        }}
-        .profile-table th {{
-            background-color: var(--table-header-bg);
-            color: #333333;
-            font-weight: 600;
-            text-align: center;
-        }}
-        .profile-table td {{
-            color: #4b5563;
-        }}
-        .profile-photo {{
-            width: 95px;
-            height: 120px;
-            margin: 0 auto;
-            border: 1px solid var(--border-card);
-            border-radius: 2px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: {"#0f172a" if is_pwa else "#f8fafc"};
-        }}
-        .profile-photo img {{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }}
-        .section-header {{
-            font-size: 13px;
-            font-weight: bold;
-            color: #111827;
-            margin-top: 14px;
-            margin-bottom: 6px;
-        }}
-        table.data-table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 15px;
-            font-size: 11px;
-        }}
-        table.data-table th {{
-            background-color: var(--table-header-bg);
-            color: #333333;
-            font-weight: 600;
-            padding: 6px 8px;
-            border: 1px solid var(--border-card);
-            text-align: center;
-        }}
-        table.data-table td {{
-            padding: 6px 8px;
-            border: 1px solid var(--border-card);
-            color: #4b5563;
-        }}
-        .bullet-list {{
-            margin: 4px 0 12px 18px;
-            padding: 0;
-            font-size: 11px;
-            color: #374151;
-        }}
-        .bullet-list li {{
-            margin-bottom: 4px;
-            line-height: 1.5;
-        }}
-        .cover-box {{
-            background: {"rgba(255,255,255,0.03)" if is_pwa else "#ffffff"};
-            border-bottom: 1px solid var(--border-card);
-            padding: 8px 0;
-            margin-bottom: 10px;
-        }}
-        .cover-subtitle {{
-            margin: 0 0 6px 0;
-            font-size: 12px;
-            font-weight: bold;
-            color: #111827;
-        }}
-        .cover-text {{
-            margin: 0;
-            font-size: 11px;
-            line-height: 1.7;
-            text-align: justify;
-            color: #374151;
-        }}
-        .signature-block {{
-            margin-top: 30px;
-            text-align: center;
-        }}
-        .date-line {{
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #111827;
-        }}
-        .signature-name {{
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #111827;
-        }}
-        .target-company {{
-            font-size: 15px;
-            font-weight: bold;
-            color: #111827;
-            letter-spacing: 2px;
-        }}
-        .highlight {{
-            color: {"#38bdf8" if is_pwa else "#1e3a8a"};
-            font-weight: bold;
-        }}
-    </style>
-</head>
-<body>
-    <!-- PAGE 1: 이력서 -->
-    <div class="page page-1">
-        <div class="doc-title">이 력 서</div>
-
-        <table class="profile-table">
-            <tr>
-                <th style="width: 15%;">성 명</th>
-                <td style="width: 35%;">{b['name']}</td>
-                <th style="width: 15%;">생년월일</th>
-                <td style="width: 20%;">{b['birth']}</td>
-                <td rowspan="4" style="width: 15%; text-align: center; vertical-align: middle; padding: 4px;">
-                    {photo_html}
-                </td>
-            </tr>
-            <tr>
-                <th>연 락 처</th>
-                <td>010-4549-2886</td>
-                <th>이 메 일</th>
-                <td>chan7502@naver.com</td>
-            </tr>
-            <tr>
-                <th>주 소</th>
-                <td colspan="3">{b['address']}</td>
-            </tr>
-            <tr>
-                <th>지원회사</th>
-                <td><strong>{co}</strong></td>
-                <th>지원포지션</th>
-                <td><span class="highlight">{b['position']}</span></td>
-            </tr>
-        </table>
-
-        <div class="section-header">■ 핵심 역량 요약</div>
-        <ul class="bullet-list">
-            {comps_html}
-        </ul>
-
-        <div class="section-header">■ 주요 경력 사항</div>
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th style="width:18%;">근무기간</th>
-                    <th style="width:25%;">사업장명</th>
-                    <th style="width:18%;">직책</th>
-                    <th style="width:39%;">담당 직무 및 핵심 성과</th>
-                </tr>
-            </thead>
-            <tbody>
-                {works_html}
-            </tbody>
-        </table>
-
-        <div class="section-header">■ 학력 사항</div>
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th style="width:25%;">학교명</th>
-                    <th style="width:30%;">전공 / 학과</th>
-                    <th style="width:15%;">구분</th>
-                    <th style="width:18%;">기간</th>
-                    <th style="width:12%;">학점</th>
-                </tr>
-            </thead>
-            <tbody>
-                {edu_html}
-            </tbody>
-        </table>
-
-        <div class="section-header">■ 보유 자격증 & 면허</div>
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th style="width:35%;">자격 / 면허명</th>
-                    <th style="width:35%;">발급 기관</th>
-                    <th style="width:30%;">취득 일자</th>
-                </tr>
-            </thead>
-            <tbody>
-                {creds_html}
-            </tbody>
-        </table>
-    </div>
-
-    <!-- PAGE 2: 자기소개서 -->
-    <div class="page page-2">
-        <div class="doc-title">자 기 소 개 서</div>
-
-        <div class="cover-letter-body">
-            {cover_html}
-        </div>
-
-        <div class="signature-block">
-            <p class="date-line">{today_str}</p>
-            <p class="signature-name">지 원 자 : &nbsp;&nbsp;&nbsp; <strong>김  승  률</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (인 / 서명)</p>
-            <p class="target-company"><strong>{co} 귀중</strong></p>
-        </div>
-    </div>
-</body>
-</html>
-"""
-        return html_content
+        rendered = template.render(
+            company_name=app_data["company_name"],
+            basic_info=app_data["basic_info"],
+            core_competencies=app_data.get("core_competencies", []),
+            work_chronology=app_data["work_chronology"],
+            education=app_data.get("education", []),
+            credentials=app_data["credentials"],
+            cover_letter_sections=app_data.get("cover_letter_sections", []),
+            profile_b64=profile_b64,
+            today_str=today_str,
+            is_pwa=is_pwa
+        )
+        return rendered
 
     def render_pdf_with_playwright(self, html_content: str, output_pdf_path: Path) -> bool:
         """Renders A4 PDF using Playwright python API with exact 2-page print options."""
