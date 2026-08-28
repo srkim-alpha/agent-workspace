@@ -111,9 +111,12 @@ class JobApplicationGenerator:
         """Loads profile photo from assets directory and returns base64 data URI."""
         import base64
         paths = [
+            BASE_DIR / "assets" / "photo.jpg",
+            BASE_DIR / "assets" / "profile.jpg",
             BASE_DIR / "data" / "assets" / "profile.jpg",
             BASE_DIR / "docs" / "assets" / "profile.jpg",
-            BASE_DIR / "career_hub" / "profile.jpg"
+            BASE_DIR / "career_hub" / "profile.jpg",
+            BASE_DIR / "photo.jpg"
         ]
         for p in paths:
             if p.exists():
@@ -283,7 +286,7 @@ class JobApplicationGenerator:
         }
 
     def render_html_template(self, app_data: Dict[str, Any], is_pwa: bool = False) -> str:
-        """Renders HTML template for A4 2-Page PDF or PWA WebApp (Wyndham Goseong Spec)."""
+        """Renders HTML template for A4 2-Page PDF or PWA WebApp (Wyndham Goseong Premium Spec)."""
         from datetime import datetime
         today_str = datetime.now().strftime("%Y년 %m월 %d일")
         
@@ -301,7 +304,7 @@ class JobApplicationGenerator:
         else:
             photo_html = '''
             <div class="profile-photo placeholder">
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <svg width="45" height="45" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
@@ -361,8 +364,8 @@ class JobApplicationGenerator:
         for sec in cover_sections:
             cover_html += f"""
             <div class="cover-box">
-                <h3>{sec['title']}</h3>
-                <p>{sec['content']}</p>
+                <h3 class="cover-subtitle">{sec['title']}</h3>
+                <p class="cover-text">{sec['content']}</p>
             </div>
             """
 
@@ -396,22 +399,30 @@ class JobApplicationGenerator:
             border: 1px solid var(--border-card);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
+        .doc-title {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 5px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
         """
         else:
             css_styles = """
         @page {
-            size: A4;
-            margin: 10mm 12mm 10mm 12mm;
+            size: A4 portrait;
+            margin: 0;
         }
         :root {
-            --primary: #1e3a8a;
-            --accent: #0284c7;
+            --primary: #111827;
+            --accent: #1e3a8a;
             --bg-body: #ffffff;
             --bg-card: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border-card: #cbd5e1;
-            --table-header-bg: #f1f5f9;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --border-card: #d1d5db;
+            --table-header-bg: #f1f3f5;
         }
         body {
             font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
@@ -419,20 +430,32 @@ class JobApplicationGenerator:
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 11px;
+            line-height: 1.5;
         }
         .page {
-            width: 100%;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
             box-sizing: border-box;
+            background: #ffffff;
         }
         .page-1 {
             page-break-after: always;
             break-after: page;
         }
         .page-2 {
-            page-break-before: always;
-            break-before: page;
+            min-height: 297mm;
+            box-sizing: border-box;
+        }
+        .doc-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 5px;
+            color: #111827;
+            margin-top: 0;
+            margin-bottom: 16px;
         }
         """
 
@@ -444,38 +467,32 @@ class JobApplicationGenerator:
     <title>[{co}] 입사지원서 & 자기소개서 - 김승률</title>
     <style>
         {css_styles}
-        .header-banner {{
-            border-bottom: 2.5px solid var(--primary);
-            padding-bottom: 4px;
-            margin-bottom: 10px;
+        .profile-table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 11px;
+        }}
+        .profile-table th, .profile-table td {{
+            border: 1px solid var(--border-card);
+            padding: 6px 8px;
+        }}
+        .profile-table th {{
+            background-color: var(--table-header-bg);
+            color: #333333;
+            font-weight: 600;
             text-align: center;
         }}
-        .header-title {{
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 4px;
-        }}
-        .subheader-text {{
-            font-size: 11.5px;
-            color: var(--text-muted);
-            margin-top: 3px;
-        }}
-        .profile-flex {{
-            display: flex;
-            gap: 12px;
-            margin-bottom: 8px;
-        }}
-        .profile-info-table {{
-            flex: 1;
+        .profile-table td {{
+            color: #4b5563;
         }}
         .profile-photo {{
-            width: 100px;
-            height: 130px;
+            width: 95px;
+            height: 120px;
+            margin: 0 auto;
             border: 1px solid var(--border-card);
-            border-radius: 4px;
+            border-radius: 2px;
             overflow: hidden;
-            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -486,80 +503,85 @@ class JobApplicationGenerator:
             height: 100%;
             object-fit: cover;
         }}
-        .section-title {{
+        .section-header {{
             font-size: 13px;
-            font-weight: 700;
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
-            padding-left: 8px;
-            margin-top: 8px;
-            margin-bottom: 5px;
+            font-weight: bold;
+            color: #111827;
+            margin-top: 14px;
+            margin-bottom: 6px;
         }}
-        table.data-table, .profile-info-table table {{
+        table.data-table {{
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 11px;
         }}
-        table.data-table th, table.data-table td, .profile-info-table th, .profile-info-table td {{
-            border: 1px solid var(--border-card);
-            padding: 4px 7px;
-            font-size: 11.5px;
-        }}
-        table.data-table th, .profile-info-table th {{
+        table.data-table th {{
             background-color: var(--table-header-bg);
-            font-weight: 700;
+            color: #333333;
+            font-weight: 600;
+            padding: 6px 8px;
+            border: 1px solid var(--border-card);
             text-align: center;
-            color: var(--text-main);
+        }}
+        table.data-table td {{
+            padding: 6px 8px;
+            border: 1px solid var(--border-card);
+            color: #4b5563;
         }}
         .bullet-list {{
-            margin: 3px 0 6px 18px;
+            margin: 4px 0 12px 18px;
             padding: 0;
-            font-size: 12px;
+            font-size: 11px;
+            color: #374151;
         }}
         .bullet-list li {{
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            line-height: 1.5;
         }}
         .cover-box {{
-            background: {"rgba(255,255,255,0.03)" if is_pwa else "#f8fafc"};
-            border: 1px solid var(--border-card);
-            border-left: 4px solid var(--primary);
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            border-radius: 4px;
+            background: {"rgba(255,255,255,0.03)" if is_pwa else "#ffffff"};
+            border-bottom: 1px solid var(--border-card);
+            padding: 8px 0;
+            margin-bottom: 10px;
         }}
-        .cover-box h3 {{
-            margin: 0 0 4px 0;
-            font-size: 13px;
-            color: var(--primary);
-        }}
-        .cover-box p {{
-            margin: 0;
+        .cover-subtitle {{
+            margin: 0 0 6px 0;
             font-size: 12px;
-            line-height: 1.5;
-            color: var(--text-main);
+            font-weight: bold;
+            color: #111827;
+        }}
+        .cover-text {{
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.7;
+            text-align: justify;
+            color: #374151;
         }}
         .signature-block {{
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: center;
         }}
         .date-line {{
-            font-size: 13.5px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            color: #111827;
         }}
         .signature-name {{
-            font-size: 14.5px;
-            font-weight: 700;
-            margin-bottom: 18px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #111827;
         }}
         .target-company {{
-            font-size: 15.5px;
-            font-weight: 800;
-            color: var(--primary);
+            font-size: 15px;
+            font-weight: bold;
+            color: #111827;
             letter-spacing: 2px;
         }}
         .highlight {{
-            color: {"#38bdf8" if is_pwa else "#0284c7"};
+            color: {"#38bdf8" if is_pwa else "#1e3a8a"};
             font-weight: bold;
         }}
     </style>
@@ -567,46 +589,42 @@ class JobApplicationGenerator:
 <body>
     <!-- PAGE 1: 이력서 -->
     <div class="page page-1">
-        <div class="header-banner">
-            <div class="header-title">입 사 지 원 서</div>
-        </div>
+        <div class="doc-title">이 력 서</div>
 
-        <div class="profile-flex">
-            <div class="profile-info-table">
-                <table>
-                    <tr>
-                        <th style="width:18%;">성 명</th>
-                        <td style="width:32%;">{b['name']}</td>
-                        <th style="width:18%;">생년월일</th>
-                        <td style="width:32%;">{b['birth']}</td>
-                    </tr>
-                    <tr>
-                        <th>연 락 처</th>
-                        <td>010-4549-2886</td>
-                        <th>이 메 일</th>
-                        <td>chan7502@naver.com</td>
-                    </tr>
-                    <tr>
-                        <th>주 소</th>
-                        <td colspan="3">{b['address']}</td>
-                    </tr>
-                    <tr>
-                        <th>지원회사</th>
-                        <td><strong>{co}</strong></td>
-                        <th>지원포지션</th>
-                        <td><span class="highlight">{b['position']}</span></td>
-                    </tr>
-                </table>
-            </div>
-            {photo_html}
-        </div>
+        <table class="profile-table">
+            <tr>
+                <th style="width: 15%;">성 명</th>
+                <td style="width: 35%;">{b['name']}</td>
+                <th style="width: 15%;">생년월일</th>
+                <td style="width: 20%;">{b['birth']}</td>
+                <td rowspan="4" style="width: 15%; text-align: center; vertical-align: middle; padding: 4px;">
+                    {photo_html}
+                </td>
+            </tr>
+            <tr>
+                <th>연 락 처</th>
+                <td>010-4549-2886</td>
+                <th>이 메 일</th>
+                <td>chan7502@naver.com</td>
+            </tr>
+            <tr>
+                <th>주 소</th>
+                <td colspan="3">{b['address']}</td>
+            </tr>
+            <tr>
+                <th>지원회사</th>
+                <td><strong>{co}</strong></td>
+                <th>지원포지션</th>
+                <td><span class="highlight">{b['position']}</span></td>
+            </tr>
+        </table>
 
-        <div class="section-title">1. 핵심 역량 요약 (Core Competencies)</div>
+        <div class="section-header">■ 핵심 역량 요약</div>
         <ul class="bullet-list">
             {comps_html}
         </ul>
 
-        <div class="section-title">2. 주요 경력 사항 (Ground Truth Work History)</div>
+        <div class="section-header">■ 주요 경력 사항</div>
         <table class="data-table">
             <thead>
                 <tr>
@@ -621,7 +639,7 @@ class JobApplicationGenerator:
             </tbody>
         </table>
 
-        <div class="section-title">3. 학력 사항 (Education)</div>
+        <div class="section-header">■ 학력 사항</div>
         <table class="data-table">
             <thead>
                 <tr>
@@ -637,7 +655,7 @@ class JobApplicationGenerator:
             </tbody>
         </table>
 
-        <div class="section-title">4. 보유 자격증 & 면허 (Credentials)</div>
+        <div class="section-header">■ 보유 자격증 & 면허</div>
         <table class="data-table">
             <thead>
                 <tr>
@@ -654,10 +672,7 @@ class JobApplicationGenerator:
 
     <!-- PAGE 2: 자기소개서 -->
     <div class="page page-2">
-        <div class="header-banner">
-            <div class="header-title">자 기 소 개 서</div>
-            <div class="subheader-text">지원자 : <strong>김승률</strong> &nbsp;|&nbsp; 지원회사 : <strong>{co}</strong> &nbsp;|&nbsp; 지원포지션 : <strong>{b['position']}</strong></div>
-        </div>
+        <div class="doc-title">자 기 소 개 서</div>
 
         <div class="cover-letter-body">
             {cover_html}
@@ -675,7 +690,7 @@ class JobApplicationGenerator:
         return html_content
 
     def render_pdf_with_playwright(self, html_content: str, output_pdf_path: Path) -> bool:
-        """Renders A4 PDF using Playwright python API."""
+        """Renders A4 PDF using Playwright python API with exact 2-page print options."""
         output_pdf_path = Path(output_pdf_path)
         output_pdf_path.parent.mkdir(parents=True, exist_ok=True)
         
@@ -689,7 +704,13 @@ class JobApplicationGenerator:
                 browser = p.chromium.launch(headless=True)
                 page = browser.new_page()
                 page.goto(temp_html_path.as_uri())
-                page.pdf(path=str(output_pdf_path), format="A4", print_background=True, margin={"top": "0mm", "bottom": "0mm", "left": "0mm", "right": "0mm"})
+                page.pdf(
+                    path=str(output_pdf_path),
+                    format="A4",
+                    print_background=True,
+                    prefer_css_page_size=True,
+                    margin={"top": "0", "bottom": "0", "left": "0", "right": "0"}
+                )
                 browser.close()
             
             if temp_html_path.exists():
