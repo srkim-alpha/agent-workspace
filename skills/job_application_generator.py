@@ -127,10 +127,8 @@ class JobApplicationGenerator:
 
     def filter_work_chronology(self, job_text: str, all_works: List[Dict[str, str]], top_k: int = 6) -> List[Dict[str, str]]:
         """Filters out short-term experiences (< 3 months) and selects top core experiences matching job posting."""
-        # 1. Exclude short-term (< 3 months) entries (e.g. 프로축산 2개월)
         filtered = [w for w in all_works if w["company"] != "프로축산" and "2개월" not in w.get("details", "")]
 
-        # 2. Score relevance based on job posting text
         scored = []
         for w in filtered:
             text = f"{w['company']} {w['role']} {w['details']}"
@@ -145,25 +143,78 @@ class JobApplicationGenerator:
         scored.sort(key=lambda x: x[0], reverse=True)
         top_entries = [item[1] for item in scored[:top_k]]
 
-        # Maintain original chronological order
         ordered = [w for w in filtered if w in top_entries]
         return ordered
 
+    def clean_company_and_job_title(self, user_input: str) -> tuple[str, str]:
+        """
+        Cleans natural language user prompt to extract pure company name and job position title.
+        Removes filler words like '알파야', '작성해줘', '지원서', '포지션', '~라는 회사인데', '입사' etc.
+        """
+        raw = user_input.strip()
+        
+        # Remove common command prefixes
+        for prefix in ["/지원", "알파야", "알파", "수석비서", "대표님"]:
+            if raw.startswith(prefix):
+                raw = raw[len(prefix):].strip()
+
+        # Remove filler words and trailing requests
+        fillers = [
+            "입사지원서", "입사 지원서", "지원서", "포지션", "채용공고", "채용 공고", "채용",
+            "작성해 줘", "작성해줘", "만들어 줘", "만들어줘", "생성해 줘", "생성해줘",
+            "써 줘", "써줘", "제출", "작성", "만들어", "생성", "해줘",
+            "라는 회사인데", "이라는 회사인데", "회사인데", "회사"
+        ]
+        
+        cleaned = raw
+        for f in fillers:
+            cleaned = cleaned.replace(f, "")
+        cleaned = cleaned.strip()
+
+        # Split into Company Name and Job Title
+        company_name = ""
+        job_title = ""
+
+        tokens = cleaned.split()
+        if len(tokens) >= 2:
+            company_name = tokens[0]
+            job_title = " ".join(tokens[1:])
+        elif len(tokens) == 1 and tokens[0]:
+            company_name = tokens[0]
+            job_title = "맞춤 포지션 수석"
+        else:
+            company_name = "맞춤 기업"
+            job_title = "총괄 관리자 / 수석 아키텍트"
+
+        return company_name.strip(), job_title.strip()
+
     def generate_application_data(self, company_name: str, job_posting_text: str) -> Dict[str, Any]:
         """Generates tailored resume & cover letter data matching the job posting."""
+        # Run natural language cleaner on company_name / user_input
+        cleaned_co, cleaned_pos = self.clean_company_and_job_title(company_name)
+        if cleaned_co and cleaned_co != "맞춤 기업":
+            company_name = cleaned_co
+        
+        dynamic_position = cleaned_pos if (cleaned_pos and cleaned_pos != "맞춤 포지션 수석") else self.extract_tailored_position(job_posting_text)
         matched_stars = self.match_star_episodes(job_posting_text, top_k=3)
-        dynamic_position = self.extract_tailored_position(job_posting_text)
 
-        # Basic Info (Privacy Protected)
+        # Basic Info (Ground Truth)
         basic_info = {
             "name": "김승률 (Kim Seung-ryul)",
             "birth": "1975년 2월 23일 (만 51세)",
             "position": dynamic_position,
-            "experience_total": "15년 8개월 (물류·유통·글로벌 사업 총괄)",
-            "address": "인천광역시 남동구 호구포로765번길 68-21",
+            "experience_total": "15년 8개월+ (물류·유통·해외주재원·CS 총괄)",
+            "address": "인천광역시 남동구 호구포로765번길 68-21 (구월동)",
             "contact": "010-4549-2886 / chan7502@naver.com",
             "skills": "Python AI 에이전트 구축, MS Excel 쿼리/함수 자동화, ERP/WMS 물류전산, 지게차 3톤, CS 민원 조율"
         }
+
+        # Core Competencies (3 Bullets)
+        core_competencies = [
+            f"15년 8개월+ 현장 및 전산 오퍼레이션 통합 관리 및 {company_name} 성과 창출 역량",
+            "4,000평 물류센터 WMS 구축 및 MS Excel 쿼리 자동화를 통한 오차율 0% & 매출 12배 신장",
+            "카자흐스탄 주재원 6년 및 사업체 운영을 통해 검증된 1:1 경청 소통 및 갈등 조율 리더십"
+        ]
 
         # Work Chronology (Full Ground Truth 12 items)
         full_work_chronology = [
@@ -182,9 +233,15 @@ class JobApplicationGenerator:
         ]
 
         # Apply filtering for job posting (Exclude < 3 months, select top core entries)
-        filtered_works = self.filter_work_chronology(job_posting_text, full_work_chronology, top_k=6)
+        filtered_works = self.filter_work_chronology(job_posting_text, full_work_chronology, top_k=5)
 
-        # Credentials
+        # Education (Ground Truth)
+        education = [
+            {"school": "인천전문대학", "major": "인문사회학부 e-비즈니스과 (경영학 전공)", "status": "졸업", "period": "2007.03 ~ 2009.02", "gpa": "4.29 / 4.5"},
+            {"school": "항도실업고등학교", "major": "전자과", "status": "졸업", "period": "1990.03 ~ 1993.02", "gpa": "-"}
+        ]
+
+        # Credentials (Ground Truth)
         credentials = [
             {"name": "유통관리사 2급", "issuer": "대한상공회의소", "date": "2008.09.24"},
             {"name": "전자상거래관리사 2급", "issuer": "대한상공회의소", "date": "2008.11.28"},
@@ -193,22 +250,50 @@ class JobApplicationGenerator:
             {"name": "일반경비원 신임교육이수증", "issuer": "경찰청 지정기관", "date": "2025.12.18"}
         ]
 
+        # 4-Part Cover Letter Sections
+        cover_letter_sections = [
+            {
+                "title": "1. 직무 핵심 적응력 및 현장 노하우",
+                "content": f"15년 8개월간 종합 물류전산, 해외 주재원, TV홈쇼핑 영업, 프리미엄 CS 컨설팅 현장에서 쌓아온 노하우를 바탕으로, {company_name}의 {dynamic_position} 포지션에 즉각 투입되어 업무 프로세스를 빠르게 파악하고 안정화하겠습니다. 수많은 현장 변수 속에서도 목표 달성을 최우선으로 삼아 최선의 오퍼레이션을 수행해 왔습니다."
+            },
+            {
+                "title": "2. 데이터·전산 처리 및 오퍼레이션 혁신 역량",
+                "content": "(주)그래이박스 4,000평 냉장/냉동 물류센터에서 수기 방식의 오차를 해소하기 위해 전문 WMS(사방넷/엔윌) 운용 및 MS Excel 쿼리 자동 집계 서식을 구축했습니다. 그 결과 재고 입출고 오차율 0%를 달성하고 월 매출을 12배(500만 원 -> 6,000만 원) 신장시켰습니다. 최근 구축한 Python AI 에이전트 시스템과 결합하여 전산 정확도와 효율을 극대화하겠습니다."
+            },
+            {
+                "title": "3. 소통, 노무 갈등 조율 및 조직 관리 리더십",
+                "content": "카자흐스탄 주재원 근무 당시 침켄트 사무소의 전원 파업 위기 상황에 신임 소장으로 긴급 파견되어 1:1 경청 소통을 진행했습니다. 현지 직책 세분화(소장/부소장/Senior/Manager) 및 직책수당 체계, 업무표준 매뉴얼을 도입함으로써 2개월 만에 파업을 수습하고 조직을 100% 정상화하여 본부장으로 승진했습니다. 상이한 조직 문화 속에서도 갈등을 원만히 조율하는 정중하고 차분한 소통 리더십을 발휘하겠습니다."
+            },
+            {
+                "title": "4. 지원동기 및 입사 후 포부",
+                "content": f"{company_name}의 성장 가능성과 유통/물류 비전에 깊이 공감하여 {dynamic_position} 직무에 지원하게 되었습니다. 입사 후 100일 이내에 담당 영역의 현장 동선 및 전산 프로세스를 완벽히 표준화하고, 오차 없는 정밀 관리와 부서 간 조화로운 소통을 통해 {company_name}의 핵심 성과 창출에 기여하겠습니다."
+            }
+        ]
+
         return {
             "company_name": company_name,
             "basic_info": basic_info,
+            "core_competencies": core_competencies,
             "work_chronology": filtered_works,
             "full_work_chronology": full_work_chronology,
+            "education": education,
             "credentials": credentials,
+            "cover_letter_sections": cover_letter_sections,
             "matched_stars": matched_stars
         }
 
     def render_html_template(self, app_data: Dict[str, Any], is_pwa: bool = False) -> str:
-        """Renders HTML template for A4 PDF or PWA WebApp."""
+        """Renders HTML template for A4 2-Page PDF or PWA WebApp (Wyndham Goseong Spec)."""
+        from datetime import datetime
+        today_str = datetime.now().strftime("%Y년 %m월 %d일")
+        
         co = app_data["company_name"]
         b = app_data["basic_info"]
-        stars = app_data["matched_stars"]
+        comps = app_data.get("core_competencies", [])
         works = app_data["work_chronology"]
+        education = app_data.get("education", [])
         creds = app_data["credentials"]
+        cover_sections = app_data.get("cover_letter_sections", [])
 
         profile_b64 = self._get_profile_b64()
         if profile_b64:
@@ -216,7 +301,7 @@ class JobApplicationGenerator:
         else:
             photo_html = '''
             <div class="profile-photo placeholder">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
@@ -230,181 +315,305 @@ class JobApplicationGenerator:
     <meta name="theme-color" content="#0f172a">
 """ if is_pwa else '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
 
-        stars_html = ""
-        for i, st in enumerate(stars, 1):
-            stars_html += f"""
-            <div class="star-card">
-                <h3>{i}. {st['title']}</h3>
-                <p><strong>[S - 상황]</strong> {st['situation']}</p>
-                <p><strong>[T - 목표]</strong> {st['task']}</p>
-                <p><strong>[A - 실행]</strong> {st['action']}</p>
-                <p class="highlight"><strong>[R - 성과]</strong> {st['result']}</p>
-            </div>
-            """
+        # Page 1: Core Competencies HTML
+        comps_html = ""
+        for comp in comps:
+            comps_html += f"<li>{comp}</li>\n"
 
+        # Page 1: Work Chronology HTML
         works_html = ""
         for w in works:
             works_html += f"""
             <tr>
-                <td style="font-weight: 600;">{w['period']}</td>
+                <td style="font-weight: 600; text-align: center;">{w['period']}</td>
                 <td><strong>{w['company']}</strong></td>
-                <td>{w['role']}</td>
+                <td style="text-align: center;">{w['role']}</td>
                 <td>{w['details']}</td>
             </tr>
             """
 
+        # Page 1: Education HTML
+        edu_html = ""
+        for e in education:
+            edu_html += f"""
+            <tr>
+                <td><strong>{e['school']}</strong></td>
+                <td>{e['major']}</td>
+                <td style="text-align: center;">{e['status']}</td>
+                <td style="text-align: center;">{e['period']}</td>
+                <td style="text-align: center;">{e['gpa']}</td>
+            </tr>
+            """
+
+        # Page 1: Credentials HTML
         creds_html = ""
         for c in creds:
-            creds_html += f"<li><strong>{c['name']}</strong> ({c['issuer']}, {c['date']})</li>"
+            creds_html += f"""
+            <tr>
+                <td><strong>{c['name']}</strong></td>
+                <td>{c['issuer']}</td>
+                <td style="text-align: center;">{c['date']}</td>
+            </tr>
+            """
+
+        # Page 2: Cover Letter Sections HTML
+        cover_html = ""
+        for sec in cover_sections:
+            cover_html += f"""
+            <div class="cover-box">
+                <h3>{sec['title']}</h3>
+                <p>{sec['content']}</p>
+            </div>
+            """
+
+        # CSS Styling
+        if is_pwa:
+            css_styles = """
+        :root {
+            --primary: #38bdf8;
+            --accent: #22d3ee;
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-card: #334155;
+            --table-header-bg: #0f172a;
+        }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            line-height: 1.5;
+        }
+        .page {
+            max-width: 850px;
+            margin: 0 auto 20px auto;
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        """
+        else:
+            css_styles = """
+        @page {
+            size: A4;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+        :root {
+            --primary: #1e3a8a;
+            --accent: #0284c7;
+            --bg-body: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-card: #cbd5e1;
+            --table-header-bg: #f1f5f9;
+        }
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .page {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .page-1 {
+            page-break-after: always;
+            break-after: page;
+        }
+        .page-2 {
+            page-break-before: always;
+            break-before: page;
+        }
+        """
 
         html_content = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     {meta_pwa}
-    <title>[{co}] 입사지원서 - 김승률</title>
+    <title>[{co}] 입사지원서 & 자기소개서 - 김승률</title>
     <style>
-        @page {{
-            size: A4;
-            margin: 15mm;
+        {css_styles}
+        .header-banner {{
+            border-bottom: 2.5px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+            text-align: center;
         }}
-        :root {{
-            --primary: #0f172a;
-            --accent: #0284c7;
-            --accent-pwa: #22d3ee;
-            --text-dark: #1e293b;
-            --bg-light: #f8fafc;
+        .header-title {{
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 4px;
         }}
-        body {{
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: {"#0f172a" if is_pwa else "#ffffff"};
-            color: {"#f8fafc" if is_pwa else "#1e293b"};
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }}
-        .container {{
-            max-width: 900px;
-            margin: 0 auto;
-            background: {"#1e293b" if is_pwa else "#ffffff"};
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        .subheader-text {{
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 3px;
         }}
         .profile-flex {{
             display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 8px;
+        }}
+        .profile-info-table {{
+            flex: 1;
         }}
         .profile-photo {{
-            width: 120px;
-            height: 160px;
-            flex-shrink: 0;
-            border-radius: 8px;
+            width: 100px;
+            height: 130px;
+            border: 1px solid var(--border-card);
+            border-radius: 4px;
             overflow: hidden;
-            border: 2px solid {"#38bdf8" if is_pwa else "#0284c7"};
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            background: {"#0f172a" if is_pwa else "#e2e8f0"};
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: {"#0f172a" if is_pwa else "#f8fafc"};
         }}
         .profile-photo img {{
             width: 100%;
             height: 100%;
             object-fit: cover;
         }}
-        .profile-photo.placeholder svg {{
-            stroke: {"#94a3b8" if is_pwa else "#64748b"};
+        .section-title {{
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 8px;
+            margin-top: 8px;
+            margin-bottom: 5px;
         }}
-        .header-content {{
-            flex-grow: 1;
-        }}
-        h1 {{
-            font-size: 22px;
-            color: {"#38bdf8" if is_pwa else "#0f172a"};
-            border-bottom: 3px solid {"#22d3ee" if is_pwa else "#0284c7"};
-            padding-bottom: 8px;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }}
-        h2 {{
-            font-size: 17px;
-            color: {"#22d3ee" if is_pwa else "#0284c7"};
-            margin-top: 25px;
-            border-left: 4px solid {"#22d3ee" if is_pwa else "#0284c7"};
-            padding-left: 10px;
-        }}
-        .info-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
-            background: {"rgba(255,255,255,0.05)" if is_pwa else "#f1f5f9"};
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 13.5px;
-        }}
-        table {{
+        table.data-table, .profile-info-table table {{
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 13px;
+            margin-bottom: 5px;
         }}
-        th, td {{
-            border: 1px solid {"rgba(255,255,255,0.1)" if is_pwa else "#cbd5e1"};
-            padding: 8px 10px;
-            text-align: left;
+        table.data-table th, table.data-table td, .profile-info-table th, .profile-info-table td {{
+            border: 1px solid var(--border-card);
+            padding: 4px 7px;
+            font-size: 11.5px;
         }}
-        th {{
-            background: {"#0f172a" if is_pwa else "#e2e8f0"};
-            color: {"#38bdf8" if is_pwa else "#0f172a"};
+        table.data-table th, .profile-info-table th {{
+            background-color: var(--table-header-bg);
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-main);
         }}
-        .star-card {{
+        .bullet-list {{
+            margin: 3px 0 6px 18px;
+            padding: 0;
+            font-size: 12px;
+        }}
+        .bullet-list li {{
+            margin-bottom: 2px;
+        }}
+        .cover-box {{
             background: {"rgba(255,255,255,0.03)" if is_pwa else "#f8fafc"};
-            border: 1px solid {"rgba(255,255,255,0.1)" if is_pwa else "#e2e8f0"};
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            border: 1px solid var(--border-card);
+            border-left: 4px solid var(--primary);
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 4px;
         }}
-        .star-card h3 {{
-            margin-top: 0;
-            color: {"#38bdf8" if is_pwa else "#0369a1"};
+        .cover-box h3 {{
+            margin: 0 0 4px 0;
+            font-size: 13px;
+            color: var(--primary);
+        }}
+        .cover-box p {{
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-main);
+        }}
+        .signature-block {{
+            margin-top: 20px;
+            text-align: center;
+        }}
+        .date-line {{
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }}
+        .signature-name {{
+            font-size: 14.5px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }}
+        .target-company {{
             font-size: 15.5px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
         }}
         .highlight {{
-            color: {"#34d399" if is_pwa else "#059669"};
+            color: {"#38bdf8" if is_pwa else "#0284c7"};
             font-weight: bold;
-        }}
-        ul {{
-            padding-left: 20px;
         }}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="profile-flex">
-            {photo_html}
-            <div class="header-content">
-                <h1>🏆 [{co}] 입사지원서 & 핵심 역량 포트폴리오</h1>
-                <div class="info-grid">
-                    <div><strong>성명/연령:</strong> {b['name']} ({b['birth']})</div>
-                    <div><strong>지원 포지션:</strong> <span class="highlight">{b['position']}</span></div>
-                    <div><strong>총 실무 경력:</strong> {b['experience_total']}</div>
-                    <div><strong>연락처/이메일:</strong> {b['contact']}</div>
-                    <div><strong>주소:</strong> {b['address']}</div>
-                </div>
-            </div>
+    <!-- PAGE 1: 이력서 -->
+    <div class="page page-1">
+        <div class="header-banner">
+            <div class="header-title">입 사 지 원 서</div>
         </div>
 
-        <h2>💼 2. 주요 경력사항</h2>
-        <table>
+        <div class="profile-flex">
+            <div class="profile-info-table">
+                <table>
+                    <tr>
+                        <th style="width:18%;">성 명</th>
+                        <td style="width:32%;">{b['name']}</td>
+                        <th style="width:18%;">생년월일</th>
+                        <td style="width:32%;">{b['birth']}</td>
+                    </tr>
+                    <tr>
+                        <th>연 락 처</th>
+                        <td>010-4549-2886</td>
+                        <th>이 메 일</th>
+                        <td>chan7502@naver.com</td>
+                    </tr>
+                    <tr>
+                        <th>주 소</th>
+                        <td colspan="3">{b['address']}</td>
+                    </tr>
+                    <tr>
+                        <th>지원회사</th>
+                        <td><strong>{co}</strong></td>
+                        <th>지원포지션</th>
+                        <td><span class="highlight">{b['position']}</span></td>
+                    </tr>
+                </table>
+            </div>
+            {photo_html}
+        </div>
+
+        <div class="section-title">1. 핵심 역량 요약 (Core Competencies)</div>
+        <ul class="bullet-list">
+            {comps_html}
+        </ul>
+
+        <div class="section-title">2. 주요 경력 사항 (Ground Truth Work History)</div>
+        <table class="data-table">
             <thead>
                 <tr>
-                    <th style="width:20%;">근무기간</th>
+                    <th style="width:18%;">근무기간</th>
                     <th style="width:25%;">사업장명</th>
-                    <th style="width:20%;">직책</th>
-                    <th style="width:35%;">담당 직무 및 핵심 성과</th>
+                    <th style="width:18%;">직책</th>
+                    <th style="width:39%;">담당 직무 및 핵심 성과</th>
                 </tr>
             </thead>
             <tbody>
@@ -412,13 +621,53 @@ class JobApplicationGenerator:
             </tbody>
         </table>
 
-        <h2>🎖️ 3. 자격증 & 핵심 면허</h2>
-        <ul>
-            {creds_html}
-        </ul>
+        <div class="section-title">3. 학력 사항 (Education)</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:25%;">학교명</th>
+                    <th style="width:30%;">전공 / 학과</th>
+                    <th style="width:15%;">구분</th>
+                    <th style="width:18%;">기간</th>
+                    <th style="width:12%;">학점</th>
+                </tr>
+            </thead>
+            <tbody>
+                {edu_html}
+            </tbody>
+        </table>
 
-        <h2>🚀 4. 직무 맞춤형 3대 STAR 성과 에피소드</h2>
-        {stars_html}
+        <div class="section-title">4. 보유 자격증 & 면허 (Credentials)</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:35%;">자격 / 면허명</th>
+                    <th style="width:35%;">발급 기관</th>
+                    <th style="width:30%;">취득 일자</th>
+                </tr>
+            </thead>
+            <tbody>
+                {creds_html}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGE 2: 자기소개서 -->
+    <div class="page page-2">
+        <div class="header-banner">
+            <div class="header-title">자 기 소 개 서</div>
+            <div class="subheader-text">지원자 : <strong>김승률</strong> &nbsp;|&nbsp; 지원회사 : <strong>{co}</strong> &nbsp;|&nbsp; 지원포지션 : <strong>{b['position']}</strong></div>
+        </div>
+
+        <div class="cover-letter-body">
+            {cover_html}
+        </div>
+
+        <div class="signature-block">
+            <p class="date-line">{today_str}</p>
+            <p class="signature-name">지 원 자 : &nbsp;&nbsp;&nbsp; <strong>김  승  률</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (인 / 서명)</p>
+            <p class="target-company"><strong>{co} 귀중</strong></p>
+        </div>
     </div>
 </body>
 </html>
@@ -440,7 +689,7 @@ class JobApplicationGenerator:
                 browser = p.chromium.launch(headless=True)
                 page = browser.new_page()
                 page.goto(temp_html_path.as_uri())
-                page.pdf(path=str(output_pdf_path), format="A4", print_background=True, margin={"top": "15mm", "bottom": "15mm", "left": "15mm", "right": "15mm"})
+                page.pdf(path=str(output_pdf_path), format="A4", print_background=True, margin={"top": "0mm", "bottom": "0mm", "left": "0mm", "right": "0mm"})
                 browser.close()
             
             if temp_html_path.exists():
