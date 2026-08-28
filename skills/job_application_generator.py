@@ -288,13 +288,14 @@ class JobApplicationGenerator:
             "matched_stars": matched_stars
         }
 
-    def render_html_template(self, app_data: Dict[str, Any], is_pwa: bool = False) -> str:
-        """Renders HTML template using Jinja2 engine (templates/resume_template.html)."""
+    def render_html_template(self, app_data: Dict[str, Any], is_pwa: bool = True) -> str:
+        """Renders Interactive Dark Dashboard (dashboard_view.html) or A4 Print Form (print_a4.html)."""
         from datetime import datetime
         today_str = datetime.now().strftime("%Y년 %m월 %d일")
         
+        template_name = "dashboard_view.html" if is_pwa else "print_a4.html"
         env = jinja2.Environment(loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)))
-        template = env.get_template("resume_template.html")
+        template = env.get_template(template_name)
 
         profile_b64 = self._get_profile_b64()
 
@@ -312,11 +313,16 @@ class JobApplicationGenerator:
         )
         return rendered
 
-    def render_pdf_with_playwright(self, html_content: str, output_pdf_path: Path) -> bool:
-        """Renders A4 PDF using Playwright python API with exact 2-page print options."""
+    def render_pdf_with_playwright(self, app_data_or_html: Any, output_pdf_path: Path) -> bool:
+        """Renders A4 PDF using Playwright with print_a4.html and automatically cleans up temp files."""
         output_pdf_path = Path(output_pdf_path)
         output_pdf_path.parent.mkdir(parents=True, exist_ok=True)
         
+        if isinstance(app_data_or_html, dict):
+            html_content = self.render_html_template(app_data_or_html, is_pwa=False)
+        else:
+            html_content = str(app_data_or_html)
+
         temp_html_path = output_pdf_path.with_suffix(".temp.html")
         with open(temp_html_path, "w", encoding="utf-8") as f:
             f.write(html_content)
@@ -336,13 +342,15 @@ class JobApplicationGenerator:
                 )
                 browser.close()
             
+            # Clean up temporary html file
             if temp_html_path.exists():
-                os.remove(temp_html_path)
+                temp_html_path.unlink()
+
             return output_pdf_path.exists() and output_pdf_path.stat().st_size > 0
         except Exception as e:
             print(f"Error generating PDF via Playwright: {e}")
             if temp_html_path.exists():
-                os.remove(temp_html_path)
+                temp_html_path.unlink()
             return False
 
     def get_slug(self, company_name: str) -> str:
@@ -355,21 +363,21 @@ class JobApplicationGenerator:
         return s if s else "app"
 
     def publish_to_github_pages(self, company_name: str, pwa_html: str) -> Optional[str]:
-        """Saves WebApp HTML to docs/applications/{slug}/index.html and commits/pushes to Git."""
+        """Cleans up legacy target files and saves WebApp index.html to GitHub Pages."""
+        import shutil
         slug = self.get_slug(company_name)
         
-        # Save to docs/applications/{slug}/index.html and applications/{slug}/index.html
-        target_docs_dir = DOCS_APPS_DIR / slug
-        target_docs_dir.mkdir(parents=True, exist_ok=True)
-        docs_index_path = target_docs_dir / "index.html"
-        
+        # Clean target directories before deploy
+        for base_dir in [DOCS_APPS_DIR / slug, BASE_DIR / "applications" / slug]:
+            if base_dir.exists():
+                shutil.rmtree(base_dir, ignore_errors=True)
+            base_dir.mkdir(parents=True, exist_ok=True)
+
+        docs_index_path = DOCS_APPS_DIR / slug / "index.html"
         with open(docs_index_path, "w", encoding="utf-8") as f:
             f.write(pwa_html)
 
-        # Also copy to root applications/{slug}/index.html
-        root_apps_dir = BASE_DIR / "applications" / slug
-        root_apps_dir.mkdir(parents=True, exist_ok=True)
-        root_index_path = root_apps_dir / "index.html"
+        root_index_path = BASE_DIR / "applications" / slug / "index.html"
         with open(root_index_path, "w", encoding="utf-8") as f:
             f.write(pwa_html)
 
@@ -448,35 +456,37 @@ class JobApplicationGenerator:
         """Sends Telegram dual notification (text with web URL + attached A4 PDF)."""
         import requests
         from dotenv import load_dotenv
-
-        env_path = BASE_DIR / "config" / ".env"
-        load_dotenv(dotenv_path=env_path)
         load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-        bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
-        chat_id = os.getenv("TELEGRAM_CHAT_ID", "8392524393")
-
-        if not bot_token or not chat_id:
-            print("[Telegram] Bot token or Chat ID missing.")
+        token = os.getenv("TELEGRAM_BOT_TOKEN")
+        chat_id = os.getenv("TELEGRAM_CHAT_ID")
+        if not token or not chat_id:
+            print("[Telegram] Token or Chat ID missing.")
             return False
 
-        text = f"""📄 [맞춤형 입사지원서 생성 완료]
-• 지원 기업: {company_name}
-• 모바일 웹앱 링크: {web_url}
+        message = f"""🎉 <b>[{company_name}] 맞춤 입사지원서 생성 완료!</b>
 
-※ 첨부된 서류 제출용 A4 PDF를 확인해 주십시오."""
+📱 <b>모바일 커리어 대시보드 (웹앱):</b>
+{web_url}
 
-        msg_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-        doc_url = f"https://api.telegram.org/bot{bot_token}/sendDocument"
+📄 <b>정식 서류제출용 A4 PDF가 아래에 첨부되었습니다.</b>"""
 
         success = True
         try:
-            res_msg = requests.post(msg_url, data={"chat_id": chat_id, "text": text}, timeout=30)
+            # 1. Send text message with WebApp URL
+            msg_url = f"https://api.telegram.org/bot{token}/sendMessage"
+            res_msg = requests.post(
+                msg_url,
+                json={"chat_id": chat_id, "text": message, "parse_mode": "HTML"},
+                timeout=180
+            )
             if res_msg.status_code != 200:
-                print(f"[Telegram] Text message failed: {res_msg.status_code}")
+                print(f"[Telegram] Text message send failed: {res_msg.status_code}")
                 success = False
 
+            # 2. Send PDF Document
             if pdf_path and Path(pdf_path).exists():
+                doc_url = f"https://api.telegram.org/bot{token}/sendDocument"
                 attachment_name = Path(pdf_path).name
                 with open(pdf_path, "rb") as f:
                     res_doc = requests.post(
@@ -495,21 +505,20 @@ class JobApplicationGenerator:
         return success
 
     def generate_job_application(self, company_name: str, job_posting_text: str) -> Dict[str, Any]:
-        """Full pipeline execution: Data extraction -> PDF -> PWA WebApp -> Archiving -> Telegram Dispatch."""
+        """Full pipeline execution: Data extraction -> PDF (print_a4.html) -> PWA Dashboard (dashboard_view.html) -> Archiving -> Telegram Dispatch."""
         sanitized_company = self.get_slug(company_name)
         app_data = self.generate_application_data(company_name, job_posting_text)
 
-        # 1. Render PDF HTML & PWA HTML
-        pdf_html = self.render_html_template(app_data, is_pwa=False)
-        pwa_html = self.render_html_template(app_data, is_pwa=True)
+        # 1. Render Interactive Dark Dashboard WebApp HTML
+        dashboard_html = self.render_html_template(app_data, is_pwa=True)
 
-        # 2. Generate PDF
+        # 2. Generate A4 PDF using print_a4.html
         pdf_filename = f"{sanitized_company}_김승률_지원서.pdf"
         output_pdf_path = OUTPUT_DIR / pdf_filename
-        pdf_success = self.render_pdf_with_playwright(pdf_html, output_pdf_path)
+        pdf_success = self.render_pdf_with_playwright(app_data, output_pdf_path)
 
-        # 3. Publish WebApp to GitHub Pages
-        web_url = self.publish_to_github_pages(company_name, pwa_html)
+        # 3. Publish WebApp to GitHub Pages (Cleans up previous build files)
+        web_url = self.publish_to_github_pages(company_name, dashboard_html)
 
         # 4. 3-Track Archiving
         from skills.report_archiver import archive_report_locally
