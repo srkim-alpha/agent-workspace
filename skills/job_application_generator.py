@@ -362,8 +362,8 @@ class JobApplicationGenerator:
         s = re.sub(r'[()\s/\\:]+', '_', clean).strip('_')
         return s if s else "app"
 
-    def publish_to_github_pages(self, company_name: str, pwa_html: str) -> Optional[str]:
-        """Cleans up legacy target files and saves WebApp index.html to GitHub Pages."""
+    def publish_to_github_pages(self, company_name: str, pwa_html: str, pdf_path: Optional[Path] = None) -> Optional[str]:
+        """Cleans up legacy target files, saves WebApp index.html, copies resume.pdf, and commits to GitHub Pages."""
         import shutil
         slug = self.get_slug(company_name)
         
@@ -381,10 +381,15 @@ class JobApplicationGenerator:
         with open(root_index_path, "w", encoding="utf-8") as f:
             f.write(pwa_html)
 
+        # Copy PDF to target directories as resume.pdf
+        if pdf_path and Path(pdf_path).exists():
+            shutil.copy(pdf_path, DOCS_APPS_DIR / slug / "resume.pdf")
+            shutil.copy(pdf_path, BASE_DIR / "applications" / slug / "resume.pdf")
+
         # Git commit & push
         try:
             subprocess.run(["git", "add", "."], cwd=str(BASE_DIR), check=True)
-            subprocess.run(["git", "commit", "-m", f"Deploy tailored job application for {company_name}"], cwd=str(BASE_DIR), check=False)
+            subprocess.run(["git", "commit", "-m", f"Deploy tailored job application and resume.pdf for {company_name}"], cwd=str(BASE_DIR), check=False)
             subprocess.run(["git", "push", "origin", "main"], cwd=str(BASE_DIR), check=False)
         except Exception as e:
             print(f"Git commit/push warning: {e}")
@@ -517,8 +522,8 @@ class JobApplicationGenerator:
         output_pdf_path = OUTPUT_DIR / pdf_filename
         pdf_success = self.render_pdf_with_playwright(app_data, output_pdf_path)
 
-        # 3. Publish WebApp to GitHub Pages (Cleans up previous build files)
-        web_url = self.publish_to_github_pages(company_name, dashboard_html)
+        # 3. Publish WebApp to GitHub Pages (Cleans up previous build files and deploys resume.pdf)
+        web_url = self.publish_to_github_pages(company_name, dashboard_html, pdf_path=output_pdf_path if pdf_success else None)
 
         # 4. 3-Track Archiving
         from skills.report_archiver import archive_report_locally
